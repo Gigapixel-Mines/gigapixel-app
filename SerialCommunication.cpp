@@ -18,69 +18,72 @@ using namespace std;
 
 void SerialCommunication::Log(std::string strMsg)
 {
-	QString filename = "Data.txt";
-	QFile file(filename);
+    QString filename = "Data.txt";
+    QFile file(filename);
     (file.open(QIODevice::ReadWrite | QIODevice::Append));
-	{
-		QTextStream stream(&file);
-		stream << QString::fromUtf8(strMsg.c_str()) << endl;
+    {
+        QTextStream stream(&file);
+        stream << QString::fromUtf8(strMsg.c_str()) << endl;
     }
 }
 
-bool SerialCommunication::connectSerialPort(){
+bool SerialCommunication::connectSerialPort()
+{
 
     Log("calling SerialCommunication::connectSerialPort()");
 
     int portCount = QSerialPortInfo::availablePorts().count();
 
-    if (portCount == 0) {
+    if (portCount == 0)
+    {
         m_standardOutput << "No serial port found" << endl;
         return false;
     }
-
-    else {
+    else
+    {
         m_serialPort->setPort(QSerialPortInfo::availablePorts()[0]);
         m_serialPort->setBaudRate(QSerialPort::Baud9600);
 
     }
 
-	Log("Connection port serie etablie");
+    Log("Connection port serie etablie");
     return true;
-
 }
 
 // Default constructor, inherits QWidget()
 SerialCommunication::SerialCommunication()
-    : QWidget()
-    , m_standardOutput(stdout)
-    , m_bytesWritten(0)
+: QWidget()
+, m_standardOutput(stdout)
+, m_bytesWritten(0)
 {
-   Log("SerialCommunication constructor called");
+    Log("SerialCommunication constructor called");
 
-   m_serialPortName = "Arduino";
+    m_serialPortName = "Arduino";
 
-   m_serialPort = new QSerialPort(this);
-
-
-
-   connectSerialPort();
+    m_serialPort = new QSerialPort(this);
 
 
 
-   if (!m_serialPort->open(QIODevice::ReadWrite)) {
-	   Log("Failed to OPEN serial port");
-   }
-   else {
-	   Log("Serial port opened");
-       m_serialPort->setDataTerminalReady(true);
-   }
+    connectSerialPort();
 
-   // pour la lecture
-   QObject::connect(m_serialPort, &QSerialPort::readyRead, this, &SerialCommunication::handleReadyRead);
 
-   //For tests
-   //Log("Message a sent");
-   //write("a");
+
+    if (!m_serialPort->open(QIODevice::ReadWrite))
+    {
+        Log("Failed to OPEN serial port");
+    }
+    else
+    {
+        Log("Serial port opened");
+        m_serialPort->setDataTerminalReady(true);
+    }
+
+    // pour la lecture
+    QObject::connect(m_serialPort, &QSerialPort::readyRead, this, &SerialCommunication::handleReadyRead);
+
+    //For tests
+    //Log("Message a sent");
+    //write("a");
 
 }
 
@@ -147,7 +150,8 @@ void SerialCommunication::write(std::string c){
 
 // ci-dessous version fonctionnelle de secours (pas tres propre; "statique" ; tout code a la volee)
 
-void SerialCommunication::write(QByteArray c){
+void SerialCommunication::write(QByteArray c)
+{
 
     Log("calling SerialCommunication::write");
 
@@ -155,9 +159,10 @@ void SerialCommunication::write(QByteArray c){
 
     int portCount = QSerialPortInfo::availablePorts().count();
 
-    if (portCount == 0) {
+    if (portCount == 0)
+    {
         Log("No serial port found");
-		return;
+        return;
     }
 
     //QSerialPort serialPort;
@@ -166,20 +171,23 @@ void SerialCommunication::write(QByteArray c){
 
     //->setBaudRate(QSerialPort::Baud9600);
 
-    
+
     QByteArray writeData = c; //Caractere a choisir
 
     qint64 bytesWritten = m_serialPort->write(writeData);
 
-    if (bytesWritten == -1) {
-		Log("Failed to write the data");
+    if (bytesWritten == -1)
+    {
+        Log("Failed to write the data");
         return;
     }
-    else if (bytesWritten != writeData.size()) {
+    else if (bytesWritten != writeData.size())
+    {
         Log("Failed to write all the data to port");
-		return;
+        return;
     }
-    else if (!m_serialPort->waitForBytesWritten(5000)) {
+    else if (!m_serialPort->waitForBytesWritten(5000))
+    {
         Log("Operation timed out or an error occurred for port");
         return;
     }
@@ -194,8 +202,9 @@ void SerialCommunication::write(QByteArray c){
 
 // Ecriture - higher-level functions
 
-void SerialCommunication::emergencyStop() {
-	Log("calling SerialCommunication::emergencyStop()");
+void SerialCommunication::emergencyStop()
+{
+    Log("calling SerialCommunication::emergencyStop()");
     write("s");
 }
 
@@ -231,46 +240,54 @@ void SerialCommunication::moveCameraToNextPosition() {
 //3 fonctions pour la fise au point : Mettre en marche le moteur dans un sens lorsqu'on appuie sur un bouton.
 //Arrêter les moteurs dès qu'on relâche le bouton.
 
-void SerialCommunication::miseAuPointAv(){
+void SerialCommunication::miseAuPointAv()
+{
     Log("calling SerialCommunication::miseAuPointAv()");
     write("e");
 }
 
-void SerialCommunication::miseAuPointAr(){
+void SerialCommunication::miseAuPointAr()
+{
     Log("calling SerialCommunication::miseAuPointAr()");
     write("f");
 }
 
-void SerialCommunication::miseAuPointStop(){
+void SerialCommunication::miseAuPointStop()
+{
     Log("calling SerialCommunication::miseAuPointStop()");
     write("g");
 }
 
 //Déplacement du capteur au point initial pour prendre des photos
 
-void SerialCommunication::initialPic(){
+void SerialCommunication::initialPic()
+{
     Log("calling SerialCommunication::initialPic()");
     write("h");
 }
 
 //Déplacement du capteur d'un pas, dans une direction, dans un sens
 
-void SerialCommunication::gauche(){
+void SerialCommunication::gauche()
+{
     Log("calling SerialCommunication::avanceHorizontal()");
     write("c");
 }
 
-void SerialCommunication::droite(){
+void SerialCommunication::droite()
+{
     Log("calling SerialCommunication::reculeHorizontal()");
     write("d");
 }
 
-void SerialCommunication::haut(){
+void SerialCommunication::haut()
+{
     Log("calling SerialCommunication::avanceVertical()");
     write("b");
 }
 
-void SerialCommunication::bas(){
+void SerialCommunication::bas()
+{
     Log("calling SerialCommunication::reculeVertical()");
     write("a");
 }
@@ -279,24 +296,27 @@ void SerialCommunication::bas(){
 // Lecture
 
 
-void SerialCommunication::handleReadyRead() {
+void SerialCommunication::handleReadyRead()
+{
 
-	Log("Nouveau message recu : call on handleReadyRead()");
+    Log("Nouveau message recu : call on handleReadyRead()");
     m_readData = m_serialPort->readAll();
     m_serialPort->flush();
-	Log("readAll() execute. Message lu :");
-	std::string string_readData(m_readData.constData(), m_readData.length());
-	Log(string_readData);
+    Log("readAll() execute. Message lu :");
+    std::string string_readData(m_readData.constData(), m_readData.length());
+    Log(string_readData);
     Log(std::to_string(string_readData.compare("j")));
     Log(std::to_string(string_readData.compare("z")));
-  //  m_standardOutput << std::to_string(string_readData.compare("z")) << endl ;
-    if (string_readData.compare("j") == 0) {
-		Sleep(250);
+    //  m_standardOutput << std::to_string(string_readData.compare("z")) << endl ;
+    if (string_readData.compare("j") == 0)
+    {
+        Sleep(250);
         emit InitFinished();
         Log("signal InitFinished() emis par SerialCommunication");
-	}
-    else if (string_readData.compare("z") == 0) {
-		Sleep(250);
+    }
+    else if (string_readData.compare("z") == 0)
+    {
+        Sleep(250);
         emit MvtFinished();
 
         Log("signal MvtFinished() emis par SerialCommunication");

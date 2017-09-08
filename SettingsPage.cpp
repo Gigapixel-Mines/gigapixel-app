@@ -3,32 +3,36 @@
 
 void SettingsPage::Log(std::string strMsg)
 {
-	QString filename = "Data.txt";
-	QFile file(filename);
-	if (file.open(QIODevice::ReadWrite | QIODevice::Append))
-	{
-		QTextStream stream(&file);
-		stream << QString::fromUtf8(strMsg.c_str()) << endl;
-	}
+    QString filename = "Data.txt";
+    QFile file(filename);
+    if (file.open(QIODevice::ReadWrite | QIODevice::Append))
+    {
+        QTextStream stream(&file);
+        stream << QString::fromUtf8(strMsg.c_str()) << endl;
+    }
 }
 
-int SettingsPage::getWishedXPos(){
+int SettingsPage::getWishedXPos()
+{
     return XPosBox->value();
 }
 
-int SettingsPage::getWishedYPos(){
+int SettingsPage::getWishedYPos()
+{
     return YPosBox->value();
 }
 
 // slots
-void SettingsPage::openCameraSettings() {
+void SettingsPage::openCameraSettings()
+{
     std::cout << "TODO: open cameraSettingsWindow" << std::endl;
     //CameraSettingsWindow *cam = new CameraSettingsWindow(this);
     //cam->exec();
     // TODO: uncomment - & solve bug
 }
 
-void SettingsPage::moveCamera(){
+void SettingsPage::moveCamera()
+{
     // "internal memory" of this page
     realXPos = getWishedXPos();
     realYPos = getWishedYPos();
@@ -37,7 +41,8 @@ void SettingsPage::moveCamera(){
     std::cout << "TODO!" << std::endl;
 }
 
-void SettingsPage::restoreToActualValues() {
+void SettingsPage::restoreToActualValues()
+{
     XPosBox->setValue(realXPos);
     YPosBox->setValue(realYPos);
 }

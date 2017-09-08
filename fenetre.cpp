@@ -25,110 +25,92 @@ Fenetre::Fenetre()
     QWidget * miseAuPoint = new QWidget();
     QWidget * run = new QWidget();
 
+    //Camera
+    focuswindow = new FocusWindow();
 
-
-
-
-	//Camera
-
-	focuswindow = new FocusWindow();
-
-	//Page Mise au point
-
-	
-
-
+    //Page Mise au point
     avButton = new QPushButton("Déplacement avant");
     arButton = new QPushButton("Déplacement arrière");
-    QObject::connect(avButton,SIGNAL(pressed()),serialcomm,SLOT(miseAuPointAv()));
-    QObject::connect(avButton,SIGNAL(released()),serialcomm,SLOT(miseAuPointStop()));
-    QObject::connect(arButton,SIGNAL(pressed()),serialcomm,SLOT(miseAuPointAr()));
-    QObject::connect(arButton,SIGNAL(released()),serialcomm,SLOT(miseAuPointStop()));
+    QObject::connect(avButton, SIGNAL(pressed()), serialcomm, SLOT(miseAuPointAv()));
+    QObject::connect(avButton, SIGNAL(released()), serialcomm, SLOT(miseAuPointStop()));
+    QObject::connect(arButton, SIGNAL(pressed()), serialcomm, SLOT(miseAuPointAr()));
+    QObject::connect(arButton, SIGNAL(released()), serialcomm, SLOT(miseAuPointStop()));
     Log("Connection établie");
 
 
-      QVBoxLayout *vboxMiseAuPoint = new QVBoxLayout;
-      vboxMiseAuPoint->addWidget(avButton);
-      vboxMiseAuPoint->addWidget(arButton);
+    QVBoxLayout *vboxMiseAuPoint = new QVBoxLayout;
+    vboxMiseAuPoint->addWidget(avButton);
+    vboxMiseAuPoint->addWidget(arButton);
 
-      miseAuPoint->setLayout(vboxMiseAuPoint);
+    miseAuPoint->setLayout(vboxMiseAuPoint);
 
 
-      //Page RUN
-	  label_v = new QLabel(tr("Nombre de photos verticales : "));
-	  image_v = new QSpinBox();
-	  image_v->setMinimum(3);
-	  image_v->setMaximum(32);
-	  image_v->setFixedSize(40, 20);
-	  pas_v = image_v->value();
-	  label_h = new QLabel(tr("Nombre de photos horizontales : "));
-	  image_h = new QSpinBox();
-	  image_h->setMinimum(3);
-	  image_h->setMaximum(29);
-	  pas_h = image_h->value();
-	  nbrPhoto = 1;
-      goButton = new QPushButton("Marche");
-      stopButton = new QPushButton("Arrêt");
+    //Page RUN
+    label_v = new QLabel(tr("Nombre de photos verticales : "));
+    image_v = new QSpinBox();
+    image_v->setMinimum(3);
+    image_v->setMaximum(32);
+    image_v->setFixedSize(40, 20);
+    pas_v = image_v->value();
+    label_h = new QLabel(tr("Nombre de photos horizontales : "));
+    image_h = new QSpinBox();
+    image_h->setMinimum(3);
+    image_h->setMaximum(29);
+    pas_h = image_h->value();
+    nbrPhoto = 1;
+    goButton = new QPushButton("Marche");
+    stopButton = new QPushButton("Arrêt");
     //  photoButton= new QPushButton ("Prendre photo");
-      bar = new QProgressBar();
-   
-      
+    bar = new QProgressBar();
 
     /*  QVBoxLayout *vboxRun = new QVBoxLayout;
-	  vboxRun->addWidget(label_h);
-	  vboxRun->addWidget(image_h);
-	  vboxRun->addWidget(label_v);
-	  vboxRun->addWidget(image_v);
+      vboxRun->addWidget(label_h);
+      vboxRun->addWidget(image_h);
+      vboxRun->addWidget(label_v);
+      vboxRun->addWidget(image_v);
       vboxRun->addWidget(photoButton);
       vboxRun->addWidget(goButton);
       vboxRun->addWidget(stopButton);
       vboxRun->addWidget(bar);
-	
+
 
       run->setLayout(vboxRun); */
 
-	  QGridLayout *vgridRun = new QGridLayout();
-	  vgridRun->addWidget(createFirstExclusiveGroup(), 0, 0);
-	  vgridRun->addWidget(createSecondExclusiveGroup(), 1, 0);
-	  run->setLayout(vgridRun);
+    QGridLayout *vgridRun = new QGridLayout();
+    vgridRun->addWidget(createFirstExclusiveGroup(), 0, 0);
+    vgridRun->addWidget(createSecondExclusiveGroup(), 1, 0);
+    run->setLayout(vgridRun);
 
-	  //Réglages
-	  QObject::connect(image_h, SIGNAL(valueChanged(int)), this, SLOT(assign_h()));
-	  QObject::connect(image_v, SIGNAL(valueChanged(int)), this, SLOT(assign_v()));
+    //Réglages
+    QObject::connect(image_h, SIGNAL(valueChanged(int)), this, SLOT(assign_h()));
+    QObject::connect(image_v, SIGNAL(valueChanged(int)), this, SLOT(assign_v()));
 
-	  //photoButton def
-	//  QObject::connect(photoButton, SIGNAL(clicked()), focuswindow, SLOT(SaveImage()));
-	  //stopButton def
-	  
-	  
+    //photoButton def
+    //  QObject::connect(photoButton, SIGNAL(clicked()), focuswindow, SLOT(SaveImage()));
+    //stopButton def
 
-	  //GoButton def
+    //GoButton def
 
-	  QObject::connect(goButton, SIGNAL(clicked()), serialcomm, SLOT(initialPic()));
-	  QObject::connect(serialcomm, SIGNAL(InitFinished()), focuswindow, SLOT(SaveImage()));
-	  QObject::connect(focuswindow, SIGNAL(PictureTaken()), this, SLOT(compteur()));
-	  QObject::connect(this, SIGNAL(LigneFinished()), serialcomm, SLOT(haut()));
-	  QObject::connect(this, SIGNAL(PasDroite()), serialcomm, SLOT(droite()));
-	  QObject::connect(this, SIGNAL(PasGauche()), serialcomm, SLOT(gauche()));
-	  QObject::connect(this, SIGNAL(FinCycle()), this, SLOT(ableButton()));
-	  QObject::connect(serialcomm, SIGNAL(MvtFinished()), focuswindow, SLOT(SaveImage()));
-	  QObject::connect(goButton, SIGNAL(clicked()), this, SLOT(disableButton()));
+    QObject::connect(goButton, SIGNAL(clicked()), serialcomm, SLOT(initialPic()));
+    QObject::connect(serialcomm, SIGNAL(InitFinished()), focuswindow, SLOT(SaveImage()));
+    QObject::connect(focuswindow, SIGNAL(PictureTaken()), this, SLOT(compteur()));
+    QObject::connect(this, SIGNAL(LigneFinished()), serialcomm, SLOT(haut()));
+    QObject::connect(this, SIGNAL(PasDroite()), serialcomm, SLOT(droite()));
+    QObject::connect(this, SIGNAL(PasGauche()), serialcomm, SLOT(gauche()));
+    QObject::connect(this, SIGNAL(FinCycle()), this, SLOT(ableButton()));
+    QObject::connect(serialcomm, SIGNAL(MvtFinished()), focuswindow, SLOT(SaveImage()));
+    QObject::connect(goButton, SIGNAL(clicked()), this, SLOT(disableButton()));
 
-	  QObject::connect(stopButton, SIGNAL(clicked()), this, SLOT(stop()));
-	  QObject::connect(stopButton, SIGNAL(clicked()), this, SLOT(ableButton()));
+    QObject::connect(stopButton, SIGNAL(clicked()), this, SLOT(stop()));
+    QObject::connect(stopButton, SIGNAL(clicked()), this, SLOT(ableButton()));
 
+    //Commentaire pour les onglets
+    onglets->addTab(miseAuPoint, "Mise au point");
+    onglets->addTab(run, "Prise de photos");
+    setWindowTitle("GigaproxyPhoto");
+    //   setFixedSize(2000,2000);
 
-
-      //Commentaire pour les onglets
-
-      onglets->addTab(miseAuPoint, "Mise au point");
-          onglets->addTab(run, "Prise de photos");
-
-      setWindowTitle("GigaproxyPhoto");
-   //   setFixedSize(2000,2000);
-
-
-	  show();
+    show();
 }
 
 QGroupBox *Fenetre::createFirstExclusiveGroup()
@@ -140,8 +122,7 @@ QGroupBox *Fenetre::createFirstExclusiveGroup()
 	vgrid->addWidget(label_h, 1, 0);
 	vgrid->addWidget(image_h, 1, 1);
 	groupBox->setLayout(vgrid);
-	return groupBox;
-
+    return groupBox;
 }
 
 QGroupBox *Fenetre::createSecondExclusiveGroup()
@@ -154,7 +135,6 @@ QGroupBox *Fenetre::createSecondExclusiveGroup()
 	vlayout->addWidget(bar);
 	groupBox->setLayout(vlayout);
 	return groupBox;
-
 }
 
 
