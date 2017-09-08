@@ -1,0 +1,8 @@
+﻿Build started 18/09/2016 17:47:24.
+     1>Project "C:\Users\Margaux\Desktop\Mecatro\Mecatro_2016_groupe14_VS\2015-2016_MecaTro-Mines\3GP-Logiciel\Logiciel-mecatro-master\Vimba_2.0\VimbaCPP_Examples\AsynchronousGrab\Qt\Build\VS2010\AsynchronousGrabQt.vcxproj" on node 2 (CustomBuild target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(974,5): error MSB4023: Cannot evaluate the item metadata "%(Extension)". The item metadata "%(Extension)" cannot be applied to the path "C:\Users\Margaux\Desktop\Mecatro\Mecatro_2016_groupe14_VS\2015-2016_MecaTro-Mines\3GP-Logiciel\Logiciel-mecatro-master\Vimba_2.0\VimbaCPP_Examples\AsynchronousGrab\Qt\Build\VS2010\GeneratedFiles\Debug\moc_FrameObserver.cpp"". Illegal characters in path.
+     1>Done Building Project "C:\Users\Margaux\Desktop\Mecatro\Mecatro_2016_groupe14_VS\2015-2016_MecaTro-Mines\3GP-Logiciel\Logiciel-mecatro-master\Vimba_2.0\VimbaCPP_Examples\AsynchronousGrab\Qt\Build\VS2010\AsynchronousGrabQt.vcxproj" (CustomBuild target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.02

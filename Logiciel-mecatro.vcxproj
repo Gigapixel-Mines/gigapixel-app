@@ -1,0 +1,461 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AC517B81-DE9F-32B5-973A-384D30817D46}</ProjectGuid>
+    <RootNamespace>declarative-camera</RootNamespace>
+    <Keyword>Qt4VSv1.0</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <PlatformToolSet>v120</PlatformToolSet>
+    <OutputDirectory>release\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>NotSet</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
+    <IntermediateDirectory>release\</IntermediateDirectory>
+    <PrimaryOutput>declarative-camera</PrimaryOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <PlatformToolSet>v120</PlatformToolSet>
+    <OutputDirectory>debug\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>NotSet</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
+    <IntermediateDirectory>debug\</IntermediateDirectory>
+    <PrimaryOutput>declarative-camera</PrimaryOutput>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">declarative-camera</TargetName>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">GigaProxyPhoto</TargetName>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);=%QTDIR%\bin;$(ProjectDir)\Vimba_2.0\VimbaCPP\Bin\Win32;$(ProjectDir)\Vimba_2.0\VimbaC\Bin\Win32;%PATH%;</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;Vimba_2.0\VimbaCPP\Include;Vimba_2.0\VimbaC\Include;Vimba_2.0;C:\qt\5.5\msvc2013\include;C:\qt\5.5\msvc2013\include\QtMultimediaWidgets;C:\qt\5.5\msvc2013\include\QtWidgets;C:\qt\5.5\msvc2013\include\QtQuick;C:\qt\5.5\msvc2013\include\QtMultimedia;C:\qt\5.5\msvc2013\include\QtGui;C:\qt\5.5\msvc2013\include\QtANGLE;C:\qt\5.5\msvc2013\include\QtSerialPort;C:\qt\5.5\msvc2013\include\QtQml;C:\qt\5.5\msvc2013\include\QtNetwork;C:\qt\5.5\msvc2013\include\QtCore;release;C:\qt\5.5\msvc2013\mkspecs\win32-msvc2013;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;.\GeneratedFiles;$(QTDIR)\include\QtMultimedia;$(QTDIR)\include\QtMultimediaWidgets;$(QTDIR)\include\QtDeclarative;$(QTDIR)\include\QtNetwork;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:strictStrings -w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>release\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <Optimization>MaxSpeed</Optimization>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_NO_DEBUG;QT_MULTIMEDIAWIDGETS_LIB;QT_WIDGETS_LIB;QT_QUICK_LIB;QT_MULTIMEDIA_LIB;QT_GUI_LIB;QT_SERIALPORT_LIB;QT_QML_LIB;QT_NETWORK_LIB;QT_CORE_LIB;NDEBUG;QT_DECLARATIVE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>C:\qt\5.5\msvc2013\lib\qtmain.lib;shell32.lib;C:/qt/5.5/msvc2013/lib\Qt5Core.lib;C:\Users\Margaux\Desktop\Mecatro\Mecatro_2016_groupe14_VS\2015-2016_MecaTro-Mines\3GP-Logiciel\Logiciel-mecatro-master\Vimba_2.0\VimbaC\Lib\Win32\VimbaC.lib;C:\Users\Margaux\Desktop\Mecatro\Mecatro_2016_groupe14_VS\2015-2016_MecaTro-Mines\3GP-Logiciel\Logiciel-mecatro-master\Vimba_2.0\VimbaCPP\Lib\Win32\VimbaCPP.lib;C:\qt\5.5\msvc2013\lib\Qt5MultimediaWidgets.lib;C:\qt\5.5\msvc2013\lib\Qt5Widgets.lib;C:\qt\5.5\msvc2013\lib\Qt5Quick.lib;C:\qt\5.5\msvc2013\lib\Qt5Multimedia.lib;C:\qt\5.5\msvc2013\lib\Qt5Gui.lib;C:\qt\5.5\msvc2013\lib\Qt5SerialPort.lib;C:\qt\5.5\msvc2013\lib\Qt5Qml.lib;C:\qt\5.5\msvc2013\lib\Qt5Network.lib;C:\qt\5.5\msvc2013\lib\Qt5Core.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;Qt5Multimedia.lib;Qt5MultimediaWidgets.lib;Qt5Declarative.lib;Qt5Network.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\qt\5.5\msvc2013\lib;C:/qt/5.5/msvc2013/lib;$(QTDIR)\lib;C:\Users\Margaux\Desktop\Mecatro\Mecatro_2016_groupe14_VS\2015-2016_MecaTro-Mines\3GP-Logiciel\Logiciel-mecatro-master\Vimba_2.0\VimbaC\Lib\Win32;C:\Users\Margaux\Desktop\Mecatro\Mecatro_2016_groupe14_VS\2015-2016_MecaTro-Mines\3GP-Logiciel\Logiciel-mecatro-master\Vimba_2.0\VimbaCPP\Lib\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <LinkIncremental>false</LinkIncremental>
+      <OutputFile>$(OutDir)\declarative-camera.exe</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_NO_DEBUG;QT_MULTIMEDIAWIDGETS_LIB;QT_WIDGETS_LIB;QT_QUICK_LIB;QT_MULTIMEDIA_LIB;QT_GUI_LIB;QT_SERIALPORT_LIB;QT_QML_LIB;QT_NETWORK_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;Vimba_2.0\VimbaCPP\Include;Vimba_2.0\VimbaC\Include;Vimba_2.0;C:\qt\5.5\msvc2013\include;C:\qt\5.5\msvc2013\include\QtMultimediaWidgets;C:\qt\5.5\msvc2013\include\QtWidgets;C:\qt\5.5\msvc2013\include\QtQuick;C:\qt\5.5\msvc2013\include\QtMultimedia;C:\qt\5.5\msvc2013\include\QtGui;C:\qt\5.5\msvc2013\include\QtANGLE;C:\qt\5.5\msvc2013\include\QtSerialPort;C:\qt\5.5\msvc2013\include\QtQml;C:\qt\5.5\msvc2013\include\QtNetwork;C:\qt\5.5\msvc2013\include\QtCore;debug;C:\qt\5.5\msvc2013\mkspecs\win32-msvc2013;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;.\GeneratedFiles;$(QTDIR)\include\QtMultimedia;$(QTDIR)\include\QtMultimediaWidgets;$(QTDIR)\include\QtDeclarative;$(QTDIR)\include\QtNetwork;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
+      <AssemblerListingLocation>debug\</AssemblerListingLocation>
+      <BrowseInformation>false</BrowseInformation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_MULTIMEDIAWIDGETS_LIB;QT_WIDGETS_LIB;QT_QUICK_LIB;QT_MULTIMEDIA_LIB;QT_GUI_LIB;QT_SERIALPORT_LIB;QT_QML_LIB;QT_NETWORK_LIB;QT_CORE_LIB;QT_DECLARATIVE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>C:\qt\5.5\msvc2013\lib\qtmaind.lib;shell32.lib;C:/qt/5.5/msvc2013/lib\Qt5Cored.lib;C:\qt\5.5\msvc2013\lib\Qt5MultimediaWidgetsd.lib;C:\qt\5.5\msvc2013\lib\Qt5Widgetsd.lib;C:\qt\5.5\msvc2013\lib\Qt5Quickd.lib;C:\qt\5.5\msvc2013\lib\Qt5Multimediad.lib;C:\qt\5.5\msvc2013\lib\Qt5Guid.lib;C:\qt\5.5\msvc2013\lib\Qt5SerialPortd.lib;C:\qt\5.5\msvc2013\lib\Qt5Qmld.lib;C:\qt\5.5\msvc2013\lib\Qt5Networkd.lib;C:\qt\5.5\msvc2013\lib\Qt5Cored.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;Vimba_2.0\VimbaCPP\Lib\Win32\VimbaCPP.lib;Vimba_2.0\VimbaC\Lib\Win32\VimbaC.lib;Qt5Multimediad.lib;Qt5MultimediaWidgetsd.lib;Qt5Declaratived.lib;Vimba_2.0\ThirdParty\TinyXML\Lib\Win32\tinyxml.lib;Vimba_2.0\ThirdParty\TinyXML\Lib\Win32\tinyxmlSTL.lib;Vimba_2.0\VimbaImageTransform\Lib\Win32\VimbaImageTransform.lib;Qt5Networkd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\qt\5.5\msvc2013\lib;C:/qt/5.5/msvc2013/lib;$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <OutputFile>$(OutDir)\GigaProxyPhoto.exe</OutputFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_MULTIMEDIAWIDGETS_LIB;QT_WIDGETS_LIB;QT_QUICK_LIB;QT_MULTIMEDIA_LIB;QT_GUI_LIB;QT_SERIALPORT_LIB;QT_QML_LIB;QT_NETWORK_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ApiController.cpp" />
+    <ClCompile Include="AsynchronousGrab.cpp" />
+    <ClCompile Include="CameraObserver.cpp" />
+    <ClCompile Include="Debug\moc_AsynchronousGrab.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_CameraObserver.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_fenetre.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_FocusWindow.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_FrameObserver.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_GPPWizard.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_ProgressPage.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_SerialCommunication.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_SettingsPage.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_wcam.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="fenetre.cpp" />
+    <ClCompile Include="FocusWindow.cpp" />
+    <ClCompile Include="FrameObserver.cpp" />
+    <ClCompile Include="GPPWizard.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Main_Prog.cpp" />
+    <ClCompile Include="ProgressPage.cpp" />
+    <ClCompile Include="Release\moc_AsynchronousGrab.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_CameraObserver.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_fenetre.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_FocusWindow.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_FrameObserver.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_GPPWizard.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_ProgressPage.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_SerialCommunication.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_SettingsPage.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Release\moc_wcam.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="SerialCommunication.cpp" />
+    <ClCompile Include="SettingsPage.cpp" />
+    <ClCompile Include="TakePictureTest.cpp" />
+    <ClCompile Include="cameraSettingsWindow.cpp" />
+    <ClCompile Include="wcam.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="wcam.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing wcam.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_DECLARATIVE_LIB "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\debug" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\GeneratedFiles" "-I$(QTDIR)\include\QtMultimedia" "-I$(QTDIR)\include\QtMultimediaWidgets" "-I$(QTDIR)\include\QtDeclarative" "-I$(QTDIR)\include\QtNetwork"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing wcam.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG -DQT_DECLARATIVE_LIB "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\release" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\GeneratedFiles" "-I$(QTDIR)\include\QtMultimedia" "-I$(QTDIR)\include\QtMultimediaWidgets" "-I$(QTDIR)\include\QtDeclarative" "-I$(QTDIR)\include\QtNetwork"</Command>
+    </CustomBuild>
+    <CustomBuild Include="fenetre.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing fenetre.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_DECLARATIVE_LIB "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\debug" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\GeneratedFiles" "-I$(QTDIR)\include\QtMultimedia" "-I$(QTDIR)\include\QtMultimediaWidgets" "-I$(QTDIR)\include\QtDeclarative"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing fenetre.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG -DQT_DECLARATIVE_LIB "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\release" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\GeneratedFiles" "-I$(QTDIR)\include\QtMultimedia" "-I$(QTDIR)\include\QtMultimediaWidgets" "-I$(QTDIR)\include\QtDeclarative"</Command>
+    </CustomBuild>
+    <ClInclude Include="GeneratedFiles\ui_logiciel_mecatro.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\AncillaryData.h" />
+    <ClInclude Include="ApiController.h" />
+    <CustomBuild Include="AsynchronousGrab.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+
+if errorlevel 1 goto VCEnd
+endlocal
+"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\release" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing AsynchronousGrab.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+
+if errorlevel 1 goto VCEnd
+endlocal
+"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\debug" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing AsynchronousGrab.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\BasicLockable.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\Camera.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\Camera.hpp" />
+    <CustomBuild Include="CameraObserver.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+
+if errorlevel 1 goto VCEnd
+endlocal
+"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\release" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing CameraObserver.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+
+if errorlevel 1 goto VCEnd
+endlocal
+"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\debug" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing CameraObserver.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\EnumEntry.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\EnumEntry.hpp" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\Feature.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\Feature.hpp" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\FeatureContainer.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\FeatureContainer.hpp" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\FileLogger.h" />
+    <CustomBuild Include="FocusWindow.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+
+if errorlevel 1 goto VCEnd
+endlocal
+"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\release" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing FocusWindow.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+
+if errorlevel 1 goto VCEnd
+endlocal
+"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\debug" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing FocusWindow.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\Frame.h" />
+    <CustomBuild Include="FrameObserver.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+
+if errorlevel 1 goto VCEnd
+endlocal
+"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\release" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing FrameObserver.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+
+if errorlevel 1 goto VCEnd
+endlocal
+"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\debug" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing FrameObserver.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="GPPWizard.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+
+if errorlevel 1 goto VCEnd
+endlocal
+"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\release" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing GPPWizard.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+
+if errorlevel 1 goto VCEnd
+endlocal
+"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\debug" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing GPPWizard.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\ICameraFactory.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\ICameraListObserver.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\IFeatureObserver.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\IFrameObserver.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\IInterfaceListObserver.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\IRegisterDevice.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\Interface.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\Interface.hpp" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\LoggerDefines.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\Mutex.h" />
+    <CustomBuild Include="ProgressPage.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+
+if errorlevel 1 goto VCEnd
+endlocal
+"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\release" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing ProgressPage.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+
+if errorlevel 1 goto VCEnd
+endlocal
+"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\debug" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing ProgressPage.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="SerialCommunication.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+
+if errorlevel 1 goto VCEnd
+endlocal
+"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\release" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing SerialCommunication.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+
+if errorlevel 1 goto VCEnd
+endlocal
+"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\debug" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SerialCommunication.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="SettingsPage.h">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+
+if errorlevel 1 goto VCEnd
+endlocal
+"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DNDEBUG "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\release" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing SettingsPage.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+if errorlevel 1 goto VCEnd
+
+if errorlevel 1 goto VCEnd
+endlocal
+"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_MULTIMEDIAWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB "-I." "-I.\Vimba_2.0\VimbaCPP\Include" "-I.\Vimba_2.0\VimbaC\Include" "-I.\Vimba_2.0" "-IC:\qt\5.5\msvc2013\include" "-IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets" "-IC:\qt\5.5\msvc2013\include\QtWidgets" "-IC:\qt\5.5\msvc2013\include\QtQuick" "-IC:\qt\5.5\msvc2013\include\QtMultimedia" "-IC:\qt\5.5\msvc2013\include\QtGui" "-IC:\qt\5.5\msvc2013\include\QtANGLE" "-IC:\qt\5.5\msvc2013\include\QtSerialPort" "-IC:\qt\5.5\msvc2013\include\QtQml" "-IC:\qt\5.5\msvc2013\include\QtNetwork" "-IC:\qt\5.5\msvc2013\include\QtCore" "-I.\debug" "-IC:\qt\5.5\msvc2013\mkspecs\win32-msvc2013"</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SettingsPage.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    </CustomBuild>
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\SharedPointer.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\SharedPointerDefines.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\SharedPointer_impl.h" />
+    <ClInclude Include="TakePictureTest.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\UserLoggerDefines.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\UserSharedPointerDefines.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\VimbaCPP.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\VimbaCPPCommon.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\VimbaSystem.h" />
+    <ClInclude Include="Vimba_2.0\VimbaCPP\Include\VimbaSystem.hpp" />
+    <ClInclude Include="cameraSettingsWindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="logiciel_mecatro.ui">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Logiciel-mecatro.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Logo 3.bmp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" Qt5Version_x0020_Win32="msvc2013" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

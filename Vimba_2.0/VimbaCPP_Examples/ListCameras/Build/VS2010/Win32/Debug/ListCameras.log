@@ -1,0 +1,24 @@
+﻿Build started 16/09/2016 09:52:16.
+     1>Project "C:\Users\Margaux\Desktop\Mecatro\Mecatro_2016_groupe14_VS\2015-2016_MecaTro-Mines\3GP-Logiciel\Logiciel-mecatro-master\Vimba_2.0\VimbaCPP_Examples\ListCameras\Build\VS2010\ListCameras.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\..\Source /I..\..\.. /I\ThirdParty\TinyXML\Include /I..\..\.. /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Win32\Debug\\" /Fd"Win32\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\Source\ListCameras.cpp ..\..\Source\program.cpp
+         ListCameras.cpp
+     1>c:\users\margaux\desktop\mecatro\mecatro_2016_groupe14_vs\2015-2016_mecatro-mines\3gp-logiciel\logiciel-mecatro-master\vimba_2.0\vimbacpp\include\iframeobserver.h(61): warning C4251: 'AVT::VmbAPI::IFrameObserver::m_pCamera' : class 'AVT::VmbAPI::shared_ptr<AVT::VmbAPI::Camera>' needs to have dll-interface to be used by clients of class 'AVT::VmbAPI::IFrameObserver'
+         program.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Margaux\Desktop\Mecatro\Mecatro_2016_groupe14_VS\2015-2016_MecaTro-Mines\3GP-Logiciel\Logiciel-mecatro-master\Vimba_2.0\VimbaCPP_Examples\ListCameras\Build\VS2010\Win32\Debug\ListCameras.exe" /INCREMENTAL /NOLOGO /LIBPATH:\VimbaCPP\Lib\Win32 /LIBPATH:\ThirdParty\TinyXML\Lib\Win32 "C:\Users\Margaux\Desktop\Mecatro\Mecatro_2016_groupe14_VS\2015-2016_MecaTro-Mines\3GP-Logiciel\Logiciel-mecatro-master\Vimba_2.0\VimbaCPP\Lib\Win32\VimbaCPP.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Margaux\Desktop\Mecatro\Mecatro_2016_groupe14_VS\2015-2016_MecaTro-Mines\3GP-Logiciel\Logiciel-mecatro-master\Vimba_2.0\VimbaCPP_Examples\ListCameras\Build\VS2010\Win32\Debug\ListCameras.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Margaux\Desktop\Mecatro\Mecatro_2016_groupe14_VS\2015-2016_MecaTro-Mines\3GP-Logiciel\Logiciel-mecatro-master\Vimba_2.0\VimbaCPP_Examples\ListCameras\Build\VS2010\Win32\Debug\ListCameras.lib" /MACHINE:X86 Win32\Debug\ListCameras.obj
+         Win32\Debug\program.obj
+         ListCameras.vcxproj -> C:\Users\Margaux\Desktop\Mecatro\Mecatro_2016_groupe14_VS\2015-2016_MecaTro-Mines\3GP-Logiciel\Logiciel-mecatro-master\Vimba_2.0\VimbaCPP_Examples\ListCameras\Build\VS2010\Win32\Debug\ListCameras.exe
+       PostBuildEvent:
+         xcopy "\VimbaCPP\Bin\Win32\*.*" "C:\Users\Margaux\Desktop\Mecatro\Mecatro_2016_groupe14_VS\2015-2016_MecaTro-Mines\3GP-Logiciel\Logiciel-mecatro-master\Vimba_2.0\VimbaCPP_Examples\ListCameras\Build\VS2010\Win32\Debug\" /Y
+         :VCEnd
+         Fichier introuvable - *.*
+         0 fichier(s) copié(s)
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppCommon.targets(132,5): error MSB3073: The command "xcopy "\VimbaCPP\Bin\Win32\*.*" "C:\Users\Margaux\Desktop\Mecatro\Mecatro_2016_groupe14_VS\2015-2016_MecaTro-Mines\3GP-Logiciel\Logiciel-mecatro-master\Vimba_2.0\VimbaCPP_Examples\ListCameras\Build\VS2010\Win32\Debug\" /Y
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppCommon.targets(132,5): error MSB3073: :VCEnd" exited with code 4.
+     1>Done Building Project "C:\Users\Margaux\Desktop\Mecatro\Mecatro_2016_groupe14_VS\2015-2016_MecaTro-Mines\3GP-Logiciel\Logiciel-mecatro-master\Vimba_2.0\VimbaCPP_Examples\ListCameras\Build\VS2010\ListCameras.vcxproj" (Rebuild target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:03.63
