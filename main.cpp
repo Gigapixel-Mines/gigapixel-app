@@ -17,5 +17,5 @@ int main(int argc, char *argv[])
 	f->show();
 	WCam * w = new WCam();
 	//w->show();
-	return a.exec();
+    return a.exec();
 }

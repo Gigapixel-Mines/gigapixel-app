@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.4.0, 2017-09-11T09:52:16. -->
+<!-- Written by QtCreator 4.1.0, 2016-09-18T16:27:04. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{c1ba4dff-86aa-4ca9-ab7b-c923b7ce3a52}</value>
+  <value type="QByteArray">{511829fa-cf81-424e-8c07-920938cc9b34}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -285,8 +285,8 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Logiciel-mecatro</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Logiciel-mecatro2</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Olivier/Documents/GitHub/gigapixel-app/Logiciel-mecatro.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Margaux/Desktop/Mecatro/Mecatro_2016_groupe14_VS/2015-2016_MecaTro-Mines/3GP-Logiciel/Logiciel-mecatro-master/Logiciel-mecatro.pro</value>
     <value type="bool" key="QmakeProjectManager.QmakeRunConfiguration.UseLibrarySearchPath">true</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">Logiciel-mecatro.pro</value>
