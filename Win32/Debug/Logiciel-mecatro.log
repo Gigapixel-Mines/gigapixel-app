@@ -1,25 +1,8 @@
-﻿Build started 20/03/2017 14:59:22.
-     1>Project "D:\TOMA\Proyectos\2014_G3P\2016-MecraTro-XMines\Logiciel\Logiciel-mecatro.vcxproj" on node 2 (Build target(s)).
-     1>CustomBuild:
-         Moc'ing AsynchronousGrab.h...
-         Moc'ing CameraObserver.h...
-         Moc'ing FocusWindow.h...
-         Moc'ing FrameObserver.h...
-         Moc'ing GPPWizard.h...
-         Moc'ing ProgressPage.h...
-         Moc'ing SerialCommunication.h...
-         Moc'ing SettingsPage.h...
-       ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I. /IVimba_2.0\VimbaCPP\Include /IVimba_2.0\VimbaC\Include /IVimba_2.0 /IC:\qt\5.5\msvc2013\include /IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets /IC:\qt\5.5\msvc2013\include\QtWidgets /IC:\qt\5.5\msvc2013\include\QtQuick /IC:\qt\5.5\msvc2013\include\QtMultimedia /IC:\qt\5.5\msvc2013\include\QtGui /IC:\qt\5.5\msvc2013\include\QtANGLE /IC:\qt\5.5\msvc2013\include\QtSerialPort /IC:\qt\5.5\msvc2013\include\QtQml /IC:\qt\5.5\msvc2013\include\QtNetwork /IC:\qt\5.5\msvc2013\include\QtCore /Idebug /I"C:\qt\5.5\msvc2013\mkspecs\win32-msvc2013" /IC:\Qt\5.5\msvc2013\include\QtCore /IC:\Qt\5.5\msvc2013\include\QtGui /IC:\Qt\5.5\msvc2013\include\QtWidgets /I.\GeneratedFiles /IC:\Qt\5.5\msvc2013\include\QtMultimedia /IC:\Qt\5.5\msvc2013\include\QtMultimediaWidgets /IC:\Qt\5.5\msvc2013\include\QtDeclarative /IC:\Qt\5.5\msvc2013\include\QtNetwork /Zi /nologo /W3 /WX- /Od /Oy- /D _WINDOWS /D UNICODE /D WIN32 /D QT_MULTIMEDIAWIDGETS_LIB /D QT_WIDGETS_LIB /D QT_QUICK_LIB /D QT_MULTIMEDIA_LIB /D QT_GUI_LIB /D QT_SERIALPORT_LIB /D QT_QML_LIB /D QT_NETWORK_LIB /D QT_CORE_LIB /D QT_DECLARATIVE_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"Win32\Debug\\" /Fd"Win32\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt -w34100 -w34189 -w44996 Debug\moc_AsynchronousGrab.cpp Debug\moc_CameraObserver.cpp Debug\moc_FocusWindow.cpp Debug\moc_FrameObserver.cpp Debug\moc_GPPWizard.cpp Debug\moc_ProgressPage.cpp Debug\moc_SerialCommunication.cpp Debug\moc_SettingsPage.cpp
-         moc_AsynchronousGrab.cpp
-         moc_CameraObserver.cpp
-         moc_FocusWindow.cpp
-         moc_FrameObserver.cpp
-         moc_GPPWizard.cpp
-         moc_ProgressPage.cpp
-         moc_SerialCommunication.cpp
-         moc_SettingsPage.cpp
-         Generating Code...
+﻿Build started 11/09/2017 09:40:11.
+     1>Project "C:\Users\Olivier\Documents\GitHub\gigapixel-app\Logiciel-mecatro.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I. /IVimba_2.0\VimbaCPP\Include /IVimba_2.0\VimbaC\Include /IVimba_2.0 /IC:\qt\5.5\msvc2013\include /IC:\qt\5.5\msvc2013\include\QtMultimediaWidgets /IC:\qt\5.5\msvc2013\include\QtWidgets /IC:\qt\5.5\msvc2013\include\QtQuick /IC:\qt\5.5\msvc2013\include\QtMultimedia /IC:\qt\5.5\msvc2013\include\QtGui /IC:\qt\5.5\msvc2013\include\QtANGLE /IC:\qt\5.5\msvc2013\include\QtSerialPort /IC:\qt\5.5\msvc2013\include\QtQml /IC:\qt\5.5\msvc2013\include\QtNetwork /IC:\qt\5.5\msvc2013\include\QtCore /Idebug /I"C:\qt\5.5\msvc2013\mkspecs\win32-msvc2013" /IC:\Qt\5.5\msvc2013\include\QtCore /IC:\Qt\5.5\msvc2013\include\QtGui /IC:\Qt\5.5\msvc2013\include\QtWidgets /I.\GeneratedFiles /IC:\Qt\5.5\msvc2013\include\QtMultimedia /IC:\Qt\5.5\msvc2013\include\QtMultimediaWidgets /IC:\Qt\5.5\msvc2013\include\QtDeclarative /IC:\Qt\5.5\msvc2013\include\QtNetwork /Zi /nologo /W3 /WX- /Od /Oy- /D _WINDOWS /D UNICODE /D WIN32 /D QT_MULTIMEDIAWIDGETS_LIB /D QT_WIDGETS_LIB /D QT_QUICK_LIB /D QT_MULTIMEDIA_LIB /D QT_GUI_LIB /D QT_SERIALPORT_LIB /D QT_QML_LIB /D QT_NETWORK_LIB /D QT_CORE_LIB /D QT_DECLARATIVE_LIB /D QT_DLL /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"Win32\Debug\\" /Fd"Win32\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt -w34100 -w34189 -w44996 wcam.cpp
+         wcam.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"debug\\GigaProxyPhoto.exe" /NOLOGO /LIBPATH:C:\qt\5.5\msvc2013\lib /LIBPATH:C:/qt/5.5/msvc2013/lib /LIBPATH:C:\Qt\5.5\msvc2013\lib C:\qt\5.5\msvc2013\lib\qtmaind.lib shell32.lib C:/qt/5.5/msvc2013/lib\Qt5Cored.lib C:\qt\5.5\msvc2013\lib\Qt5MultimediaWidgetsd.lib C:\qt\5.5\msvc2013\lib\Qt5Widgetsd.lib C:\qt\5.5\msvc2013\lib\Qt5Quickd.lib C:\qt\5.5\msvc2013\lib\Qt5Multimediad.lib C:\qt\5.5\msvc2013\lib\Qt5Guid.lib C:\qt\5.5\msvc2013\lib\Qt5SerialPortd.lib C:\qt\5.5\msvc2013\lib\Qt5Qmld.lib C:\qt\5.5\msvc2013\lib\Qt5Networkd.lib C:\qt\5.5\msvc2013\lib\Qt5Cored.lib Qt5Cored.lib Qt5Guid.lib Qt5Widgetsd.lib Vimba_2.0\VimbaCPP\Lib\Win32\VimbaCPP.lib Vimba_2.0\VimbaC\Lib\Win32\VimbaC.lib Qt5Multimediad.lib Qt5MultimediaWidgetsd.lib Qt5Declaratived.lib Vimba_2.0\ThirdParty\TinyXML\Lib\Win32\tinyxml.lib Vimba_2.0\ThirdParty\TinyXML\Lib\Win32\tinyxmlSTL.lib Vimba_2.0\VimbaImageTransform\Lib\Win32\VimbaImageTransform.lib Qt5Networkd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"debug\GigaProxyPhoto.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X86 /SAFESEH "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" "Win32\Debug\Logiciel-mecatro.res"
          Win32\Debug\ApiController.obj
@@ -47,9 +30,9 @@
          Win32\Debug\TakePictureTest.obj
          Win32\Debug\cameraSettingsWindow.obj
          Win32\Debug\wcam.obj
-         Logiciel-mecatro.vcxproj -> D:\TOMA\Proyectos\2014_G3P\2016-MecraTro-XMines\Logiciel\debug\GigaProxyPhoto.exe
-     1>Done Building Project "D:\TOMA\Proyectos\2014_G3P\2016-MecraTro-XMines\Logiciel\Logiciel-mecatro.vcxproj" (Build target(s)).
+         Logiciel-mecatro.vcxproj -> C:\Users\Olivier\Documents\GitHub\gigapixel-app\debug\GigaProxyPhoto.exe
+     1>Done Building Project "C:\Users\Olivier\Documents\GitHub\gigapixel-app\Logiciel-mecatro.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:17.00
+Time Elapsed 00:00:08.28

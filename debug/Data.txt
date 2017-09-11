@@ -54110,3 +54110,27 @@ Data successfully sent to port %1
 calling SerialCommunication::miseAuPointStop()
 calling SerialCommunication::write
 Data successfully sent to port %1
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Connection établie
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Connection établie
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Connection établie
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Connection établie

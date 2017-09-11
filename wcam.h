@@ -7,21 +7,21 @@
 #include <QMessageBox>
 
 
-class WCam  : public QWidget
+class WCam : public QWidget
 {
-    Q_OBJECT
+	Q_OBJECT
 
 private:
-    QGridLayout * layout;
-    QCamera * camera;
-    QCameraViewfinder * viewfinder;
-    QCameraImageCapture * imageCapture;
-    QMessageBox * error;
-    int * a;
+	QGridLayout * layout;
+	QCamera * camera;
+	QCameraViewfinder * viewfinder;
+	QCameraImageCapture * imageCapture;
+	QMessageBox * error;
+	int * a;
 
 
 public:
-    WCam();
+	WCam();
 
 };
 

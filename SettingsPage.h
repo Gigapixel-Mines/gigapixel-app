@@ -17,30 +17,30 @@
 class SettingsPage : public QWizardPage
 {
 
-    Q_OBJECT
+	Q_OBJECT
 
-    private:
-        QLabel * label;
-        QSpinBox * XPosBox;
-        QSpinBox * YPosBox;
-        QPushButton * moveButton;
-        QPushButton * realButton;
-        QPushButton * cameraSettingsButton;
-        int realXPos;
-        int realYPos;
+private:
+	QLabel * label;
+	QSpinBox * XPosBox;
+	QSpinBox * YPosBox;
+	QPushButton * moveButton;
+	QPushButton * realButton;
+	QPushButton * cameraSettingsButton;
+	int realXPos;
+	int realYPos;
 
-    public:
-        SettingsPage();
-        int getWishedXPos();
-        int getWishedYPos();
-        // for tests
-        void Log(std::string strMsg);
+public:
+	SettingsPage();
+	int getWishedXPos();
+	int getWishedYPos();
+	// for tests
+	void Log(std::string strMsg);
 
-        public slots:
+	public slots:
 
-        void moveCamera();
-        void openCameraSettings();
-        void restoreToActualValues();
+	void moveCamera();
+	void openCameraSettings();
+	void restoreToActualValues();
 
 };
 

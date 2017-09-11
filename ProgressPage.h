@@ -10,32 +10,32 @@
 #include <QPushButton>
 #include <QWidget>
 
-class ProgressPage : public QWizardPage
+class ProgressPage :  public QWizardPage
 {
 
     Q_OBJECT
 
-    private:
+private:
+	
+    QProgressBar * bar;
 
-        QProgressBar * bar;
+public slots:
+    void incNbPicturesTaken();
+    void handleGoButtonClicked();
+	void handleStopButtonClicked();
 
-        public slots:
-        void incNbPicturesTaken();
-        void handleGoButtonClicked();
-        void handleStopButtonClicked();
+public:
+	QPushButton * goButton;
+	QPushButton * stopButton;
+    ProgressPage();
+    QPushButton* getStopButton();
+	QPushButton* getGoButton();
+	// for tests
+	void Log(std::string strMsg);
 
-    public:
-        QPushButton * goButton;
-        QPushButton * stopButton;
-        ProgressPage();
-        QPushButton* getStopButton();
-        QPushButton* getGoButton();
-        // for tests
-        void Log(std::string strMsg);
-
-    signals:
-        void goRequest();
-        void stopRequest();
+signals:
+	void goRequest();
+    void stopRequest();
 
 };
 
