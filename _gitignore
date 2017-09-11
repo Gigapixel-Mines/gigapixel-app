@@ -1,7 +1,0 @@
-Debug/*
-Release/*
-*.vcxproj
-*.user
-*.filters
-GeneratedFiles/Debug/*
-GeneratedFiles/Release/*
