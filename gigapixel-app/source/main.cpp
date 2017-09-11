@@ -14,7 +14,6 @@ int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 	Fenetre * f = new Fenetre();
-	f->setAttribute(Qt::WA_QuitOnClose);
 	f->show();
 	WCam * w = new WCam();
 	//w->show();

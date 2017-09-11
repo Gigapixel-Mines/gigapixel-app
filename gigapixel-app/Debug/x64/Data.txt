@@ -40,3 +40,9 @@ Failed to OPEN serial port
 Starting Vimba
 Sync object created
 Connection établie
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Connection établie
