@@ -31,7 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define ASYNCHRONOUSGRABQT_H
 
 #include <QMainWindow>
-#include <GeneratedFiles/ui_gigapixelapp.h>
+//#include <GeneratedFiles/ui_gigapixelapp.h>
 
 
 #include "ApiController.h"
