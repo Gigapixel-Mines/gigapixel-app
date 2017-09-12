@@ -1,6 +1,7 @@
 #include "wcam.h"
-#include <QDebug>
+
 #include <QCameraInfo>
+#include <QDebug>
 #include <QMessageBox>
 
 WCam::WCam()
@@ -29,10 +30,6 @@ WCam::WCam()
 			this->setLayout(layout);
 			show();
 		}
-		else
-		{
-
-		}
 	}
 	if (a == 0)
 	{
@@ -41,7 +38,4 @@ WCam::WCam()
 		error->setText("Impossible de se connecter à la webcam");
 		error->exec();
 	}
-
-
-
 }

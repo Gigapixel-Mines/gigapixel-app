@@ -27,12 +27,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 =============================================================================*/
 
 
-#include <sstream>
+#include "AsynchronousGrab.h"
+#include <VimbaImageTransform\Include\VmbTransform.h>
+
 #include <QFile>
 #include <QTextStream>
 
-#include "AsynchronousGrab.h"
-#include <VimbaImageTransform\Include\VmbTransform.h>
+#include <sstream>
+
 #define NUM_COLORS 3
 #define BIT_DEPTH 8
 
@@ -40,17 +42,11 @@ using AVT::VmbAPI::FramePtr;
 using AVT::VmbAPI::CameraPtrVector;
 
 AsynchronousGrab::AsynchronousGrab(QWidget *parent, Qt::WindowFlags flags)
-	: QMainWindow(parent, flags)
+	: QWidget(parent, flags)
 	, m_bIsStreaming(false)
 {
-	//ui.setupUi(this);
-	//ui.m_LabelStream->setAlignment(Qt::AlignCenter);
-	// Connect GUI events with event handlers
-	//QObject::connect(ui.m_ButtonStartStop, SIGNAL(clicked()), this, SLOT(OnBnClickedButtonStartstop()));
-
 	// Start Vimba
 	VmbErrorType err = m_ApiController.StartUp();
-	//setWindowTitle(QString("AsynchronousGrab (Qt version) Vimba Version V") + QString::fromStdString(m_ApiController.GetVersion()));
 	Log("Starting Vimba", err);
 
 	if (VmbErrorSuccess == err)
@@ -74,7 +70,6 @@ AsynchronousGrab::~AsynchronousGrab()
 
 	// Before we close the application we stop Vimba
 	m_ApiController.ShutDown();
-
 }
 
 void AsynchronousGrab::OnBnClickedButtonStartstop()

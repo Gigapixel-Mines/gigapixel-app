@@ -30,15 +30,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef ASYNCHRONOUSGRABQT_H
 #define ASYNCHRONOUSGRABQT_H
 
-#include <QMainWindow>
-//#include <GeneratedFiles/ui_gigapixelapp.h>
-
-
 #include "ApiController.h"
+
+#include <QWidget>
+//#include <GeneratedFiles/ui_gigapixelapp.h>
 
 using AVT::VmbAPI::Examples::ApiController;
 
-class AsynchronousGrab : public QMainWindow
+class AsynchronousGrab : public QWidget
 {
 	Q_OBJECT
 

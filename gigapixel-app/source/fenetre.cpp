@@ -1,4 +1,6 @@
 #include "fenetre.h"
+
+#include <QApplication>
 #include <QCameraInfo>
 
 void Fenetre::Log(std::string strMsg)
@@ -12,16 +14,22 @@ void Fenetre::Log(std::string strMsg)
     }
 }
 
+void Fenetre::closeEvent(QCloseEvent * event)
+{
+	QApplication::quit();
+}
+
 Fenetre::Fenetre()
 {
+	Log("Démarrage du programme");
 	// Fenetre utilisateur
-
+	this->setAttribute(Qt::WA_DeleteOnClose);
 	serialcomm = new SerialCommunication();
 	onglets = new QTabWidget(this);
 	onglets->setGeometry(10, 10, 400, 400);
 
-	QWidget * miseAuPoint = new QWidget();
-	QWidget * run = new QWidget();
+	QWidget* miseAuPoint = new QWidget();
+	QWidget* run = new QWidget();
 
 	//Camera
 	focuswindow = new FocusWindow();
@@ -33,8 +41,7 @@ Fenetre::Fenetre()
 	QObject::connect(avButton, SIGNAL(released()), serialcomm, SLOT(miseAuPointStop()));
 	QObject::connect(arButton, SIGNAL(pressed()), serialcomm, SLOT(miseAuPointAr()));
 	QObject::connect(arButton, SIGNAL(released()), serialcomm, SLOT(miseAuPointStop()));
-	Log("Connection établie");
-
+	//Log("Connection établie");
 
 	QVBoxLayout *vboxMiseAuPoint = new QVBoxLayout;
 	vboxMiseAuPoint->addWidget(avButton);
@@ -42,26 +49,23 @@ Fenetre::Fenetre()
 
 	miseAuPoint->setLayout(vboxMiseAuPoint);
 
-
 	//Page RUN
 	label_v = new QLabel(tr("Nombre de photos verticales : "));
 	image_v = new QSpinBox();
-	image_v->setMinimum(3);
+	image_v->setMinimum(1); //Pour test rapide
 	image_v->setMaximum(32);
 	image_v->setFixedSize(40, 20);
 	pas_v = image_v->value();
 	label_h = new QLabel(tr("Nombre de photos horizontales : "));
 	image_h = new QSpinBox();
-	image_h->setMinimum(3);
+	image_h->setMinimum(1); //Pour test rapide
 	image_h->setMaximum(29);
 	pas_h = image_h->value();
 	nbrPhoto = 1;
 	goButton = new QPushButton("Marche");
 	stopButton = new QPushButton("Arrêt");
-	//  photoButton= new QPushButton ("Prendre photo");
+	//  photoButton = new QPushButton ("Prendre photo");
 	bar = new QProgressBar();
-
-
 
 	/*  QVBoxLayout *vboxRun = new QVBoxLayout;
 	  vboxRun->addWidget(label_h);
@@ -72,7 +76,6 @@ Fenetre::Fenetre()
 	  vboxRun->addWidget(goButton);
 	  vboxRun->addWidget(stopButton);
 	  vboxRun->addWidget(bar);
-
 
 	  run->setLayout(vboxRun); */
 
@@ -107,12 +110,21 @@ Fenetre::Fenetre()
 	onglets->addTab(miseAuPoint, "Mise au point");
 	onglets->addTab(run, "Prise de photos");
 
-	setWindowTitle("GigaproxyPhoto");
+	setWindowTitle("gigapixel-app");
 	//   setFixedSize(2000,2000);
 	show();
+	Log("Fenêtre principale lancée");
 }
 
-QGroupBox *Fenetre::createFirstExclusiveGroup()
+Fenetre::~Fenetre()
+{
+	Log("Fin de la session");
+	Log("");
+	delete serialcomm;
+	delete focuswindow;
+}
+
+QGroupBox* Fenetre::createFirstExclusiveGroup()
 {
 	QGroupBox *groupBox = new QGroupBox(tr("Réglages"));
 	QGridLayout * vgrid = new QGridLayout;
@@ -124,7 +136,7 @@ QGroupBox *Fenetre::createFirstExclusiveGroup()
 	return groupBox;
 }
 
-QGroupBox *Fenetre::createSecondExclusiveGroup()
+QGroupBox* Fenetre::createSecondExclusiveGroup()
 {
 	QGroupBox *groupBox = new QGroupBox(tr("Mise en fonctionnement"));
 	QVBoxLayout * vlayout = new QVBoxLayout;

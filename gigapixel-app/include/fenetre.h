@@ -1,39 +1,39 @@
 #ifndef FENETRE_H
 #define FENETRE_H
 
-#include <QObject>
-#include <QWidget>
-#include <QPushButton>
-#include <QLabel>
-#include <QGridLayout>
-#include <QtWidgets>
-#include <QVideoWidget>
+#include "FocusWindow.h"
+#include "SerialCommunication.h"
+
 #include <QCamera>
 #include <QCameraViewfinder>
 #include <QCameraImageCapture>
-#include "SerialCommunication.h"
-#include "FocusWindow.h"
-
+#include <QGridLayout>
+#include <QLabel>
+#include <QObject>
+#include <QPushButton>
+#include <QVideoWidget>
+#include <QWidget>
+#include <QtWidgets>
 
 class Fenetre : public QWidget
 {
 	Q_OBJECT
 
 private:
-	QPushButton * avButton;
-	QPushButton * arButton;
-	QPushButton * goButton;
-	QPushButton * stopButton;
-	QPushButton * photoButton;
-	QProgressBar * bar;
-	QTabWidget *onglets;
-	FocusWindow * focuswindow;
-	QSpinBox * image_v;
-	QSpinBox * image_h;
-	QLabel * label_v;
-	QLabel * label_h;
-	QGroupBox *createFirstExclusiveGroup();
-	QGroupBox *createSecondExclusiveGroup();
+	QPushButton* avButton;
+	QPushButton* arButton;
+	QPushButton* goButton;
+	QPushButton* stopButton;
+	QPushButton* photoButton;
+	QProgressBar* bar;
+	QTabWidget* onglets;
+	FocusWindow* focuswindow;
+	QSpinBox* image_v;
+	QSpinBox* image_h;
+	QLabel* label_v;
+	QLabel* label_h;
+	QGroupBox* createFirstExclusiveGroup();
+	QGroupBox* createSecondExclusiveGroup();
 
 	int  alpha;
 	int beta;
@@ -42,10 +42,13 @@ private:
 	int nbrPhoto;
 	int gamma;
 
+	void Fenetre::closeEvent(QCloseEvent* event) override;
+
 public:
 	Fenetre();
+	~Fenetre();
 	void Log(std::string strMsg);
-	SerialCommunication * serialcomm;
+	SerialCommunication* serialcomm;
 
 private slots:
 	void disableButton();
@@ -60,7 +63,6 @@ signals:
 	void PasGauche();
 	void PasDroite();
 	void FinCycle();
-	void Close();
 };
 
 #endif // FENETRE_H

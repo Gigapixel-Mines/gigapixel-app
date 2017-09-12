@@ -1,9 +1,10 @@
 #ifndef WCAM_H
 #define WCAM_H
-#include <QGridLayout>
+
 #include <QCamera>
 #include <QCameraViewfinder>
 #include <QCameraImageCapture>
+#include <QGridLayout>
 #include <QMessageBox>
 
 

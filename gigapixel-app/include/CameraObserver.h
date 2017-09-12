@@ -29,9 +29,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef AVT_VMBAPI_EXAMPLES_CAMERAOBSERVER
 #define AVT_VMBAPI_EXAMPLES_CAMERAOBSERVER
 
-#include <QObject>
-
 #include <VimbaCPP/Include/VimbaCPP.h>
+
+#include <QObject>
 
 namespace AVT {
 	namespace VmbAPI {

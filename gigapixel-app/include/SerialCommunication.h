@@ -12,12 +12,12 @@ class SerialCommunication : public QWidget
     Q_OBJECT
 
 private:
-    QString         m_serialPortName; // utile ???
-    QSerialPort     *m_serialPort;
-    QByteArray      m_writeData;
-    QByteArray      m_readData;
-    QTextStream     m_standardOutput;
-    qint64          m_bytesWritten;
+    QString m_serialPortName; // utile ???
+    QSerialPort* m_serialPort;
+    QByteArray m_writeData;
+    QByteArray m_readData;
+    QTextStream m_standardOutput;
+    qint64 m_bytesWritten;
     //QTimer          m_timer; // utile ???
 
     // Se connecter a un port (appele dans constructeur)
