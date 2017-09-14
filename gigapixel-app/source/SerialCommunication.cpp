@@ -28,13 +28,22 @@ void SerialCommunication::Log(std::string strMsg)
 	}
 }
 
+void SerialCommunication::setCransH(int t_value)
+{
+	cransPasH = t_value;
+}
+
+void SerialCommunication::setCransV(int t_value)
+{
+	cransPasV = t_value;
+}
+
 bool SerialCommunication::connectSerialPort()
 {
 
 	Log("calling SerialCommunication::connectSerialPort()");
 
 	int portCount = QSerialPortInfo::availablePorts().count();
-
 	if (portCount == 0)
 	{
 		m_standardOutput << "No serial port found" << endl;
@@ -42,14 +51,23 @@ bool SerialCommunication::connectSerialPort()
 	}
 	else
 	{
-		m_serialPort->setPort(QSerialPortInfo::availablePorts()[0]);
-		m_serialPort->setBaudRate(QSerialPort::Baud9600);
-
+		QList<QSerialPortInfo> sPorts = QSerialPortInfo::availablePorts();
+		foreach(const QSerialPortInfo& serialPortInfo, sPorts)
+		{
+			QString portDesc = serialPortInfo.description();
+			//qDebug() << portDesc;
+			if (portDesc.contains("Arduino"))
+			{
+				m_serialPort->setPort(serialPortInfo);
+				m_serialPort->setBaudRate(QSerialPort::Baud9600);
+				Log("Connection port serie etablie");
+				return true;
+			}
+		}
 	}
 
-	Log("Connection port serie etablie");
-	return true;
-
+	m_standardOutput << "No serial port found" << endl;
+	return false;
 }
 
 // Default constructor, inherits QWidget()
@@ -86,7 +104,8 @@ SerialCommunication::SerialCommunication()
 // Default destructor
 SerialCommunication::~SerialCommunication()
 {
-	m_serialPort->close(); // utile ???
+	m_serialPort->close();
+	delete m_serialPort;
 }
 
 /*
@@ -203,6 +222,14 @@ void SerialCommunication::emergencyStop()
 {
 	Log("calling SerialCommunication::emergencyStop()");
 	write("s");
+	if (m_serialPort->waitForReadyRead(5000))
+	{
+		handleReadyRead();
+	}
+	else
+	{
+		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+	}
 }
 
 /*void SerialCommunication::moveCameraTo(int x, int y){
@@ -241,18 +268,42 @@ void SerialCommunication::miseAuPointAv()
 {
 	Log("calling SerialCommunication::miseAuPointAv()");
 	write("e");
+	if (m_serialPort->waitForReadyRead(5000))
+	{
+		handleReadyRead();
+	}
+	else
+	{
+		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+	}
 }
 
 void SerialCommunication::miseAuPointAr()
 {
 	Log("calling SerialCommunication::miseAuPointAr()");
 	write("f");
+	if (m_serialPort->waitForReadyRead(5000))
+	{
+		handleReadyRead();
+	}
+	else
+	{
+		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+	}
 }
 
 void SerialCommunication::miseAuPointStop()
 {
 	Log("calling SerialCommunication::miseAuPointStop()");
 	write("g");
+	if (m_serialPort->waitForReadyRead(5000))
+	{
+		handleReadyRead();
+	}
+	else
+	{
+		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+	}
 }
 
 //Déplacement du capteur au point initial pour prendre des photos
@@ -261,6 +312,14 @@ void SerialCommunication::initialPic()
 {
 	Log("calling SerialCommunication::initialPic()");
 	write("h");
+	if (m_serialPort->waitForReadyRead(5000))
+	{
+		handleReadyRead();
+	}
+	else
+	{
+		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+	}
 }
 
 //Déplacement du capteur d'un pas, dans une direction, dans un sens
@@ -269,23 +328,69 @@ void SerialCommunication::gauche()
 {
 	Log("calling SerialCommunication::avanceHorizontal()");
 	write("c");
+	if (m_serialPort->waitForReadyRead(5000))
+	{
+		handleReadyRead();
+	}
+	else
+	{
+		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+	}
 }
 
 void SerialCommunication::droite(){
     Log("calling SerialCommunication::reculeHorizontal()");
     write("d");
+	if (m_serialPort->waitForReadyRead(5000))
+	{
+		handleReadyRead();
+	}
+	else
+	{
+		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+	}
 }
 
 void SerialCommunication::haut()
 {
 	Log("calling SerialCommunication::avanceVertical()");
 	write("b");
+	if (m_serialPort->waitForReadyRead(5000))
+	{
+		handleReadyRead();
+	}
+	else
+	{
+		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+	}
 }
 
 void SerialCommunication::bas()
 {
 	Log("calling SerialCommunication::reculeVertical()");
 	write("a");
+	if (m_serialPort->waitForReadyRead(5000))
+	{
+		handleReadyRead();
+	}
+	else
+	{
+		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+	}
+}
+
+void SerialCommunication::envoieCranParPas()
+{
+	Log("Calling SerialCommunication::envoieCranParPas()");
+	write("i");
+	if (m_serialPort->waitForReadyRead(5000))
+	{
+		handleReadyRead();
+	}
+	else
+	{
+		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+	}
 }
 
 

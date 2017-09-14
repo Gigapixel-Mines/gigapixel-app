@@ -23,46 +23,43 @@ private:
     // Se connecter a un port (appele dans constructeur)
     // returns true if no problem (pas tres utile en vrai)
     bool connectSerialPort();
-
+	
     // Ecriture - low-level
     void write(QByteArray);
+	void handleReadyRead();
+
+	int cransPasH;
+	int cransPasV;
 
 public slots:
 
     void emergencyStop();
     // "s"
     void miseAuPointAv();
-
     void miseAuPointAr();
-
     void miseAuPointStop();
-
     void initialPic();
-
     void droite();
-
     void gauche();
-
     void haut();
-
     void bas();
 
-
-
     // Lecture
-    void handleReadyRead();
+    //void handleReadyRead();
 
 public:
     // Constructor and destructor
 	SerialCommunication();
     virtual ~SerialCommunication();
 	void Log(std::string strMsg);
+	void setCransH(int t_value);
+	void setCransV(int t_value);
+	void envoieCranParPas();
 
 signals:
     // Suite a la lecture
 	void MvtFinished();
     void InitFinished();
-
 };
 
 #endif // SERIALCOMMUNICATION_H
