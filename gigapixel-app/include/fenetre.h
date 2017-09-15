@@ -46,6 +46,9 @@ private:
 	QCheckBox* spectreActif;
 	QGroupBox* createFirstExclusiveGroup();
 	QGroupBox* createSecondExclusiveGroup();
+	QWidget* miseAuPoint;
+	QWidget* run;
+	QWidget* cameraSpecs;
 
 	//Onglet cam specs
 	QSpinBox* camResHpx;
@@ -77,7 +80,9 @@ private:
 
 	void Fenetre::closeEvent(QCloseEvent* event) override;
 	void setCameraSpecs();
-	void takeGigaPixelPhoto();
+	void takeGigaPixelPhotoNoSpectrum();
+
+	bool m_saveSpectrumInfo;
 
 	bool do_stop;
 	QMutex stop_mutex;
@@ -90,7 +95,7 @@ public:
 
 private slots:
 	void disableButton();
-	void ableButton();
+	void enableButton();
 	void assign_h();
 	void assign_v();
 	//void compteur();

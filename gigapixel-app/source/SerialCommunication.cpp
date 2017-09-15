@@ -75,6 +75,7 @@ SerialCommunication::SerialCommunication()
 	: QWidget()
 	, m_standardOutput(stdout)
 	, m_bytesWritten(0)
+	, m_connected(false)
 {
 	Log("SerialCommunication constructor called");
 
@@ -85,11 +86,13 @@ SerialCommunication::SerialCommunication()
 	if (!m_serialPort->open(QIODevice::ReadWrite))
 	{
 		Log("Failed to OPEN serial port");
+		m_connected = false;
 	}
 	else
 	{
 		Log("Serial port opened");
 		m_serialPort->setDataTerminalReady(true);
+		m_connected = true;
 	}
 
 	// pour la lecture
@@ -168,7 +171,11 @@ void SerialCommunication::write(std::string c){
 
 void SerialCommunication::write(QByteArray c)
 {
-
+	if (!m_connected)
+	{
+		Log("Serial port is not connected, aborting write");
+		return;
+	}
 	Log("calling SerialCommunication::write");
 
 	QTextStream standardOutput(stdout);
@@ -282,7 +289,7 @@ void SerialCommunication::miseAuPointStop()
 {
 	Log("calling SerialCommunication::miseAuPointStop()");
 	write("g");
-	if (!check('i'))
+	if (!check('g'))
 	{
 		Log("Réponse invalide");
 		return;
@@ -296,7 +303,7 @@ bool SerialCommunication::findXYRef()
 	Log("calling SerialCommunication::findXYRef()");
 	write("h"); //Ask Arduino to find XY Ref
 	//Wait for his answer
-	if (!check('j'))
+	if (!check('h'))
 	{
 		Log("Réponse invalide");
 		return false;
@@ -305,50 +312,59 @@ bool SerialCommunication::findXYRef()
 	return true;
 }
 
+bool SerialCommunication::is_connected()
+{
+	return m_connected;
+}
+
 //Déplacement du capteur d'un pas, dans une direction, dans un sens
 
-void SerialCommunication::gauche()
+bool SerialCommunication::gauche()
 {
 	Log("calling SerialCommunication::avanceHorizontal()");
 	write("c");
 	if (!check('z'))
 	{
 		Log("Réponse invalide");
-		return;
+		return false;
 	}
+	return true;
 }
 
-void SerialCommunication::droite()
+bool SerialCommunication::droite()
 {
 	Log("calling SerialCommunication::reculeHorizontal()");
 	write("d");
 	if (!check('z'))
 	{
 		Log("Réponse invalide");
-		return;
+		return false;
 	}
+	return true;
 }
 
-void SerialCommunication::haut()
+bool SerialCommunication::haut()
 {
 	Log("calling SerialCommunication::avanceVertical()");
 	write("b");
 	if (!check('z'))
 	{
 		Log("Réponse invalide");
-		return;
+		return false;
 	}
+	return true;
 }
 
-void SerialCommunication::bas()
+bool SerialCommunication::bas()
 {
 	Log("calling SerialCommunication::reculeVertical()");
 	write("a");
 	if (!check('z'))
 	{
 		Log("Réponse invalide");
-		return;
+		return false;
 	}
+	return true;
 }
 
 void SerialCommunication::envoieCranParPas()
@@ -374,14 +390,14 @@ void SerialCommunication::envoieCranParPas()
 		return;
 	}
 	write(QByteArray(1, weakByte));
-	if (!check('j'))
+	if (!check('i'))
 	{
 		Log("Réponse invalide");
 		return;
 	}
 	//Pour le pas vertical
-	write("k");
-	if (!check('k'))
+	write("j");
+	if (!check('j'))
 	{
 		Log("Réponse invalide");
 		return;
@@ -392,13 +408,13 @@ void SerialCommunication::envoieCranParPas()
 	//Il faut envoyer les deux bytes
 	//On envoie le premier
 	write(QByteArray(&strongByte));
-	if (!check('k'))
+	if (!check('j'))
 	{
 		Log("Réponse invalide");
 		return;
 	}
 	write(QByteArray(&weakByte));
-	if (!check('l'))
+	if (!check('j'))
 	{
 		Log("Réponse invalide");
 		return;
@@ -442,6 +458,11 @@ void SerialCommunication::envoieCranParPas()
 
 bool SerialCommunication::check(const char t_char)
 {
+	if (!m_connected)
+	{
+		Log("Error, serial port not connected, aborting read and check");
+		return false;
+	}
 	if (m_serialPort->waitForReadyRead(5000))
 	{
 		m_readData = m_serialPort->readAll();

@@ -16,6 +16,7 @@ class FocusWindow : public QWidget
         virtual ~FocusWindow();
 		void Log(std::string strMsg);
 		bool SaveImage();
+		void resetNbPhoto();
 
 	public slots:
 		void OnImageReceived(QImage* image);

@@ -29,6 +29,7 @@ private:
 	//void handleReadyRead();
 
 	bool check(const char t_char);
+	bool m_connected;
 
 	int cransPasH;
 	int cransPasV;
@@ -40,10 +41,6 @@ public slots:
     void miseAuPointAv();
     void miseAuPointAr();
     void miseAuPointStop();
-    void droite();
-    void gauche();
-    void haut();
-    void bas();
 
     // Lecture
     //void handleReadyRead();
@@ -57,11 +54,16 @@ public:
 	void setCransV(int t_value);
 	void envoieCranParPas();
 	bool findXYRef();
+	bool is_connected();
+	bool droite();
+	bool gauche();
+	bool haut();
+	bool bas();
 
 signals:
     // Suite a la lecture
 	void MvtFinished();
-    void InitFinished();
+    //void InitFinished();
 };
 
 #endif // SERIALCOMMUNICATION_H

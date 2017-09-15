@@ -41,7 +41,7 @@ bool FocusWindow::SaveImage()
 	if (sync->m_bIsStreaming) //On vérifie
 	{
 		//sync->OnBnClickedButtonStartstop();
-		nb_photos++;
+		++nb_photos;
 		Log("Saving image");
 		QString imgpath = dirpath + "/photo" + QString::number(nb_photos) + ".png";
 		Log(imgpath.toStdString());
@@ -70,6 +70,11 @@ bool FocusWindow::SaveImage()
 		Log("Unable to start camera");
 		return false;
 	}
+}
+
+void FocusWindow::resetNbPhoto()
+{
+	nb_photos = 0;
 }
 
 // Default Constructor
