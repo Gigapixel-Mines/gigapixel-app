@@ -146,6 +146,10 @@ Fenetre::Fenetre()
 	//Camera
 	focuswindow = new FocusWindow();
 
+	//Sélection de la zone de la photo à enregistrer
+	m_zoneSelection = new ZoneSelection();
+	m_zoneSelection->show();
+
 	//Page caméra specs
 	QGridLayout* vgridCamSpecs = new QGridLayout();
 	QLabel* camResHpx_label = new QLabel("Résolution horizontale de la caméra en pixels :");

@@ -73,6 +73,12 @@
     <ClCompile Include="GeneratedFiles\qrc_gigapixelapp.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\ZoneSelection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ZoneSelection.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resource Files">
@@ -128,6 +134,9 @@
     </CustomBuild>
     <CustomBuild Include="gigapixelapp.ui">
       <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="include\ZoneSelection.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

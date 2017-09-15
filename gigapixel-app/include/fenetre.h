@@ -3,6 +3,7 @@
 
 #include "FocusWindow.h"
 #include "SerialCommunication.h"
+#include "ZoneSelection.h"
 
 #include <QCamera>
 #include <QCameraViewfinder>
@@ -56,6 +57,8 @@ private:
 	QDoubleSpinBox* pxHSize;
 	QDoubleSpinBox* pxVSize;
 	QPushButton* camSpecsValidateBtn;
+
+	ZoneSelection* m_zoneSelection;
 
 	int alpha;
 	int beta;
