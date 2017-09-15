@@ -31,10 +31,14 @@ void FocusWindow::OnImageReceived(QImage* image)
 	Log("Image actualisee !");
 }
 
-void FocusWindow::SaveImage()
+bool FocusWindow::SaveImage()
 {
 	Log("call on FocusWindow::saveImage()");
-	if (sync->m_bIsStreaming)
+	if (!sync->m_bIsStreaming) //Si la caméra n'est pas allumée
+	{
+		sync->OnBnClickedButtonStartstop(); //On tente de l'allumer
+	}
+	if (sync->m_bIsStreaming) //On vérifie
 	{
 		//sync->OnBnClickedButtonStartstop();
 		nb_photos++;
@@ -50,19 +54,21 @@ void FocusWindow::SaveImage()
 		if (res)
 		{
 			Log("Sauvegarde reussie");
-			emit PictureTaken();
-			Log("Emis");
+			return true;
+			//emit PictureTaken();
+			//Log("Emis");
 		}
 		else
 		{
 			Log("Sauvegarde echouee");
+			return false;
 		}
 		//sync->OnBnClickedButtonStartstop();
 	}
-	else
+	else //Erreur
 	{
-		Log("Camera not started");
-		sync->OnBnClickedButtonStartstop();
+		Log("Unable to start camera");
+		return false;
 	}
 }
 

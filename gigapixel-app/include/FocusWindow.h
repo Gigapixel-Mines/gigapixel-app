@@ -15,10 +15,10 @@ class FocusWindow : public QWidget
 		FocusWindow();
         virtual ~FocusWindow();
 		void Log(std::string strMsg);
+		bool SaveImage();
 
 	public slots:
 		void OnImageReceived(QImage* image);
-		void SaveImage();
 
 	private:
 		QLabel* label;

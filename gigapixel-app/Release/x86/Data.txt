@@ -50,3 +50,19 @@ Failed to OPEN serial port
 Starting Vimba
 Sync object created
 Fenêtre principale lancée
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Fenêtre principale lancée
+Fin de la session
+
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Fenêtre principale lancée

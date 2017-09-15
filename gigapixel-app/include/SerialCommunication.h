@@ -26,19 +26,20 @@ private:
 	
     // Ecriture - low-level
     void write(QByteArray);
-	void handleReadyRead();
+	//void handleReadyRead();
+
+	bool check(const char t_char);
 
 	int cransPasH;
 	int cransPasV;
 
 public slots:
 
-    void emergencyStop();
+    //void emergencyStop(); pas implémenté
     // "s"
     void miseAuPointAv();
     void miseAuPointAr();
     void miseAuPointStop();
-    void initialPic();
     void droite();
     void gauche();
     void haut();
@@ -55,6 +56,7 @@ public:
 	void setCransH(int t_value);
 	void setCransV(int t_value);
 	void envoieCranParPas();
+	bool findXYRef();
 
 signals:
     // Suite a la lecture

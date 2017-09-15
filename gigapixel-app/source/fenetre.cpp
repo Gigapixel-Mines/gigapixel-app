@@ -42,14 +42,55 @@ void Fenetre::setCameraSpecs()
 	image_h->setMaximum(maxPhotoH);
 	serialcomm->setCransH(nbCranPasH);
 	serialcomm->setCransV(nbCranPasV);
+	//serialcomm->envoieCranParPas(); décommenter quand le code Arduino est fait
 	//Appeler le port série pour envoyer le nombre de crans par pas
 }
 
 void Fenetre::takeGigaPixelPhoto()
 {
+	////GoButton def
+	//QObject::connect(goButton, SIGNAL(clicked()), serialcomm, SLOT(initialPic())); ok
+	//QObject::connect(serialcomm, SIGNAL(InitFinished()), focuswindow, SLOT(SaveImage()));
+	//QObject::connect(focuswindow, SIGNAL(PictureTaken()), this, SLOT(compteur()));
+	//QObject::connect(this, SIGNAL(LigneFinished()), serialcomm, SLOT(haut()));
+	//QObject::connect(this, SIGNAL(PasDroite()), serialcomm, SLOT(droite()));
+	//QObject::connect(this, SIGNAL(PasGauche()), serialcomm, SLOT(gauche()));
+	//QObject::connect(this, SIGNAL(FinCycle()), this, SLOT(ableButton()));
+	//QObject::connect(serialcomm, SIGNAL(MvtFinished()), focuswindow, SLOT(SaveImage()));
+	//QObject::connect(goButton, SIGNAL(clicked()), this, SLOT(disableButton()));
+
+	if (!serialcomm->findXYRef())
+	{
+		Log("Erreur lors de la recherche de la référence XY");
+		return;
+	}
+	for (int i = 1; i <= nbPhotoH; ++i)
+	{
+		for (int j = 1; j <= nbPhotoV; ++j)
+		{
+			stop_mutex.lock();
+			if (do_stop == false)
+			{
+				stop_mutex.unlock();
+				bar->setValue(bar->value() + 1); //On avance la barre de progression
+				//TODO Prendre photo incrémenter compteur photo
+				//Déplacer caméra et prendre infos spectrales
+				//Déplacement par signal slot pour pouvoir lancer l'acquisition 
+				//Gestion des déplacements en zig zag
+			}
+			else
+			{
+				//i = maxPhotoH + 1; //On met i au max pour sortir de la boucle, pas propre, mais simple
+				//j = maxPhotoV + 1; //On met j au max....
+				stop_mutex.unlock();
+				Log("Arrêt");
+				return; //En fait on sort comme des grands
+			}
+		}
+	}
 }
 
-Fenetre::Fenetre() : do_stop(false)
+Fenetre::Fenetre() : do_stop(false), stop_mutex()
 {
 	Log("Démarrage du programme");
 	// Fenetre utilisateur
@@ -148,12 +189,12 @@ Fenetre::Fenetre() : do_stop(false)
 	image_v->setMinimum(1); //Pour test rapide
 	image_v->setMaximum(33);
 	image_v->setFixedSize(40, 20);
-	pas_v = image_v->value();
+	nbPhotoV = image_v->value();
 	label_h = new QLabel(tr("Nombre de photos horizontales : "));
 	image_h = new QSpinBox();
 	image_h->setMinimum(1); //Pour test rapide
 	image_h->setMaximum(33);
-	pas_h = image_h->value();
+	nbPhotoH = image_h->value();
 	nbrPhoto = 1;
 	goButton = new QPushButton("Marche");
 	stopButton = new QPushButton("Arrêt");
@@ -186,14 +227,16 @@ Fenetre::Fenetre() : do_stop(false)
 	//stopButton def
 
 	//GoButton def
-	QObject::connect(goButton, SIGNAL(clicked()), serialcomm, SLOT(initialPic()));
-	QObject::connect(serialcomm, SIGNAL(InitFinished()), focuswindow, SLOT(SaveImage()));
-	QObject::connect(focuswindow, SIGNAL(PictureTaken()), this, SLOT(compteur()));
-	QObject::connect(this, SIGNAL(LigneFinished()), serialcomm, SLOT(haut()));
-	QObject::connect(this, SIGNAL(PasDroite()), serialcomm, SLOT(droite()));
-	QObject::connect(this, SIGNAL(PasGauche()), serialcomm, SLOT(gauche()));
-	QObject::connect(this, SIGNAL(FinCycle()), this, SLOT(ableButton()));
-	QObject::connect(serialcomm, SIGNAL(MvtFinished()), focuswindow, SLOT(SaveImage()));
+	//QObject::connect(goButton, SIGNAL(clicked()), serialcomm, SLOT(initialPic()));
+	//QObject::connect(serialcomm, SIGNAL(InitFinished()), focuswindow, SLOT(SaveImage()));
+	//QObject::connect(focuswindow, SIGNAL(PictureTaken()), this, SLOT(compteur()));
+	//QObject::connect(this, SIGNAL(LigneFinished()), serialcomm, SLOT(haut()));
+	//QObject::connect(this, SIGNAL(PasDroite()), serialcomm, SLOT(droite()));
+	//QObject::connect(this, SIGNAL(PasGauche()), serialcomm, SLOT(gauche()));
+	//QObject::connect(this, SIGNAL(FinCycle()), this, SLOT(ableButton()));
+	//QObject::connect(serialcomm, SIGNAL(MvtFinished()), focuswindow, SLOT(SaveImage()));
+
+	QObject::connect(goButton, SIGNAL(clicked()), this, SLOT(start()));
 	QObject::connect(goButton, SIGNAL(clicked()), this, SLOT(disableButton()));
 
 	QObject::connect(stopButton, SIGNAL(clicked()), this, SLOT(stop()));
@@ -247,37 +290,45 @@ QGroupBox* Fenetre::createSecondExclusiveGroup()
 	return groupBox;
 }
 
-void Fenetre::compteur()
+//void Fenetre::compteur()
+//{
+//	Log("Compteur");
+//	alpha = alpha + 1;
+//	bar->setValue(bar->value() + 1);
+//	if (gamma == 1)
+//	{
+//		emit FinCycle();
+//		return;
+//	}
+//	if (alpha % pas_h == 0)
+//	{
+//		beta = beta + 1;
+//		if (beta < pas_v)
+//		{
+//			emit LigneFinished();
+//			return;
+//		}
+//		if (beta >= pas_v)
+//		{
+//			emit FinCycle();
+//			return;
+//		}
+//	}
+//	if (beta % 2 == 0)
+//	{
+//		emit PasDroite();
+//		return;
+//	}
+//	emit PasGauche();
+//	return;
+//}
+
+void Fenetre::start()
 {
-	Log("Compteur");
-	alpha = alpha + 1;
-	bar->setValue(bar->value() + 1);
-	if (gamma == 1)
-	{
-		emit FinCycle();
-		return;
-	}
-	if (alpha % pas_h == 0)
-	{
-		beta = beta + 1;
-		if (beta < pas_v)
-		{
-			emit LigneFinished();
-			return;
-		}
-		if (beta >= pas_v)
-		{
-			emit FinCycle();
-			return;
-		}
-	}
-	if (beta % 2 == 0)
-	{
-		emit PasDroite();
-		return;
-	}
-	emit PasGauche();
-	return;
+	stop_mutex.lock();
+	do_stop = false;
+	stop_mutex.unlock();
+	takeGigaPixelPhoto();
 }
 
 void Fenetre::disableButton()
@@ -292,7 +343,7 @@ void Fenetre::disableButton()
 	alpha = 0;
 	beta = 0;
 	bar->setValue(0);
-	nbrPhoto = pas_h * pas_v;
+	nbrPhoto = nbPhotoH * nbPhotoV;
 	bar->setMinimum(0);
 	bar->setMaximum(nbrPhoto);
 	gamma = 0;
@@ -311,17 +362,20 @@ void Fenetre::ableButton()
 
 void Fenetre::assign_h()
 {
-	pas_h = image_h->value();
+	nbPhotoH = image_h->value();
 }
 
 void Fenetre::assign_v()
 {
-	pas_v = image_v->value();
+	nbPhotoV = image_v->value();
 }
 
 void Fenetre::stop()
 {
-	gamma = 1;
+	stop_mutex.lock();
+	//gamma = 1;
+	do_stop = true;
+	stop_mutex.unlock();
 }
 
 void Fenetre::setCamSpecsBtnPress()

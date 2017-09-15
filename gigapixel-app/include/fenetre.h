@@ -10,6 +10,7 @@
 #include <QCheckBox>
 #include <QGridLayout>
 #include <QLabel>
+#include <QMutex>
 #include <QObject>
 #include <QPushButton>
 #include <QVideoWidget>
@@ -55,8 +56,8 @@ private:
 
 	int alpha;
 	int beta;
-	int pas_h;
-	int pas_v;
+	int nbPhotoH;
+	int nbPhotoV;
 	int nbrPhoto;
 	int gamma;
 
@@ -79,6 +80,7 @@ private:
 	void takeGigaPixelPhoto();
 
 	bool do_stop;
+	QMutex stop_mutex;
 
 public:
 	Fenetre();
@@ -91,7 +93,8 @@ private slots:
 	void ableButton();
 	void assign_h();
 	void assign_v();
-	void compteur();
+	//void compteur();
+	void start();
 	void stop();
 	void setCamSpecsBtnPress();
 

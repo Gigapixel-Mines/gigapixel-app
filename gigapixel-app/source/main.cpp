@@ -2,7 +2,7 @@
 #include "wcam.h"
 
 #include <QApplication>
-#include <qdebug.h>
+#include <QByteArray>
 
 int main(int argc, char *argv[])
 {

@@ -93,7 +93,7 @@ SerialCommunication::SerialCommunication()
 	}
 
 	// pour la lecture
-	QObject::connect(m_serialPort, &QSerialPort::readyRead, this, &SerialCommunication::handleReadyRead);
+	//QObject::connect(m_serialPort, &QSerialPort::readyRead, this, &SerialCommunication::handleReadyRead);
 
 	//For tests
 	//Log("Message a sent");
@@ -218,19 +218,21 @@ void SerialCommunication::write(QByteArray c)
 
 // Ecriture - higher-level functions
 
-void SerialCommunication::emergencyStop()
-{
-	Log("calling SerialCommunication::emergencyStop()");
-	write("s");
-	if (m_serialPort->waitForReadyRead(5000))
-	{
-		handleReadyRead();
-	}
-	else
-	{
-		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
-	}
-}
+
+//Pas implémenté dans l'Arduino pour le moment
+//void SerialCommunication::emergencyStop()
+//{
+//	Log("calling SerialCommunication::emergencyStop()");
+//	write("s");
+//	if (m_serialPort->waitForReadyRead(5000))
+//	{
+//		handleReadyRead();
+//	}
+//	else
+//	{
+//		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+//	}
+//}
 
 /*void SerialCommunication::moveCameraTo(int x, int y){
 
@@ -268,58 +270,39 @@ void SerialCommunication::miseAuPointAv()
 {
 	Log("calling SerialCommunication::miseAuPointAv()");
 	write("e");
-	if (m_serialPort->waitForReadyRead(5000))
-	{
-		handleReadyRead();
-	}
-	else
-	{
-		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
-	}
 }
 
 void SerialCommunication::miseAuPointAr()
 {
 	Log("calling SerialCommunication::miseAuPointAr()");
 	write("f");
-	if (m_serialPort->waitForReadyRead(5000))
-	{
-		handleReadyRead();
-	}
-	else
-	{
-		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
-	}
 }
 
 void SerialCommunication::miseAuPointStop()
 {
 	Log("calling SerialCommunication::miseAuPointStop()");
 	write("g");
-	if (m_serialPort->waitForReadyRead(5000))
+	if (!check('i'))
 	{
-		handleReadyRead();
-	}
-	else
-	{
-		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+		Log("Réponse invalide");
+		return;
 	}
 }
 
 //Déplacement du capteur au point initial pour prendre des photos
 
-void SerialCommunication::initialPic()
+bool SerialCommunication::findXYRef()
 {
-	Log("calling SerialCommunication::initialPic()");
-	write("h");
-	if (m_serialPort->waitForReadyRead(5000))
+	Log("calling SerialCommunication::findXYRef()");
+	write("h"); //Ask Arduino to find XY Ref
+	//Wait for his answer
+	if (!check('j'))
 	{
-		handleReadyRead();
+		Log("Réponse invalide");
+		return false;
 	}
-	else
-	{
-		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
-	}
+	Log("XY Ref OK");
+	return true;
 }
 
 //Déplacement du capteur d'un pas, dans une direction, dans un sens
@@ -328,26 +311,21 @@ void SerialCommunication::gauche()
 {
 	Log("calling SerialCommunication::avanceHorizontal()");
 	write("c");
-	if (m_serialPort->waitForReadyRead(5000))
+	if (!check('z'))
 	{
-		handleReadyRead();
-	}
-	else
-	{
-		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+		Log("Réponse invalide");
+		return;
 	}
 }
 
-void SerialCommunication::droite(){
-    Log("calling SerialCommunication::reculeHorizontal()");
-    write("d");
-	if (m_serialPort->waitForReadyRead(5000))
+void SerialCommunication::droite()
+{
+	Log("calling SerialCommunication::reculeHorizontal()");
+	write("d");
+	if (!check('z'))
 	{
-		handleReadyRead();
-	}
-	else
-	{
-		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+		Log("Réponse invalide");
+		return;
 	}
 }
 
@@ -355,13 +333,10 @@ void SerialCommunication::haut()
 {
 	Log("calling SerialCommunication::avanceVertical()");
 	write("b");
-	if (m_serialPort->waitForReadyRead(5000))
+	if (!check('z'))
 	{
-		handleReadyRead();
-	}
-	else
-	{
-		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+		Log("Réponse invalide");
+		return;
 	}
 }
 
@@ -369,60 +344,121 @@ void SerialCommunication::bas()
 {
 	Log("calling SerialCommunication::reculeVertical()");
 	write("a");
-	if (m_serialPort->waitForReadyRead(5000))
+	if (!check('z'))
 	{
-		handleReadyRead();
-	}
-	else
-	{
-		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+		Log("Réponse invalide");
+		return;
 	}
 }
 
 void SerialCommunication::envoieCranParPas()
 {
 	Log("Calling SerialCommunication::envoieCranParPas()");
+	//Init du transfert
 	write("i");
-	if (m_serialPort->waitForReadyRead(5000))
+	if (!check('i'))
 	{
-		handleReadyRead();
+		Log("Réponse invalide");
+		return;
 	}
-	else
+	//Si l'arduino répond 'i'
+	int weakByteMask = 0x000000FF;
+	char strongByte = cransPasH >> 8;
+	char weakByte = cransPasH & weakByteMask;
+	//Il faut envoyer les deux bytes
+	//On envoie le premier
+	write(QByteArray(1, strongByte));
+	if (!check('i'))
 	{
-		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+		Log("Réponse invalide");
+		return;
 	}
+	write(QByteArray(1, weakByte));
+	if (!check('j'))
+	{
+		Log("Réponse invalide");
+		return;
+	}
+	//Pour le pas vertical
+	write("k");
+	if (!check('k'))
+	{
+		Log("Réponse invalide");
+		return;
+	}
+	//Si l'arduino répond 'k'
+	strongByte = cransPasH >> 8;
+	weakByte = cransPasH & weakByteMask;
+	//Il faut envoyer les deux bytes
+	//On envoie le premier
+	write(QByteArray(&strongByte));
+	if (!check('k'))
+	{
+		Log("Réponse invalide");
+		return;
+	}
+	write(QByteArray(&weakByte));
+	if (!check('l'))
+	{
+		Log("Réponse invalide");
+		return;
+	}
+	Log("Envoie du nombres de crans par pas vertical et horizontal effectué");
 }
 
 
 // Lecture
 
 
-void SerialCommunication::handleReadyRead()
+//void SerialCommunication::handleReadyRead()
+//{
+//
+//	Log("Nouveau message recu : call on handleReadyRead()");
+//	m_readData = m_serialPort->readAll();
+//	m_serialPort->flush();
+//	Log("readAll() execute. Message lu :");
+//	std::string string_readData(m_readData.constData(), m_readData.length());
+//	Log(string_readData);
+//	Log(std::to_string(string_readData.compare("j")));
+//	Log(std::to_string(string_readData.compare("z")));
+//	//  m_standardOutput << std::to_string(string_readData.compare("z")) << endl ;
+//	if (string_readData.compare("j") == 0)
+//	{
+//		Sleep(250);
+//		emit InitFinished();
+//		Log("signal InitFinished() emis par SerialCommunication");
+//	}
+//	else if (string_readData.compare("z") == 0)
+//	{
+//		Sleep(250);
+//		emit MvtFinished();
+//
+//		Log("signal MvtFinished() emis par SerialCommunication");
+//	}
+//
+//	// on peut rajouter d'autres signaux...
+//
+//}
+
+bool SerialCommunication::check(const char t_char)
 {
-
-	Log("Nouveau message recu : call on handleReadyRead()");
-	m_readData = m_serialPort->readAll();
-	m_serialPort->flush();
-	Log("readAll() execute. Message lu :");
-	std::string string_readData(m_readData.constData(), m_readData.length());
-	Log(string_readData);
-	Log(std::to_string(string_readData.compare("j")));
-	Log(std::to_string(string_readData.compare("z")));
-	//  m_standardOutput << std::to_string(string_readData.compare("z")) << endl ;
-	if (string_readData.compare("j") == 0)
+	if (m_serialPort->waitForReadyRead(5000))
 	{
-		Sleep(250);
-		emit InitFinished();
-		Log("signal InitFinished() emis par SerialCommunication");
+		m_readData = m_serialPort->readAll();
+		m_serialPort->flush();
+		std::string string_readData(m_readData.constData(), m_readData.length());
+		if (string_readData.compare(&t_char) == 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
-	else if (string_readData.compare("z") == 0)
+	else
 	{
-		Sleep(250);
-		emit MvtFinished();
-
-		Log("signal MvtFinished() emis par SerialCommunication");
+		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+		return false;
 	}
-
-	// on peut rajouter d'autres signaux...
-
 }
