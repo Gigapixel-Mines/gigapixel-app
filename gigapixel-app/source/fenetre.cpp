@@ -4,6 +4,8 @@
 #include <QCameraInfo>
 #include <QCheckBox>
 #include <QFuture>
+#include <QRadioButton>
+#include <QSlider>
 #include <QtConcurrent/QtConcurrent>
 #include <Windows.h>
 
@@ -54,6 +56,49 @@ void Fenetre::setCameraSpecs()
 	miseAuPoint->setEnabled(true);
 }
 
+void Fenetre::setSensorSettings()
+{
+
+}
+
+void Fenetre::refreshSensorsList()
+{
+	upSensorList->clear();
+	downSensorList->clear();
+	int portCount = QSerialPortInfo::availablePorts().count();
+	if (portCount == 0)
+	{
+		Log("No serial port found");
+		return;
+	}
+	else
+	{
+		QList<QSerialPortInfo> sPorts = QSerialPortInfo::availablePorts();
+		foreach(const QSerialPortInfo& serialPortInfo, sPorts)
+		{
+			//QString portDesc = serialPortInfo.description();
+			//qDebug() << serialPortInfo.hasProductIdentifier();
+			//qDebug() << serialPortInfo.productIdentifier();
+			//qDebug() << serialPortInfo.hasVendorIdentifier();
+			//qDebug() << serialPortInfo.vendorIdentifier();
+			//qDebug() << serialPortInfo.serialNumber();
+			//qDebug() << serialPortInfo.manufacturer();
+			//qDebug() << serialPortInfo.portName();
+			if (serialPortInfo.hasProductIdentifier() == true &&
+				serialPortInfo.hasVendorIdentifier() == true)
+			{
+				if (serialPortInfo.productIdentifier() == 24596 &&
+					serialPortInfo.vendorIdentifier() == 1027)
+				{
+					upSensorList->addItem(serialPortInfo.serialNumber());
+					downSensorList->addItem(serialPortInfo.serialNumber());
+				}
+			}
+		}
+		return;
+	}
+}
+
 void Fenetre::takeGigaPixelPhotoNoSpectrum()
 {
 	////GoButton def
@@ -95,6 +140,7 @@ void Fenetre::takeGigaPixelPhotoNoSpectrum()
 					photo_mutex.unlock();
 					QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
 					//enableButton();
+					//Enlever le polariseur
 					return;
 				}
 				if (versLaDroite)
@@ -107,6 +153,7 @@ void Fenetre::takeGigaPixelPhotoNoSpectrum()
 						photo_mutex.unlock();
 						QMetaObject::invokeMethod(this, "enableButton");
 						//enableButton();
+						//Enlever le polariseur
 						return;
 					}
 					else
@@ -124,6 +171,7 @@ void Fenetre::takeGigaPixelPhotoNoSpectrum()
 						photo_mutex.unlock();
 						QMetaObject::invokeMethod(this, "enableButton");
 						//enableButton();
+						//Enlever le polariseur
 						return;
 					}
 					else
@@ -141,6 +189,7 @@ void Fenetre::takeGigaPixelPhotoNoSpectrum()
 				photo_mutex.unlock();
 				QMetaObject::invokeMethod(this, "enableButton");
 				//enableButton();
+				//Enlever le polariseur
 				return; //On sort de la fonction ici
 			}
 		}
@@ -152,6 +201,7 @@ void Fenetre::takeGigaPixelPhotoNoSpectrum()
 			photo_mutex.unlock();
 			QMetaObject::invokeMethod(this, "enableButton");
 			//enableButton();
+			//Enlever le polariseur
 			return;
 		}
 		else
@@ -166,6 +216,7 @@ void Fenetre::takeGigaPixelPhotoNoSpectrum()
 	photo_mutex.unlock();
 	QMetaObject::invokeMethod(this, "enableButton");
 	//enableButton();
+	//Enlever le polariseur
 	return;
 }
 
@@ -181,13 +232,15 @@ Fenetre::Fenetre()
 	, buttonEnable_mutex()
 	, m_saveSpectrumInfo(false)
 	, taking_photo(false)
+	, sensorSet(false)
 {
 	Log("Démarrage du programme");
 	// Fenetre utilisateur
 	this->setAttribute(Qt::WA_DeleteOnClose);
 	serialcomm = new SerialCommunication();
 	onglets = new QTabWidget(this);
-	onglets->setGeometry(10, 10, 640, 480);
+	onglets->setGeometry(10, 10, 620, 460);
+	this->setFixedSize(640, 480);
 
 	miseAuPoint = new QWidget();
 	run = new QWidget();
@@ -241,6 +294,51 @@ Fenetre::Fenetre()
 	cameraSpecs->setLayout(vgridCamSpecs);
 	QObject::connect(camSpecsValidateBtn, SIGNAL(clicked()), this, SLOT(setCamSpecsBtnPress()));
 
+	//Page réglage capteur AMS
+	QGridLayout* vgridSensorSettings = new QGridLayout();
+	sensorSettings = new QWidget();
+	QPushButton* refreshSensorsListBtn = new QPushButton("Rafraichir la liste des capteurs");
+	QObject::connect(refreshSensorsListBtn, SIGNAL(clicked()), this, SLOT(refreshSensorsList()));
+	QLabel* upSensorLabel = new QLabel("Capteur spectral supérieur : ");
+	QLabel* downSensorLabel = new QLabel("Capteur spectral inférieur : ");
+	upSensorList = new QComboBox();
+	upSensorList->setEditable(false);
+	downSensorList = new QComboBox();
+	downSensorList->setEditable(false);
+	sensorIntTime = new QDoubleSpinBox();
+	intTimeSlider = new QSlider(Qt::Horizontal);
+	sensorIntTime->setSingleStep(2.8);
+	sensorIntTime->setRange(1 * 2.8, 255 * 2.8); //cf datasheet
+	sensorIntTime->setReadOnly(true);
+	sensorIntTime->setSuffix(" ms");
+	sensorIntTime->setFixedWidth(100);
+	intTimeSlider->setRange(1, 255);
+	intTimeSlider->setSingleStep(1);
+	intTimeSlider->setValue(1);
+	intTimeSlider->setFixedWidth(200);
+	QObject::connect(intTimeSlider, SIGNAL(valueChanged(int)), this, SLOT(setIntTimeValue(int)));
+	QLabel* intTimeLabel = new QLabel("Temps d'intégration :");
+	setSensorSettingsBtn = new QPushButton("Valider les paramètres des capteurs");
+	QObject::connect(setSensorSettingsBtn, SIGNAL(clicked()), this, SLOT(setSensorSettings()));
+	QLabel* gainLabel = new QLabel("Gain");
+	gain = new QComboBox();
+	gain->addItem("x1");
+	gain->addItem("x3.7");
+	gain->addItem("x16");
+	gain->addItem("x64");
+	gain->setEditable(false);
+	vgridSensorSettings->addWidget(refreshSensorsListBtn, 0, 0, Qt::AlignTop);
+	vgridSensorSettings->addWidget(upSensorLabel, 1, 0, Qt::AlignTop);
+	vgridSensorSettings->addWidget(upSensorList, 1, 1, Qt::AlignTop);
+	vgridSensorSettings->addWidget(downSensorLabel, 2, 0, Qt::AlignTop);
+	vgridSensorSettings->addWidget(downSensorList, 2, 1, Qt::AlignTop);
+	vgridSensorSettings->addWidget(intTimeLabel, 3, 0, Qt::AlignTop);
+	vgridSensorSettings->addWidget(intTimeSlider, 3, 1, Qt::AlignTop);
+	vgridSensorSettings->addWidget(sensorIntTime, 3, 2, Qt::AlignTop);
+	vgridSensorSettings->addWidget(gainLabel, 4, 0, Qt::AlignTop);
+	vgridSensorSettings->addWidget(gain, 4, 1, Qt::AlignTop);
+	vgridSensorSettings->addWidget(setSensorSettingsBtn, 5, 0, Qt::AlignTop);
+	sensorSettings->setLayout(vgridSensorSettings);
 
 	//Page Mise au point
 	QGroupBox* autoFocusGroup = new QGroupBox(tr("Mise au point semi-auto"));
@@ -298,21 +396,24 @@ Fenetre::Fenetre()
 	//  photoButton = new QPushButton ("Prendre photo");
 	bar = new QProgressBar();
 
-	/*  QVBoxLayout *vboxRun = new QVBoxLayout;
-	  vboxRun->addWidget(label_h);
-	  vboxRun->addWidget(image_h);
-	  vboxRun->addWidget(label_v);
-	  vboxRun->addWidget(image_v);
-	  vboxRun->addWidget(photoButton);
-	  vboxRun->addWidget(goButton);
-	  vboxRun->addWidget(stopButton);
-	  vboxRun->addWidget(bar);
-
-	  run->setLayout(vboxRun); */
+	polarizationGroupBox = new QGroupBox(tr("Polarisation"));
+	QGridLayout* tmpVgrid = new QGridLayout;
+	polarizationChoice[0] = new QRadioButton("Sans polariseur");
+	polarizationChoice[1] = new QRadioButton("Polariseur à 0° (vertical)");
+	polarizationChoice[2] = new QRadioButton("Polariseur à 45° (sens horaire)");
+	polarizationChoice[3] = new QRadioButton("Polariseur à 90° (horizontal)");
+	polarizationChoice[4] = new QRadioButton("Polariseur à 135° (sens horaire)");
+	polarizationChoice[0]->setChecked(true);
+	for (int i = 0; i < 5; ++i)
+	{
+		tmpVgrid->addWidget(polarizationChoice[i]);
+	}
+	polarizationGroupBox->setLayout(tmpVgrid);
 
 	QGridLayout* vgridRun = new QGridLayout();
 	vgridRun->addWidget(createFirstExclusiveGroup(), 0, 0);
-	vgridRun->addWidget(createSecondExclusiveGroup(), 1, 0);
+	vgridRun->addWidget(polarizationGroupBox, 1, 0);
+	vgridRun->addWidget(createSecondExclusiveGroup(), 2, 0);
 	run->setLayout(vgridRun);
 
 	//Réglages
@@ -340,6 +441,7 @@ Fenetre::Fenetre()
 
 	//Commentaire pour les onglets
 	onglets->addTab(cameraSpecs, "Propriétés de la caméra");
+	onglets->addTab(sensorSettings, "Paramètres des capteurs spectraux");
 	onglets->addTab(miseAuPoint, "Mise au point");
 	onglets->addTab(run, "Prise de photos");
 
@@ -433,7 +535,6 @@ void Fenetre::start()
 		Log("Already taking photo");
 		return;
 	}
-	taking_photo = true;
 	photo_mutex.unlock();
 
 	disableButton();
@@ -443,7 +544,18 @@ void Fenetre::start()
 	//takeGigaPixelPhotoNoSpectrum();
 	QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhotoNoSpectrum);
 
+	int polarization(0);
+	for (int i = 0; i < 5; ++i)
+	{
+		if (polarizationChoice[i]->isChecked())
+		{
+			polarization = i;
+			break;
+		}
+	}
+
 	//Code pour mettre en place le polariseur
+	
 
 	//Récupération de la référence 0,0 en X, Y
 	if (!serialcomm->findXYRef())
@@ -455,11 +567,28 @@ void Fenetre::start()
 		m_saveSpectrumInfo = spectreActif->isChecked();
 		if (m_saveSpectrumInfo)
 		{
-
+			if (!sensorSet)
+			{
+				QMessageBox* error = new QMessageBox();
+				error->setWindowTitle("Erreur");
+				error->setText("Les capteurs spectraux ne sont pas paramétrés");
+				error->exec();
+				enableButton();
+				return;
+			}
+			else
+			{
+				photo_mutex.lock();
+				taking_photo = true;
+				photo_mutex.unlock();
+			}
 		}
 		else
 		{
-			//QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhotoNoSpectrum);
+			photo_mutex.lock();
+			taking_photo = true;
+			photo_mutex.unlock();
+			QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhotoNoSpectrum);
 			//takeGigaPixelPhotoNoSpectrum();
 		}
 	}
@@ -469,6 +598,7 @@ void Fenetre::start()
 void Fenetre::disableButton()
 {
 	//photoButton->setEnabled(false);
+	m_zoneSelection->hide();
 	buttonEnable_mutex.lock();
 	avButton->setEnabled(false);
 	arButton->setEnabled(false);
@@ -483,7 +613,9 @@ void Fenetre::disableButton()
 	bar->setMinimum(0);
 	bar->setMaximum(nbrPhoto);
 	miseAuPoint->setEnabled(false);
+	sensorSettings->setEnabled(false);
 	cameraSpecs->setEnabled(false);
+	polarizationGroupBox->setEnabled(false);
 	//gamma = 0;
 	buttonEnable_mutex.unlock();
 }
@@ -499,7 +631,9 @@ void Fenetre::enableButton()
 	image_h->setEnabled(true);
 	image_v->setEnabled(true);
 	miseAuPoint->setEnabled(true);
+	sensorIntTime->setEnabled(true);
 	cameraSpecs->setEnabled(true);
+	polarizationGroupBox->setEnabled(true);
 	buttonEnable_mutex.unlock();
 }
 
@@ -539,6 +673,11 @@ void Fenetre::setZonePic()
 	qDebug() << pixmap.isNull();
 	m_zoneSelection->setImageForSelection(pixmap);
 	m_zoneSelection->show();
+}
+
+void Fenetre::setIntTimeValue(int value)
+{
+	sensorIntTime->setValue(value * 2.8);
 }
 
 void Fenetre::setCaptureBtn(bool ready)

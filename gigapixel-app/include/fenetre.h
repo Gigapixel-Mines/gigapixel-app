@@ -41,6 +41,8 @@ private:
 	QSpinBox* image_v;
 	QSpinBox* image_h;
 	QDoubleSpinBox* focusDistance;
+	QDoubleSpinBox* sensorIntTime;
+	QSlider* intTimeSlider;
 	QLabel* label_v;
 	QLabel* label_h;
 	QLabel* label_spectre;
@@ -51,7 +53,14 @@ private:
 	QWidget* miseAuPoint;
 	QWidget* run;
 	QWidget* cameraSpecs;
+	QWidget* sensorSettings;
 	QPushButton* zoneSelect;
+	QGroupBox* polarizationGroupBox;
+	QRadioButton* polarizationChoice[5];
+	QPushButton* setSensorSettingsBtn;
+	QComboBox* gain;
+	QComboBox* upSensorList;
+	QComboBox* downSensorList;
 
 	//Onglet cam specs
 	QSpinBox* camResHpx;
@@ -62,12 +71,9 @@ private:
 
 	ZoneSelection* m_zoneSelection;
 
-	int alpha;
-	int beta;
 	int nbPhotoH;
 	int nbPhotoV;
 	int nbrPhoto;
-	int gamma;
 
 	int nbCranPasH;
 	int nbCranPasV;
@@ -92,6 +98,8 @@ private:
 
 	bool do_stop;
 	bool taking_photo;
+	bool sensorSet;
+
 	QMutex stop_mutex;
 	QMutex photo_mutex;
 	QMutex buttonEnable_mutex;
@@ -116,6 +124,9 @@ private slots:
 	void openZoneSelect();
 	void setCaptureBtn(bool);
 	void setZonePic();
+	void setIntTimeValue(int);
+	void setSensorSettings();
+	void refreshSensorsList();
 
 signals:
 	void LigneFinished();
