@@ -58,7 +58,31 @@ void Fenetre::setCameraSpecs()
 
 void Fenetre::setSensorSettings()
 {
-
+	if (false/*upSensorList->currentIndex() == downSensorList->currentIndex()*/)
+	{
+		QMessageBox* error = new QMessageBox();
+		error->setWindowTitle("Erreur");
+		error->setText("Veuillez choisir deux capteurs différents");
+		error->exec();
+		return;
+	}
+	else
+	{
+		if (capteurBas != nullptr)
+		{
+			delete capteurBas;
+			capteurBas = nullptr;
+		}
+		if (capteurHaut != nullptr)
+		{
+			delete capteurHaut;
+			capteurHaut = nullptr;
+		}
+		capteurBas = new CapteurSpectral(downSensorList->currentText());
+		//capteurHaut = new CapteurSpectral(upSensorList->currentText());
+		sensorSet = true;
+		return;
+	}
 }
 
 void Fenetre::refreshSensorsList()
@@ -233,6 +257,8 @@ Fenetre::Fenetre()
 	, m_saveSpectrumInfo(false)
 	, taking_photo(false)
 	, sensorSet(false)
+	, capteurHaut(nullptr)
+	, capteurBas(nullptr)
 {
 	Log("Démarrage du programme");
 	// Fenetre utilisateur
@@ -465,6 +491,8 @@ Fenetre::~Fenetre()
 	Log("");
 	delete serialcomm;
 	delete focuswindow;
+	delete capteurBas;
+	delete capteurHaut;
 }
 
 QGroupBox* Fenetre::createFirstExclusiveGroup()

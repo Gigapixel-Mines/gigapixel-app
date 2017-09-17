@@ -26,11 +26,11 @@ void CapteurSpectral::Log(std::string strMsg)
 	}
 }
 
-bool CapteurSpectral::connectSerialPort()
+bool CapteurSpectral::connectSerialPort(QString t_serialNumber)
 {
 
 	Log("calling SerialCommunication::connectSerialPort()");
-
+	
 	int portCount = QSerialPortInfo::availablePorts().count();
 	if (portCount == 0)
 	{
@@ -42,13 +42,13 @@ bool CapteurSpectral::connectSerialPort()
 		QList<QSerialPortInfo> sPorts = QSerialPortInfo::availablePorts();
 		foreach(const QSerialPortInfo& serialPortInfo, sPorts)
 		{
-			QString portDesc = serialPortInfo.description();
-			//qDebug() << portDesc;
-			if (portDesc.contains("Arduino"))
+			if (serialPortInfo.serialNumber() == t_serialNumber)
 			{
 				m_serialPort->setPort(serialPortInfo);
-				m_serialPort->setBaudRate(QSerialPort::Baud9600);
-				Log("Connection port serie etablie");
+				m_serialPort->setBaudRate(QSerialPort::Baud115200);
+				m_serialPort->setParity(QSerialPort::NoParity);
+				m_serialPort->setStopBits(QSerialPort::OneStop);
+				Log("Connexion port serie etablie");
 				return true;
 			}
 		}
@@ -58,8 +58,13 @@ bool CapteurSpectral::connectSerialPort()
 	return false;
 }
 
+//CapteurSpectral::CapteurSpectral()
+//{
+//
+//}
+
 // Default constructor, inherits QWidget()
-CapteurSpectral::CapteurSpectral()
+CapteurSpectral::CapteurSpectral(QString t_serialNumber)
 	: QWidget()
 	, m_standardOutput(stdout)
 	, m_bytesWritten(0)
@@ -67,9 +72,9 @@ CapteurSpectral::CapteurSpectral()
 {
 	Log("SerialCommunication constructor called");
 
-	m_serialPortName = "Arduino";
+	m_serialPortName = "AMS";
 	m_serialPort = new QSerialPort(this);
-	connectSerialPort();
+	connectSerialPort(t_serialNumber);
 
 	if (!m_serialPort->open(QIODevice::ReadWrite))
 	{

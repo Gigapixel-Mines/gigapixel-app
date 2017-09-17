@@ -20,7 +20,7 @@ private:
 
 	// Se connecter a un port (appele dans constructeur)
 	// returns true if no problem (pas tres utile en vrai)
-	bool connectSerialPort();
+	bool connectSerialPort(QString t_serialNumber);
 
 	// Ecriture - low-level
 	void write(QByteArray);
@@ -36,7 +36,8 @@ private:
 
 public:
 	// Constructor and destructor
-	CapteurSpectral();
+	//CapteurSpectral();
+	CapteurSpectral(QString t_serialNumber);
 	virtual ~CapteurSpectral();
 	void Log(std::string strMsg);
 	bool is_connected();

@@ -1,6 +1,7 @@
 #ifndef FENETRE_H
 #define FENETRE_H
 
+#include "CapteurSpectral.h"
 #include "FocusWindow.h"
 #include "SerialCommunication.h"
 #include "ZoneSelection.h"
@@ -70,6 +71,9 @@ private:
 	QPushButton* camSpecsValidateBtn;
 
 	ZoneSelection* m_zoneSelection;
+
+	CapteurSpectral* capteurHaut;
+	CapteurSpectral* capteurBas;
 
 	int nbPhotoH;
 	int nbPhotoV;
