@@ -5,8 +5,10 @@
 #include <QCameraViewfinder>
 #include <QCameraImageCapture>
 #include <QGridLayout>
+#include <QImage>
+#include <QLabel>
 #include <QMessageBox>
-
+#include <QPixmap>
 
 class WCam : public QWidget
 {
@@ -18,11 +20,25 @@ private:
 	QCameraViewfinder * viewfinder;
 	QCameraImageCapture * imageCapture;
 	QMessageBox * error;
+	QLabel* label;
+	QImage selZonePic;
 	int * a;
 
+private slots:
+	void processCapturedImage(int requestId, const QImage& img);
+	void imageSaved(int id, const QString &fileName);
+	void readyForCapture(bool);
 
 public:
 	WCam();
+	QImage getZonePic();
+
+signals:
+	void canCapture(bool);
+	void selZonePicReady();
+
+public slots:
+	void getImage();
 
 };
 

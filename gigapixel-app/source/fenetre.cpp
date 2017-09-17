@@ -3,6 +3,9 @@
 #include <QApplication>
 #include <QCameraInfo>
 #include <QCheckBox>
+#include <QFuture>
+#include <QtConcurrent/QtConcurrent>
+#include <Windows.h>
 
 void Fenetre::Log(std::string strMsg)
 {
@@ -64,6 +67,12 @@ void Fenetre::takeGigaPixelPhotoNoSpectrum()
 	//QObject::connect(serialcomm, SIGNAL(MvtFinished()), focuswindow, SLOT(SaveImage()));
 	//QObject::connect(goButton, SIGNAL(clicked()), this, SLOT(disableButton()));
 
+	stop_mutex.lock();
+	do_stop = false;
+	stop_mutex.unlock();
+
+	//Sleep(5000); //for threading synchronization test
+
 	bool versLaDroite = true; //On commence à 0 et on ira vers la droite au début
 
 	for (int i = 1; i <= nbPhotoV; ++i)
@@ -74,10 +83,18 @@ void Fenetre::takeGigaPixelPhotoNoSpectrum()
 			if (do_stop == false)
 			{
 				stop_mutex.unlock();
-				bar->setValue(bar->value() + 1); //On avance la barre de progression
+				//bar->setValue(bar->value() + 1); //On avance la barre de progression
+				//Les threads ne peuvent pas modifier la GUI, 
+				//on envoie une demande pour avancer la barre de progrès
+				QMetaObject::invokeMethod(this, "updateProgressBar");
 				if (!focuswindow->SaveImage())
 				{
 					Log("Erreur lors de l'enregistrement de la photo");
+					photo_mutex.lock();
+					taking_photo = false;
+					photo_mutex.unlock();
+					QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
+					//enableButton();
 					return;
 				}
 				if (versLaDroite)
@@ -85,6 +102,11 @@ void Fenetre::takeGigaPixelPhotoNoSpectrum()
 					if (!serialcomm->droite())
 					{
 						Log("Erreur lors du déplacement vers la droite");
+						photo_mutex.lock();
+						taking_photo = false;
+						photo_mutex.unlock();
+						QMetaObject::invokeMethod(this, "enableButton");
+						//enableButton();
 						return;
 					}
 					else
@@ -97,6 +119,11 @@ void Fenetre::takeGigaPixelPhotoNoSpectrum()
 					if (!serialcomm->gauche())
 					{
 						Log("Erreur lors du déplacement vers la gauche");
+						photo_mutex.lock();
+						taking_photo = false;
+						photo_mutex.unlock();
+						QMetaObject::invokeMethod(this, "enableButton");
+						//enableButton();
 						return;
 					}
 					else
@@ -109,12 +136,22 @@ void Fenetre::takeGigaPixelPhotoNoSpectrum()
 			{
 				stop_mutex.unlock();
 				Log("Arrêt");
+				photo_mutex.lock();
+				taking_photo = false;
+				photo_mutex.unlock();
+				QMetaObject::invokeMethod(this, "enableButton");
+				//enableButton();
 				return; //On sort de la fonction ici
 			}
 		}
 		if (!serialcomm->haut())
 		{
 			Log("Erreur lors du déplacement vers la droite");
+			photo_mutex.lock();
+			taking_photo = false;
+			photo_mutex.unlock();
+			QMetaObject::invokeMethod(this, "enableButton");
+			//enableButton();
 			return;
 		}
 		else
@@ -124,13 +161,26 @@ void Fenetre::takeGigaPixelPhotoNoSpectrum()
 		versLaDroite = !versLaDroite; //On change de direction après avoir fait une ligne
 	}
 	Log("Fin de la prise de photo");
+	photo_mutex.lock();
+	taking_photo = false;
+	photo_mutex.unlock();
+	QMetaObject::invokeMethod(this, "enableButton");
+	//enableButton();
 	return;
 }
 
-Fenetre::Fenetre() 
+void Fenetre::updateProgressBar()
+{
+	bar->setValue(bar->value() + 1);
+}
+
+Fenetre::Fenetre()
 	: do_stop(false)
 	, stop_mutex()
+	, photo_mutex()
+	, buttonEnable_mutex()
 	, m_saveSpectrumInfo(false)
+	, taking_photo(false)
 {
 	Log("Démarrage du programme");
 	// Fenetre utilisateur
@@ -148,7 +198,7 @@ Fenetre::Fenetre()
 
 	//Sélection de la zone de la photo à enregistrer
 	m_zoneSelection = new ZoneSelection();
-	m_zoneSelection->show();
+	//m_zoneSelection->show();
 
 	//Page caméra specs
 	QGridLayout* vgridCamSpecs = new QGridLayout();
@@ -211,13 +261,16 @@ Fenetre::Fenetre()
 	QGridLayout* vgridManFocus = new QGridLayout();
 	avButton = new QPushButton("Déplacement avant");
 	arButton = new QPushButton("Déplacement arrière");
+	zoneSelect = new QPushButton("Sélection de la zone à photographier"); //test
 	vgridManFocus->addWidget(avButton, 0, 0);
 	vgridManFocus->addWidget(arButton, 1, 0);
+	vgridManFocus->addWidget(zoneSelect, 2, 0); //Test
 	manFocusGroup->setLayout(vgridManFocus);
 	QObject::connect(avButton, SIGNAL(pressed()), serialcomm, SLOT(miseAuPointAv()));
 	QObject::connect(avButton, SIGNAL(released()), serialcomm, SLOT(miseAuPointStop()));
 	QObject::connect(arButton, SIGNAL(pressed()), serialcomm, SLOT(miseAuPointAr()));
 	QObject::connect(arButton, SIGNAL(released()), serialcomm, SLOT(miseAuPointStop()));
+	QObject::connect(zoneSelect, SIGNAL(clicked()), this, SLOT(openZoneSelect())); //Test
 
 	QGridLayout* vgridFocus = new QGridLayout();
 	vgridFocus->addWidget(autoFocusGroup, 0, 0);
@@ -283,7 +336,7 @@ Fenetre::Fenetre()
 	QObject::connect(goButton, SIGNAL(clicked()), this, SLOT(start()));
 
 	QObject::connect(stopButton, SIGNAL(clicked()), this, SLOT(stop()));
-	QObject::connect(stopButton, SIGNAL(clicked()), this, SLOT(enableButton()));
+	//QObject::connect(stopButton, SIGNAL(clicked()), this, SLOT(enableButton()));
 
 	//Commentaire pour les onglets
 	onglets->addTab(cameraSpecs, "Propriétés de la caméra");
@@ -296,6 +349,11 @@ Fenetre::Fenetre()
 	setWindowTitle("gigapixel-app");
 	//   setFixedSize(2000,2000);
 	show();
+	w = new WCam();
+	QObject::connect(this, SIGNAL(getSelZone()), w, SLOT(getImage()));
+	QObject::connect(w, SIGNAL(canCapture(bool)), this, SLOT(setCaptureBtn(bool)));
+	QObject::connect(w, SIGNAL(selZonePicReady()), this, SLOT(setZonePic()));
+
 	Log("Fenêtre principale lancée");
 }
 
@@ -368,11 +426,22 @@ QGroupBox* Fenetre::createSecondExclusiveGroup()
 
 void Fenetre::start()
 {
-	stop_mutex.lock();
-	do_stop = false;
-	stop_mutex.unlock();
+	photo_mutex.lock();
+	if (taking_photo)
+	{
+		photo_mutex.unlock();
+		Log("Already taking photo");
+		return;
+	}
+	taking_photo = true;
+	photo_mutex.unlock();
+
 	disableButton();
 	focuswindow->resetNbPhoto();
+
+	//test
+	//takeGigaPixelPhotoNoSpectrum();
+	QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhotoNoSpectrum);
 
 	//Code pour mettre en place le polariseur
 
@@ -390,44 +459,48 @@ void Fenetre::start()
 		}
 		else
 		{
-			takeGigaPixelPhotoNoSpectrum();
+			//QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhotoNoSpectrum);
+			//takeGigaPixelPhotoNoSpectrum();
 		}
 	}
-	enableButton();
 	return;
 }
 
 void Fenetre::disableButton()
 {
 	//photoButton->setEnabled(false);
+	buttonEnable_mutex.lock();
 	avButton->setEnabled(false);
 	arButton->setEnabled(false);
 	goButton->setEnabled(false);
 	spectreActif->setEnabled(false);
-	image_h->setReadOnly(true);
-	image_v->setReadOnly(true);
-	alpha = 0;
-	beta = 0;
+	image_h->setEnabled(false);
+	image_v->setEnabled(false);
+	//alpha = 0;
+	//beta = 0;
 	bar->setValue(0);
 	nbrPhoto = nbPhotoH * nbPhotoV;
 	bar->setMinimum(0);
 	bar->setMaximum(nbrPhoto);
 	miseAuPoint->setEnabled(false);
 	cameraSpecs->setEnabled(false);
-	gamma = 0;
+	//gamma = 0;
+	buttonEnable_mutex.unlock();
 }
 
 void Fenetre::enableButton()
 {
 	//photoButton->setEnabled(true);
+	buttonEnable_mutex.lock();
 	avButton->setEnabled(true);
 	arButton->setEnabled(true);
 	goButton->setEnabled(true);
 	spectreActif->setEnabled(true);
-	image_h->setReadOnly(false);
-	image_v->setReadOnly(false);
+	image_h->setEnabled(true);
+	image_v->setEnabled(true);
 	miseAuPoint->setEnabled(true);
 	cameraSpecs->setEnabled(true);
+	buttonEnable_mutex.unlock();
 }
 
 void Fenetre::assign_h()
@@ -451,4 +524,24 @@ void Fenetre::stop()
 void Fenetre::setCamSpecsBtnPress()
 {
 	return setCameraSpecs();
+}
+
+void Fenetre::openZoneSelect()
+{
+	emit getSelZone();
+}
+
+void Fenetre::setZonePic()
+{
+	QPixmap pixmap;
+	QImage temp = w->getZonePic();
+	pixmap = QPixmap::fromImage(temp);
+	qDebug() << pixmap.isNull();
+	m_zoneSelection->setImageForSelection(pixmap);
+	m_zoneSelection->show();
+}
+
+void Fenetre::setCaptureBtn(bool ready)
+{
+	zoneSelect->setEnabled(ready);
 }

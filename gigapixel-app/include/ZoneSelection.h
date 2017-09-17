@@ -3,6 +3,7 @@
 
 #include <QLabel>
 #include <QMenu>
+#include <QPixmap>
 
 class ZoneSelection : public QLabel
 {
@@ -11,6 +12,8 @@ class ZoneSelection : public QLabel
 public:
 	ZoneSelection(QWidget *parent = 0);
 	~ZoneSelection();
+	void setImageForSelection(QPixmap& image);
+
 protected:
 	void paintEvent(QPaintEvent *e);
 	void mousePressEvent(QMouseEvent *e);
@@ -22,8 +25,8 @@ private:
 	QRect selectionRect;
 	QMenu contextMenu;
 	private slots:
-	void saveSlot();
-
+	void setZone();
+	void resetZone();
 };
 
 #endif // !ZONE_SELECTION

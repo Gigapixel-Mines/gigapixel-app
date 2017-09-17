@@ -11,14 +11,25 @@ ZoneSelection::ZoneSelection(QWidget *parent)
 {
 	selectionStarted = false;
 
-	QAction *saveAction = contextMenu.addAction("Save");
+	QAction *setAction = contextMenu.addAction("Sélectionner cette zone");
+	QAction *resetAction = contextMenu.addAction("Réinitialiser la zone de sélection");
 
-	connect(saveAction, SIGNAL(triggered()), this, SLOT(saveSlot()));
+	connect(setAction, SIGNAL(triggered()), this, SLOT(setZone()));
+	connect(resetAction, SIGNAL(triggered()), this, SLOT(resetZone()));
 }
 
 ZoneSelection::~ZoneSelection()
 {
 
+}
+
+void ZoneSelection::setImageForSelection(QPixmap& image)
+{
+	if (!image.isNull())
+	{
+		this->setPixmap(image);
+		this->setFixedSize(image.size());
+	}
 }
 
 void ZoneSelection::paintEvent(QPaintEvent *e)
@@ -28,19 +39,13 @@ void ZoneSelection::paintEvent(QPaintEvent *e)
 	painter.setPen(QPen(QBrush(QColor(0, 0, 0, 180)), 1, Qt::DashLine));
 	painter.setBrush(QBrush(QColor(255, 255, 255, 120)));
 	painter.drawRect(selectionRect);
-	//QPainter painter(this);
-	//QLabel::paintEvent(e);
-	//painter.setPen(QPen(QBrush(QColor(0, 0, 0, 180)), 1, Qt::DashLine));
-	//painter.setBrush(QBrush(QColor(255, 255, 255, 120)));
-
-	//painter.drawRect(selectionRect);
 }
 
 void ZoneSelection::mousePressEvent(QMouseEvent *e)
 {
 	if (e->button() == Qt::RightButton)
 	{
-		if (selectionRect.contains(e->pos())) contextMenu.exec(this->mapToGlobal(e->pos()));
+		contextMenu.exec(this->mapToGlobal(e->pos()));
 	}
 	else
 	{
@@ -65,10 +70,15 @@ void ZoneSelection::mouseReleaseEvent(QMouseEvent *e)
 	selectionStarted = false;
 }
 
-void ZoneSelection::saveSlot()
+void ZoneSelection::setZone()
 {
-	QString fileName = QFileDialog::getSaveFileName(this, QObject::tr("Save File"),
-		"/home",
-		QObject::tr("Images (*.jpg)"));
-	this->pixmap()->copy(selectionRect).save(fileName);
+	//Send the coordinates to fenetre for mapping
+}
+
+void ZoneSelection::resetZone()
+{
+	//Reset coordinates too and send the refresh to fenetre
+	selectionRect.setTopLeft(QPoint(-10, -10));
+	selectionRect.setBottomRight(QPoint(-10, -10));
+	repaint();
 }

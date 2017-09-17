@@ -4,34 +4,40 @@ calling SerialCommunication::connectSerialPort()
 Failed to OPEN serial port
 Starting Vimba
 Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
 Fenêtre principale lancée
 calling SerialCommunication::findXYRef()
 Serial port is not connected, aborting write
 Error, serial port not connected, aborting read and check
 Réponse invalide
 Erreur lors de la recherche de la référence XY
-Fin de la session
-
+Already taking photo
+Already taking photo
+Already taking photo
 Démarrage du programme
 SerialCommunication constructor called
 calling SerialCommunication::connectSerialPort()
 Failed to OPEN serial port
 Starting Vimba
 Sync object created
-Fenêtre principale lancée
-calling SerialCommunication::findXYRef()
+Calling SerialCommunication::envoieCranParPas()
 Serial port is not connected, aborting write
 Error, serial port not connected, aborting read and check
 Réponse invalide
-Erreur lors de la recherche de la référence XY
-Fin de la session
-
-Démarrage du programme
-SerialCommunication constructor called
-calling SerialCommunication::connectSerialPort()
-Failed to OPEN serial port
-Starting Vimba
-Sync object created
 Fenêtre principale lancée
 calling SerialCommunication::findXYRef()
 Serial port is not connected, aborting write
@@ -44,49 +50,18 @@ calling SerialCommunication::connectSerialPort()
 Failed to OPEN serial port
 Starting Vimba
 Sync object created
-Fenêtre principale lancée
-Démarrage du programme
-SerialCommunication constructor called
-calling SerialCommunication::connectSerialPort()
-Failed to OPEN serial port
-Starting Vimba
-Sync object created
-Fenêtre principale lancée
-Démarrage du programme
-SerialCommunication constructor called
-calling SerialCommunication::connectSerialPort()
-Failed to OPEN serial port
-Starting Vimba
-Sync object created
-Fenêtre principale lancée
-Démarrage du programme
-SerialCommunication constructor called
-calling SerialCommunication::connectSerialPort()
-Failed to OPEN serial port
-Starting Vimba
-Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
 Fenêtre principale lancée
 calling SerialCommunication::findXYRef()
 Serial port is not connected, aborting write
 Error, serial port not connected, aborting read and check
 Réponse invalide
 Erreur lors de la recherche de la référence XY
-Fin de la session
-
-Démarrage du programme
-SerialCommunication constructor called
-calling SerialCommunication::connectSerialPort()
-Failed to OPEN serial port
-Starting Vimba
-Sync object created
-Fenêtre principale lancée
-Démarrage du programme
-SerialCommunication constructor called
-calling SerialCommunication::connectSerialPort()
-Failed to OPEN serial port
-Starting Vimba
-Sync object created
-Fenêtre principale lancée
+Already taking photo
+Already taking photo
 Démarrage du programme
 SerialCommunication constructor called
 calling SerialCommunication::connectSerialPort()
@@ -98,21 +73,12 @@ Serial port is not connected, aborting write
 Error, serial port not connected, aborting read and check
 Réponse invalide
 Fenêtre principale lancée
-Démarrage du programme
-SerialCommunication constructor called
-calling SerialCommunication::connectSerialPort()
-Failed to OPEN serial port
-Starting Vimba
-Sync object created
-Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::findXYRef()
 Serial port is not connected, aborting write
 Error, serial port not connected, aborting read and check
 Réponse invalide
-Fenêtre principale lancée
-Calling SerialCommunication::envoieCranParPas()
-Serial port is not connected, aborting write
-Error, serial port not connected, aborting read and check
-Réponse invalide
+Erreur lors de la recherche de la référence XY
+Already taking photo
 Fin de la session
 
 Démarrage du programme
@@ -126,8 +92,13 @@ Serial port is not connected, aborting write
 Error, serial port not connected, aborting read and check
 Réponse invalide
 Fenêtre principale lancée
-Fin de la session
-
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Already taking photo
+Already taking photo
 Démarrage du programme
 SerialCommunication constructor called
 calling SerialCommunication::connectSerialPort()
@@ -139,6 +110,13 @@ Serial port is not connected, aborting write
 Error, serial port not connected, aborting read and check
 Réponse invalide
 Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Already taking photo
+Already taking photo
 Démarrage du programme
 SerialCommunication constructor called
 calling SerialCommunication::connectSerialPort()
@@ -150,3 +128,372 @@ Serial port is not connected, aborting write
 Error, serial port not connected, aborting read and check
 Réponse invalide
 Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Locking stop_mutex
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Already taking photo
+Locking stop_mutex
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Already taking photo
+Locking stop_mutex
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Already taking photo
+Locking stop_mutex
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Already taking photo
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Already taking photo
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Already taking photo
+Locking stop_mutex
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Already taking photo
+Locking stop_mutex
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+Locking stop_mutex
+call on FocusWindow::saveImage()
+Unable to start camera
+Erreur lors de l'enregistrement de la photo
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Already taking photo
+Arrêt
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Already taking photo
+Arrêt
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Arrêt
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Already taking photo
+Arrêt
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Arrêt
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Already taking photo
+Already taking photo
+Arrêt
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Arrêt
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Arrêt
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Fenêtre principale lancée
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Réponse invalide
+Erreur lors de la recherche de la référence XY
+Arrêt

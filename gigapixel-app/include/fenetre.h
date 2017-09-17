@@ -4,6 +4,7 @@
 #include "FocusWindow.h"
 #include "SerialCommunication.h"
 #include "ZoneSelection.h"
+#include "wcam.h"
 
 #include <QCamera>
 #include <QCameraViewfinder>
@@ -50,6 +51,7 @@ private:
 	QWidget* miseAuPoint;
 	QWidget* run;
 	QWidget* cameraSpecs;
+	QPushButton* zoneSelect;
 
 	//Onglet cam specs
 	QSpinBox* camResHpx;
@@ -84,11 +86,17 @@ private:
 	void Fenetre::closeEvent(QCloseEvent* event) override;
 	void setCameraSpecs();
 	void takeGigaPixelPhotoNoSpectrum();
+	void updateProgressBar();
 
 	bool m_saveSpectrumInfo;
 
 	bool do_stop;
+	bool taking_photo;
 	QMutex stop_mutex;
+	QMutex photo_mutex;
+	QMutex buttonEnable_mutex;
+
+	WCam* w;
 
 public:
 	Fenetre();
@@ -105,12 +113,16 @@ private slots:
 	void start();
 	void stop();
 	void setCamSpecsBtnPress();
+	void openZoneSelect();
+	void setCaptureBtn(bool);
+	void setZonePic();
 
 signals:
 	void LigneFinished();
 	void PasGauche();
 	void PasDroite();
 	void FinCycle();
+	void getSelZone();
 };
 
 #endif // FENETRE_H
