@@ -73,6 +73,11 @@ void ZoneSelection::mouseReleaseEvent(QMouseEvent *e)
 void ZoneSelection::setZone()
 {
 	//Send the coordinates to fenetre for mapping
+	QPoint tempBotLeft = selectionRect.bottomLeft();
+	QPoint tempTopRight = selectionRect.topRight();
+	tempBotLeft.setY(-tempBotLeft.y() + this->height());//TODO
+	tempTopRight.setY(-tempTopRight.y() + this->height());
+	emit sendCoordsToWindow(tempBotLeft, tempTopRight);
 }
 
 void ZoneSelection::resetZone()
@@ -81,4 +86,5 @@ void ZoneSelection::resetZone()
 	selectionRect.setTopLeft(QPoint(-10, -10));
 	selectionRect.setBottomRight(QPoint(-10, -10));
 	repaint();
+	emit resetCoordsToWindow();
 }

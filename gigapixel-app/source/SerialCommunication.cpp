@@ -76,6 +76,11 @@ SerialCommunication::SerialCommunication()
 	, m_standardOutput(stdout)
 	, m_bytesWritten(0)
 	, m_connected(false)
+	, string_readData()
+	, coordPasH(0)
+	, coordPasV(0)
+	, coordCransH(0)
+	, coordCransV(0)
 {
 	Log("SerialCommunication constructor called");
 
@@ -188,13 +193,6 @@ void SerialCommunication::write(QByteArray c)
 		return;
 	}
 
-	//QSerialPort serialPort;
-	//QString serialPortName = "Arduino";
-	//m_serialPort->setPort(QSerialPortInfo::availablePorts()[0]);
-
-	//->setBaudRate(QSerialPort::Baud9600);
-
-
 	QByteArray writeData = c; //Caractere a choisir
 
 	qint64 bytesWritten = m_serialPort->write(writeData);
@@ -273,27 +271,22 @@ void SerialCommunication::moveCameraToNextPosition() {
 //3 fonctions pour la fise au point : Mettre en marche le moteur dans un sens lorsqu'on appuie sur un bouton.
 //Arrêter les moteurs dès qu'on relâche le bouton.
 
-void SerialCommunication::miseAuPointAv()
+void SerialCommunication::miseAuPointAuto()
 {
-	Log("calling SerialCommunication::miseAuPointAv()");
+	Log("calling SerialCommunication::miseAuPointAuto()");
 	write("e");
 }
 
-void SerialCommunication::miseAuPointAr()
+void SerialCommunication::miseAuPointManuelleStart()
 {
-	Log("calling SerialCommunication::miseAuPointAr()");
+	Log("calling SerialCommunication::miseAuPointManuelleStart()");
 	write("f");
 }
 
-void SerialCommunication::miseAuPointStop()
+void SerialCommunication::miseAuPointManuelleStop()
 {
-	Log("calling SerialCommunication::miseAuPointStop()");
+	Log("calling SerialCommunication::miseAuPointManuelleStop");
 	write("g");
-	if (!check('g'))
-	{
-		Log("Réponse invalide");
-		return;
-	}
 }
 
 //Déplacement du capteur au point initial pour prendre des photos
@@ -303,11 +296,18 @@ bool SerialCommunication::findXYRef()
 	Log("calling SerialCommunication::findXYRef()");
 	write("h"); //Ask Arduino to find XY Ref
 	//Wait for his answer
-	if (!check('h'))
+	if (dataAvailable())
 	{
-		Log("Réponse invalide");
-		return false;
+		if (!check('h'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
 	}
+	coordPasH = 0;
+	coordPasV = 0;
+	coordCransH = 0;
+	coordCransV = 0;
 	Log("XY Ref OK");
 	return true;
 }
@@ -321,50 +321,96 @@ bool SerialCommunication::is_connected()
 
 bool SerialCommunication::gauche()
 {
-	Log("calling SerialCommunication::avanceHorizontal()");
-	write("c");
-	if (!check('z'))
+	if (coordPasH - 1 >= 0)
 	{
-		Log("Réponse invalide");
+		Log("calling SerialCommunication::avanceHorizontal()");
+		write("c");
+		--coordPasH;
+		return true;
+	}
+	else
+	{
+		Log("Dépassement des limites, déplacement annulé");
 		return false;
 	}
-	return true;
 }
 
 bool SerialCommunication::droite()
 {
-	Log("calling SerialCommunication::reculeHorizontal()");
-	write("d");
-	if (!check('z'))
+	if ((coordPasH + 1 <= maxPasH && 
+		coordCransH == 0) ||
+		(coordPasH + 1 < maxPasH &&
+		coordCransH > 0))
 	{
-		Log("Réponse invalide");
+		Log("calling SerialCommunication::reculeHorizontal()");
+		write("d");
+		++coordPasH;
+		return true;
+	}
+	else
+	{
+		Log("Dépassement des limites, déplacement annulé");
 		return false;
 	}
-	return true;
+
 }
 
 bool SerialCommunication::haut()
 {
-	Log("calling SerialCommunication::avanceVertical()");
-	write("b");
-	if (!check('z'))
+	if ((coordPasV + 1 <= maxPasV &&
+		coordCransV == 0) ||
+		(coordPasV + 1 < maxPasV &&
+			coordCransV > 0))
 	{
-		Log("Réponse invalide");
+		//Ajouter vérification de déplacement
+		Log("calling SerialCommunication::avanceVertical()");
+		write("b");
+		++coordPasV;
+		return true;
+	}
+	else
+	{
+		Log("Dépassement des limites, déplacement annulé");
 		return false;
 	}
-	return true;
 }
 
 bool SerialCommunication::bas()
 {
-	Log("calling SerialCommunication::reculeVertical()");
-	write("a");
-	if (!check('z'))
+	if (coordPasH - 1 >= 0)
 	{
-		Log("Réponse invalide");
+		Log("calling SerialCommunication::reculeVertical()");
+		write("a");
+		--coordPasV;
+		return true;
+	}
+	else
+	{
+		Log("Dépassement des limites, déplacement annulé");
 		return false;
 	}
-	return true;
+}
+
+bool SerialCommunication::dataAvailable()
+{
+	if (!m_connected)
+	{
+		Log("Error, serial port not connected, aborting read and check");
+		return false;
+	}
+	if (m_serialPort->waitForReadyRead(5000))
+	{
+		m_readData = m_serialPort->readAll();
+		m_serialPort->flush();
+		string_readData.clear();
+		string_readData.append(m_readData.constData());
+		return true;
+	}
+	else
+	{
+		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+		return false;
+	}
 }
 
 void SerialCommunication::envoieCranParPas()
@@ -372,10 +418,13 @@ void SerialCommunication::envoieCranParPas()
 	Log("Calling SerialCommunication::envoieCranParPas()");
 	//Init du transfert
 	write("i");
-	if (!check('i'))
+	if (dataAvailable())
 	{
-		Log("Réponse invalide");
-		return;
+		if (!check('i'))
+		{
+			Log("Réponse invalide");
+			return;
+		}
 	}
 	//Si l'arduino répond 'i'
 	int weakByteMask = 0x000000FF;
@@ -384,40 +433,55 @@ void SerialCommunication::envoieCranParPas()
 	//Il faut envoyer les deux bytes
 	//On envoie le premier
 	write(QByteArray(1, strongByte));
-	if (!check('i'))
+	if (dataAvailable())
 	{
-		Log("Réponse invalide");
-		return;
+		if (!check('i'))
+		{
+			Log("Réponse invalide");
+			return;
+		}
 	}
 	write(QByteArray(1, weakByte));
-	if (!check('i'))
+	if (dataAvailable())
 	{
-		Log("Réponse invalide");
-		return;
+		if (!check('i'))
+		{
+			Log("Réponse invalide");
+			return;
+		}
 	}
 	//Pour le pas vertical
 	write("j");
-	if (!check('j'))
+	if (dataAvailable())
 	{
-		Log("Réponse invalide");
-		return;
+		if (!check('j'))
+		{
+			Log("Réponse invalide");
+			return;
+		}
 	}
 	//Si l'arduino répond 'k'
 	strongByte = cransPasH >> 8;
 	weakByte = cransPasH & weakByteMask;
 	//Il faut envoyer les deux bytes
 	//On envoie le premier
-	write(QByteArray(&strongByte));
-	if (!check('j'))
+	write(QByteArray(1, strongByte));
+	if (dataAvailable())
 	{
-		Log("Réponse invalide");
-		return;
+		if (!check('j'))
+		{
+			Log("Réponse invalide");
+			return;
+		}
 	}
-	write(QByteArray(&weakByte));
-	if (!check('j'))
+	write(QByteArray(1, weakByte));
+	if (dataAvailable())
 	{
-		Log("Réponse invalide");
-		return;
+		if (!check('j'))
+		{
+			Log("Réponse invalide");
+			return;
+		}
 	}
 	Log("Envoie du nombres de crans par pas vertical et horizontal effectué");
 }
@@ -458,28 +522,36 @@ void SerialCommunication::envoieCranParPas()
 
 bool SerialCommunication::check(const char t_char)
 {
-	if (!m_connected)
+	//Call dataAvailable first before calling check
+	if (string_readData.contains(t_char))
 	{
-		Log("Error, serial port not connected, aborting read and check");
-		return false;
-	}
-	if (m_serialPort->waitForReadyRead(5000))
-	{
-		m_readData = m_serialPort->readAll();
-		m_serialPort->flush();
-		std::string string_readData(m_readData.constData(), m_readData.length());
-		if (string_readData.compare(&t_char) == 0)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return true;
 	}
 	else
 	{
-		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
 		return false;
 	}
+}
+
+char SerialCommunication::getChar()
+{
+	std::string temp = string_readData.toStdString();
+	if (temp.size() > 0)
+	{
+		return temp.at(0);
+	}
+	else
+	{
+		return '\0';
+	}
+}
+
+void SerialCommunication::setMaxPasH(int t_value)
+{
+	maxPasH = t_value;
+}
+
+void SerialCommunication::setMmaxPasV(int t_value)
+{
+	maxPasV = t_value;
 }

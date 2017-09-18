@@ -22,12 +22,11 @@ private:
 	// returns true if no problem (pas tres utile en vrai)
 	bool connectSerialPort(QString t_serialNumber);
 
-	// Ecriture - low-level
-	void write(QByteArray);
 	//void handleReadyRead();
 
-	bool check(const char t_char);
 	bool m_connected;
+
+	QString string_readData;
 
 	public slots:
 
@@ -41,6 +40,11 @@ public:
 	virtual ~CapteurSpectral();
 	void Log(std::string strMsg);
 	bool is_connected();
+	bool dataAvailable();
+	bool contains(QString compareString);
+	bool setUp(int intTime, int gain);
+	void write(QByteArray);
+	QString getData();
 
 signals:
 

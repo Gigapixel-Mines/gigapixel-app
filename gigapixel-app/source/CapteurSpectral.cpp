@@ -9,6 +9,7 @@
 #include <QString>
 #include <QTextStream>
 
+#include <cstdlib>
 #include <iostream> // TODO: remove after tests
 #include <string>
 #include <Windows.h>
@@ -29,7 +30,7 @@ void CapteurSpectral::Log(std::string strMsg)
 bool CapteurSpectral::connectSerialPort(QString t_serialNumber)
 {
 
-	Log("calling SerialCommunication::connectSerialPort()");
+	Log("calling CapteurSpectral::connectSerialPort()");
 	
 	int portCount = QSerialPortInfo::availablePorts().count();
 	if (portCount == 0)
@@ -49,6 +50,7 @@ bool CapteurSpectral::connectSerialPort(QString t_serialNumber)
 				m_serialPort->setParity(QSerialPort::NoParity);
 				m_serialPort->setStopBits(QSerialPort::OneStop);
 				Log("Connexion port serie etablie");
+				//Set up the sensor : bank mode, int time and gain
 				return true;
 			}
 		}
@@ -69,8 +71,9 @@ CapteurSpectral::CapteurSpectral(QString t_serialNumber)
 	, m_standardOutput(stdout)
 	, m_bytesWritten(0)
 	, m_connected(false)
+	, string_readData()
 {
-	Log("SerialCommunication constructor called");
+	Log("CapteurSpectral constructor called");
 
 	m_serialPortName = "AMS";
 	m_serialPort = new QSerialPort(this);
@@ -86,6 +89,24 @@ CapteurSpectral::CapteurSpectral(QString t_serialNumber)
 		Log("Serial port opened");
 		m_serialPort->setDataTerminalReady(true);
 		m_connected = true;
+		int compteur = 0;
+		bool OK = false;
+		do
+		{
+			++compteur;
+			Log("Essai " + std::to_string(compteur) + " pour communiquer avec le capteur");
+			write("AT\n"); //Test pour vérifier que le capteur répond
+			while (!dataAvailable()); //Wait to get data
+			OK = contains("OK");
+		} while (!OK && compteur < 10); //check if the sensor answers OK
+		if (OK)
+		{
+			Log("Capteur initialisé");
+		}
+		else
+		{
+			Log("Problème de communication avec le capteur");
+		}
 	}
 }
 
@@ -105,7 +126,7 @@ void CapteurSpectral::write(QByteArray c)
 		Log("Serial port is not connected, aborting write");
 		return;
 	}
-	Log("calling SerialCommunication::write");
+	Log("calling CapteurSpectral::write");
 
 	QTextStream standardOutput(stdout);
 
@@ -156,6 +177,40 @@ bool CapteurSpectral::is_connected()
 	return m_connected;
 }
 
+bool CapteurSpectral::dataAvailable()
+{
+	if (!m_connected)
+	{
+		Log("Error, serial port not connected, aborting read and check");
+		return false;
+	}
+	if (m_serialPort->waitForReadyRead(5000))
+	{
+		m_readData = m_serialPort->readAll();
+		m_serialPort->flush();
+		string_readData.clear();
+		string_readData.append(m_readData.constData());
+		return true;
+	}
+	else
+	{
+		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+		return false;
+	}
+}
+
+QString CapteurSpectral::getData()
+{
+	if (dataAvailable())
+	{
+		return string_readData;
+	}
+	else
+	{
+		return QString("");
+	}
+}
+
 // Lecture
 
 
@@ -189,30 +244,75 @@ bool CapteurSpectral::is_connected()
 //
 //}
 
-bool CapteurSpectral::check(const char t_char)
+bool CapteurSpectral::contains(QString compareString)
 {
-	if (!m_connected)
+	if (string_readData.contains(compareString))
 	{
-		Log("Error, serial port not connected, aborting read and check");
+		return true;
+	}
+	else
+	{
 		return false;
 	}
-	if (m_serialPort->waitForReadyRead(5000))
+}
+
+bool CapteurSpectral::setUp(int intTime, int gain)
+{
+	write("ATTCSMD=2\n");
+	if (dataAvailable())
 	{
-		m_readData = m_serialPort->readAll();
-		m_serialPort->flush();
-		std::string string_readData(m_readData.constData(), m_readData.length());
-		if (string_readData.compare(&t_char) == 0)
+		if (contains("OK"))
 		{
-			return true;
+			Log("Banque 2 sélectionnée");
 		}
 		else
 		{
+			Log("Erreur lors de la sélection de la banque 2");
 			return false;
 		}
 	}
 	else
 	{
-		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+		Log("Problème de communication avec le capteur");
 		return false;
 	}
+	QString qGain = QString::number(gain);
+	write("ATGAIN=" + qGain.toLocal8Bit() + "\n");
+	if (dataAvailable())
+	{
+		if (contains("OK"))
+		{
+			Log("Gain envoyé");
+		}
+		else
+		{
+			Log("Erreur lors de la sélection de la banque 2");
+			return false;
+		}
+	}
+	else
+	{
+		Log("Problème de communication avec le capteur");
+		return false;
+	}
+	QString qIntTime = QString::number(intTime);
+	write("ATINTTIME=" + qIntTime.toLocal8Bit() + "\n");
+	if (dataAvailable())
+	{
+		if (contains("OK"))
+		{
+			Log("IntTime envoyé");
+		}
+		else
+		{
+			Log("Erreur lors de la sélection de la banque 2");
+			return false;
+		}
+	}
+	else
+	{
+		Log("Problème de communication avec le capteur");
+		return false;
+	}
+	return true;
 }

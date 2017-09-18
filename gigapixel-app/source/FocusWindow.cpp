@@ -27,7 +27,9 @@ void FocusWindow::OnImageReceived(QImage* image)
 {
 	Log("OnImageReceived called");
 	label->setPixmap(QPixmap::fromImage(*image).scaled(label->size(), Qt::KeepAspectRatio));
+	//img_mutex.lock();
 	m_img = image;
+	//img_mutex.unlock();
 	Log("Image actualisee !");
 }
 
@@ -43,10 +45,12 @@ bool FocusWindow::SaveImage()
 		//sync->OnBnClickedButtonStartstop();
 		++nb_photos;
 		Log("Saving image");
-		QString imgpath = dirpath + "/photo" + QString::number(nb_photos) + ".png";
+		QString imgpath = dirpath + polarizationDir + "/photo" + QString::number(nb_photos) + ".png";
 		Log(imgpath.toStdString());
 
+		//img_mutex.lock();
 		QPixmap pixmap = QPixmap::fromImage(*m_img);
+		//img_mutex.unlock();
 		QSize bla = pixmap.size();
 		Log(std::to_string(bla.height()));
 		Log(std::to_string(bla.width()));
@@ -75,6 +79,46 @@ bool FocusWindow::SaveImage()
 void FocusWindow::resetNbPhoto()
 {
 	nb_photos = 0;
+}
+
+QString FocusWindow::setPolarization(int t_polarization)
+{
+	if (t_polarization == 0)
+	{
+		polarizationDir = QString("/sans_polariseur");
+	}
+	else
+	{
+		polarizationDir = QString("/polarisation_") + QString::number(45 * (t_polarization - 1));
+	}
+	if (!QDir(dirpath + polarizationDir).exists())
+	{
+		while (!QDir(dirpath + polarizationDir).exists())
+		{
+			QDir().mkdir(dirpath + polarizationDir);
+		}
+	}
+	else
+	{
+		QDir(dirpath + polarizationDir).removeRecursively();
+		while (!QDir(dirpath + polarizationDir).exists())
+		{
+			QDir().mkdir(dirpath + polarizationDir);
+		}
+	}
+	return dirpath + polarizationDir + "/";
+}
+
+void FocusWindow::stopImgRefresh(bool stop)
+{
+	if (stop)
+	{
+		QObject::disconnect(sync, SIGNAL(ImageReceivedSignal(QImage*)), this, SLOT(OnImageReceived(QImage*)));
+	}
+	else
+	{
+		QObject::connect(sync, SIGNAL(ImageReceivedSignal(QImage*)), this, SLOT(OnImageReceived(QImage*)));
+	}
 }
 
 // Default Constructor

@@ -31,8 +31,8 @@ class Fenetre : public QWidget
 
 private:
 	QPushButton* autoFocus;
-	QPushButton* avButton;
-	QPushButton* arButton;
+	QPushButton* miseAuPointManuelleStartBtn;
+	QPushButton* miseAuPointManuelleStopBtn;
 	QPushButton* goButton;
 	QPushButton* stopButton;
 	QPushButton* photoButton;
@@ -82,6 +82,9 @@ private:
 	int nbCranPasH;
 	int nbCranPasV;
 
+	int absMaxPhotoH;
+	int absMaxPhotoV;
+
 	int maxPhotoH;
 	int maxPhotoV;
 
@@ -95,7 +98,7 @@ private:
 
 	void Fenetre::closeEvent(QCloseEvent* event) override;
 	void setCameraSpecs();
-	void takeGigaPixelPhotoNoSpectrum();
+	void takeGigaPixelPhoto();
 	void updateProgressBar();
 
 	bool m_saveSpectrumInfo;
@@ -104,9 +107,16 @@ private:
 	bool taking_photo;
 	bool sensorSet;
 
+	int startCoordPasH;
+	int startCoordPasV;
+	int startCoordCransH;
+	int startCoordCransV;
+
 	QMutex stop_mutex;
 	QMutex photo_mutex;
 	QMutex buttonEnable_mutex;
+
+	QString dataDir;
 
 	WCam* w;
 
@@ -115,6 +125,11 @@ public:
 	~Fenetre();
 	void Log(std::string strMsg);
 	SerialCommunication* serialcomm;
+	void getSpecData();
+	void saveSpecData(QString t_data, QString t_sensor);
+public slots:
+	void setStartingCoordAndBounds(QPoint, QPoint);
+	void resetStartingCoordsAndBounds();
 
 private slots:
 	void disableButton();
@@ -131,6 +146,8 @@ private slots:
 	void setIntTimeValue(int);
 	void setSensorSettings();
 	void refreshSensorsList();
+	void miseAuPointManuelleStart();
+	void miseAuPointManuelleStop();
 
 signals:
 	void LigneFinished();

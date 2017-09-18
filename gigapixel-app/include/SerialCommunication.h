@@ -18,6 +18,7 @@ private:
     QByteArray m_readData;
     QTextStream m_standardOutput;
     qint64 m_bytesWritten;
+	QString string_readData;
     //QTimer          m_timer; // utile ???
 
     // Se connecter a un port (appele dans constructeur)
@@ -27,20 +28,25 @@ private:
     // Ecriture - low-level
     void write(QByteArray);
 	//void handleReadyRead();
-
-	bool check(const char t_char);
 	bool m_connected;
 
 	int cransPasH;
 	int cransPasV;
 
+	int coordPasH;
+	int coordPasV;
+	int coordCransH;
+	int coordCransV;
+	int maxPasH;
+	int maxPasV;
+
 public slots:
 
     //void emergencyStop(); pas implémenté
     // "s"
-    void miseAuPointAv();
-    void miseAuPointAr();
-    void miseAuPointStop();
+    void miseAuPointAuto();
+    void miseAuPointManuelleStart();
+    void miseAuPointManuelleStop();
 
     // Lecture
     //void handleReadyRead();
@@ -59,6 +65,11 @@ public:
 	bool gauche();
 	bool haut();
 	bool bas();
+	bool dataAvailable();
+	bool check(const char t_char);
+	char getChar();
+	void setMaxPasH(int);
+	void setMmaxPasV(int);
 
 signals:
     // Suite a la lecture

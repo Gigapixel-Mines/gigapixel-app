@@ -14,6 +14,10 @@ public:
 	~ZoneSelection();
 	void setImageForSelection(QPixmap& image);
 
+signals:
+	void sendCoordsToWindow(QPoint, QPoint);
+	void resetCoordsToWindow();
+
 protected:
 	void paintEvent(QPaintEvent *e);
 	void mousePressEvent(QMouseEvent *e);
@@ -24,7 +28,7 @@ private:
 	bool selectionStarted;
 	QRect selectionRect;
 	QMenu contextMenu;
-	private slots:
+public slots:
 	void setZone();
 	void resetZone();
 };

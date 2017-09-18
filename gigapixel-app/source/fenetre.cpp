@@ -44,10 +44,15 @@ void Fenetre::setCameraSpecs()
 	decalageVertical = decalageVertical * sizeVpx; //en cm
 	nbCranPasH = static_cast<int>((tailleCapteurH - decalageHorizontal) / DISTANCE_HORIZONTALE_PAR_CRAN_CM);
 	nbCranPasV = static_cast<int>((tailleCapteurV - decalageVertical) / DISTANCE_VERTICALE_PAR_CRAN_CM);
-	maxPhotoH = floor(LONGUEUR_HORIZONTALE_CM / (tailleCapteurH - decalageHorizontal));
-	maxPhotoV = floor(LONGUEUR_VERTICALE_CM / (tailleCapteurV - decalageVertical));
-	image_v->setMaximum(maxPhotoV);
-	image_h->setMaximum(maxPhotoH);
+	absMaxPhotoH = floor(LONGUEUR_HORIZONTALE_CM / (tailleCapteurH - decalageHorizontal));
+	absMaxPhotoV = floor(LONGUEUR_VERTICALE_CM / (tailleCapteurV - decalageVertical));
+
+	m_zoneSelection->resetZone();
+
+	serialcomm->setMaxPasH(absMaxPhotoH);
+	serialcomm->setMaxPasH(absMaxPhotoV);
+	image_v->setMaximum(absMaxPhotoV);
+	image_h->setMaximum(absMaxPhotoH);
 	serialcomm->setCransH(nbCranPasH);
 	serialcomm->setCransV(nbCranPasV);
 	serialcomm->envoieCranParPas();	//Appeler le port série pour envoyer le nombre de crans par pas
@@ -58,7 +63,7 @@ void Fenetre::setCameraSpecs()
 
 void Fenetre::setSensorSettings()
 {
-	if (false/*upSensorList->currentIndex() == downSensorList->currentIndex()*/)
+	if (upSensorList->currentIndex() == downSensorList->currentIndex()) //false for testing with one sensor
 	{
 		QMessageBox* error = new QMessageBox();
 		error->setWindowTitle("Erreur");
@@ -78,9 +83,90 @@ void Fenetre::setSensorSettings()
 			delete capteurHaut;
 			capteurHaut = nullptr;
 		}
+		//Comment one for test with one sensor
 		capteurBas = new CapteurSpectral(downSensorList->currentText());
-		//capteurHaut = new CapteurSpectral(upSensorList->currentText());
+		capteurHaut = new CapteurSpectral(upSensorList->currentText());
+		if (!capteurBas->setUp(intTimeSlider->value(), gain->currentIndex()))
+		{
+			Log("Erreur lors de l'envoi des paramètres au capteur bas");
+			return;
+		}
+		if (!capteurHaut->setUp(intTimeSlider->value(), gain->currentIndex()))
+		{
+			Log("Erreur lors de l'envoi des paramètres au capteur bas");
+			return;
+		}
 		sensorSet = true;
+		return;
+	}
+}
+
+void Fenetre::miseAuPointManuelleStart()
+{
+	serialcomm->miseAuPointManuelleStart();
+	if (serialcomm->dataAvailable())
+	{
+		if (serialcomm->check('f'))
+		{
+			//Disable buttons
+			zoneSelect->hide();
+			sensorSettings->setEnabled(false);
+			cameraSpecs->setEnabled(false);
+			run->setEnabled(false);
+			focusDistance->setEnabled(false);
+			autoFocus->setEnabled(false);
+			miseAuPointManuelleStartBtn->setEnabled(false);
+			zoneSelect->setEnabled(false);
+			QMessageBox* ok = new QMessageBox();
+			ok->setWindowTitle("Réglage manuel");
+			ok->setText("Vous pouvez utiliser le potentiomètre pour faire la mise au point");
+			ok->exec();
+			return;
+		}
+		else if (serialcomm->check('x'))
+		{
+			QMessageBox* info = new QMessageBox();
+			info->setWindowTitle("Réglage manuel");
+			info->setText("Veuillez mettre le potentiomètre sur 0 avant de lancer la mise au point manuelle");
+			info->exec();
+			return;
+		}
+	}
+	else
+	{
+		Log("Erreur, impossible de communiquer avec l'Arduino");
+		return;
+	}
+}
+
+void Fenetre::miseAuPointManuelleStop()
+{
+	serialcomm->miseAuPointManuelleStop();
+	if (serialcomm->dataAvailable())
+	{
+		if (serialcomm->check('g'))
+		{
+			//Enable what was disabled in start
+			sensorSettings->setEnabled(true);
+			cameraSpecs->setEnabled(true);
+			run->setEnabled(true);
+			focusDistance->setEnabled(true);
+			autoFocus->setEnabled(true);
+			miseAuPointManuelleStartBtn->setEnabled(true);
+			zoneSelect->setEnabled(true);
+			return;
+		}
+		else if (serialcomm->check('x'))
+		{
+			QMessageBox* info = new QMessageBox();
+			info->setWindowTitle("Réglage manuel");
+			info->setText("Veuillez mettre le potentiomètre sur 0 avant d'arrêter la mise au point manuelle");
+			info->exec();
+		}
+	}
+	else
+	{
+		Log("Erreur, impossible de communiquer avec l'Arduino");
 		return;
 	}
 }
@@ -123,19 +209,8 @@ void Fenetre::refreshSensorsList()
 	}
 }
 
-void Fenetre::takeGigaPixelPhotoNoSpectrum()
+void Fenetre::takeGigaPixelPhoto()
 {
-	////GoButton def
-	//QObject::connect(goButton, SIGNAL(clicked()), serialcomm, SLOT(initialPic())); ok
-	//QObject::connect(serialcomm, SIGNAL(InitFinished()), focuswindow, SLOT(SaveImage()));
-	//QObject::connect(focuswindow, SIGNAL(PictureTaken()), this, SLOT(compteur()));
-	//QObject::connect(this, SIGNAL(LigneFinished()), serialcomm, SLOT(haut()));
-	//QObject::connect(this, SIGNAL(PasDroite()), serialcomm, SLOT(droite()));
-	//QObject::connect(this, SIGNAL(PasGauche()), serialcomm, SLOT(gauche()));
-	//QObject::connect(this, SIGNAL(FinCycle()), this, SLOT(ableButton()));
-	//QObject::connect(serialcomm, SIGNAL(MvtFinished()), focuswindow, SLOT(SaveImage()));
-	//QObject::connect(goButton, SIGNAL(clicked()), this, SLOT(disableButton()));
-
 	stop_mutex.lock();
 	do_stop = false;
 	stop_mutex.unlock();
@@ -143,6 +218,7 @@ void Fenetre::takeGigaPixelPhotoNoSpectrum()
 	//Sleep(5000); //for threading synchronization test
 
 	bool versLaDroite = true; //On commence à 0 et on ira vers la droite au début
+	bool moving = false;
 
 	for (int i = 1; i <= nbPhotoV; ++i)
 	{
@@ -152,7 +228,6 @@ void Fenetre::takeGigaPixelPhotoNoSpectrum()
 			if (do_stop == false)
 			{
 				stop_mutex.unlock();
-				//bar->setValue(bar->value() + 1); //On avance la barre de progression
 				//Les threads ne peuvent pas modifier la GUI, 
 				//on envoie une demande pour avancer la barre de progrès
 				QMetaObject::invokeMethod(this, "updateProgressBar");
@@ -169,40 +244,67 @@ void Fenetre::takeGigaPixelPhotoNoSpectrum()
 				}
 				if (versLaDroite)
 				{
+					moving = true;
 					if (!serialcomm->droite())
 					{
 						Log("Erreur lors du déplacement vers la droite");
 						photo_mutex.lock();
 						taking_photo = false;
 						photo_mutex.unlock();
-						QMetaObject::invokeMethod(this, "enableButton");
-						//enableButton();
-						//Enlever le polariseur
+						QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
 						return;
-					}
-					else
-					{
-						//sleep ? pour laisser le temps à la caméra de se stabiliser
 					}
 				}
 				else
 				{
+					moving = true;
 					if (!serialcomm->gauche())
 					{
 						Log("Erreur lors du déplacement vers la gauche");
 						photo_mutex.lock();
 						taking_photo = false;
 						photo_mutex.unlock();
-						QMetaObject::invokeMethod(this, "enableButton");
-						//enableButton();
-						//Enlever le polariseur
+						QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
 						return;
+					}
+				}
+				//check what comes
+				do
+				{
+					if (serialcomm->dataAvailable())
+					{
+						switch (serialcomm->getChar())
+						{
+						case 'x': //Signal to get 
+							if (m_saveSpectrumInfo)
+							{
+								QMetaObject::invokeMethod(this, "getSpecData");
+							}
+							break;
+						case 'z':
+							moving = false;
+							break;
+						default:
+							Log("Invalid answer");
+							photo_mutex.lock();
+							taking_photo = false;
+							photo_mutex.unlock();
+							QMetaObject::invokeMethod(this, "enableButton");
+							return;
+							break;
+						}
 					}
 					else
 					{
-						//sleep ? pour laisser le temps à la caméra de se stabiliser
+						Log("Serial Port timed out");
+						photo_mutex.lock();
+						taking_photo = false;
+						photo_mutex.unlock();
+						QMetaObject::invokeMethod(this, "enableButton");
+						return;
+						break;
 					}
-				}
+				} while (moving);
 			}
 			else
 			{
@@ -217,21 +319,52 @@ void Fenetre::takeGigaPixelPhotoNoSpectrum()
 				return; //On sort de la fonction ici
 			}
 		}
+		moving = true;
 		if (!serialcomm->haut())
 		{
-			Log("Erreur lors du déplacement vers la droite");
+			Log("Erreur lors du déplacement vers le haut");
 			photo_mutex.lock();
 			taking_photo = false;
 			photo_mutex.unlock();
-			QMetaObject::invokeMethod(this, "enableButton");
-			//enableButton();
-			//Enlever le polariseur
+			QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
 			return;
 		}
-		else
+		do
 		{
-			//sleep ? pour laisser le temps à la caméra de se stabiliser
-		}
+			if (serialcomm->dataAvailable())
+			{
+				switch (serialcomm->getChar())
+				{
+				case 'x': //Signal to get 
+					if (m_saveSpectrumInfo)
+					{
+						QMetaObject::invokeMethod(this, "getSpecData");
+					}
+					break;
+				case 'z':
+					moving = false;
+					break;
+				default:
+					Log("Invalid answer");
+					photo_mutex.lock();
+					taking_photo = false;
+					photo_mutex.unlock();
+					QMetaObject::invokeMethod(this, "enableButton");
+					return;
+					break;
+				}
+			}
+			else
+			{
+				Log("Serial Port timed out");
+				photo_mutex.lock();
+				taking_photo = false;
+				photo_mutex.unlock();
+				QMetaObject::invokeMethod(this, "enableButton");
+				return;
+				break;
+			}
+		} while (moving);
 		versLaDroite = !versLaDroite; //On change de direction après avoir fait une ligne
 	}
 	Log("Fin de la prise de photo");
@@ -277,6 +410,8 @@ Fenetre::Fenetre()
 
 	//Sélection de la zone de la photo à enregistrer
 	m_zoneSelection = new ZoneSelection();
+	QObject::connect(m_zoneSelection, SIGNAL(sendCoordsToWindow(QPoint, QPoint)), this, SLOT(setStartingCoordAndBounds(QPoint, QPoint)));
+	QObject::connect(m_zoneSelection, SIGNAL(resetCoordsToWindow()), this, SLOT(resetStartingCoordsAndBounds()));
 	//m_zoneSelection->show();
 
 	//Page caméra specs
@@ -338,9 +473,10 @@ Fenetre::Fenetre()
 	sensorIntTime->setReadOnly(true);
 	sensorIntTime->setSuffix(" ms");
 	sensorIntTime->setFixedWidth(100);
+	sensorIntTime->setValue(128 * 2.8);
 	intTimeSlider->setRange(1, 255);
 	intTimeSlider->setSingleStep(1);
-	intTimeSlider->setValue(1);
+	intTimeSlider->setValue(128);
 	intTimeSlider->setFixedWidth(200);
 	QObject::connect(intTimeSlider, SIGNAL(valueChanged(int)), this, SLOT(setIntTimeValue(int)));
 	QLabel* intTimeLabel = new QLabel("Temps d'intégration :");
@@ -381,19 +517,19 @@ Fenetre::Fenetre()
 	vgridAutoFocus->addWidget(autoFocus, 1, 1);
 	autoFocusGroup->setLayout(vgridAutoFocus);
 
+	QObject::connect(autoFocus, SIGNAL(clicked()), serialcomm, SLOT(miseAuPointAuto()));
+
 	QGroupBox* manFocusGroup = new QGroupBox(tr("Mise au point manuelle"));
 	QGridLayout* vgridManFocus = new QGridLayout();
-	avButton = new QPushButton("Déplacement avant");
-	arButton = new QPushButton("Déplacement arrière");
+	miseAuPointManuelleStartBtn = new QPushButton("Commencer mise au point manuelle");
+	miseAuPointManuelleStopBtn = new QPushButton("Arrêter mise au point manuelle");
 	zoneSelect = new QPushButton("Sélection de la zone à photographier"); //test
-	vgridManFocus->addWidget(avButton, 0, 0);
-	vgridManFocus->addWidget(arButton, 1, 0);
+	vgridManFocus->addWidget(miseAuPointManuelleStartBtn, 0, 0);
+	vgridManFocus->addWidget(miseAuPointManuelleStopBtn, 1, 0);
 	vgridManFocus->addWidget(zoneSelect, 2, 0); //Test
 	manFocusGroup->setLayout(vgridManFocus);
-	QObject::connect(avButton, SIGNAL(pressed()), serialcomm, SLOT(miseAuPointAv()));
-	QObject::connect(avButton, SIGNAL(released()), serialcomm, SLOT(miseAuPointStop()));
-	QObject::connect(arButton, SIGNAL(pressed()), serialcomm, SLOT(miseAuPointAr()));
-	QObject::connect(arButton, SIGNAL(released()), serialcomm, SLOT(miseAuPointStop()));
+	QObject::connect(miseAuPointManuelleStartBtn, SIGNAL(clicked()), this, SLOT(miseAuPointManuelleStart()));
+	QObject::connect(miseAuPointManuelleStopBtn, SIGNAL(clicked()), this, SLOT(miseAuPointManuelleStop()));
 	QObject::connect(zoneSelect, SIGNAL(clicked()), this, SLOT(openZoneSelect())); //Test
 
 	QGridLayout* vgridFocus = new QGridLayout();
@@ -415,6 +551,7 @@ Fenetre::Fenetre()
 	image_h = new QSpinBox();
 	image_h->setMinimum(1); //Pour test rapide
 	image_h->setMaximum(33);
+	image_h->setFixedSize(40, 20);
 	nbPhotoH = image_h->value();
 	nbrPhoto = 1;
 	goButton = new QPushButton("Marche");
@@ -570,7 +707,7 @@ void Fenetre::start()
 
 	//test
 	//takeGigaPixelPhotoNoSpectrum();
-	QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhotoNoSpectrum);
+	//QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhotoNoSpectrum);
 
 	int polarization(0);
 	for (int i = 0; i < 5; ++i)
@@ -578,17 +715,20 @@ void Fenetre::start()
 		if (polarizationChoice[i]->isChecked())
 		{
 			polarization = i;
+			dataDir = focuswindow->setPolarization(polarization);
+			saveSpecData("V,B,G,Y,O,R", "haut");
+			saveSpecData("V,B,G,Y,O,R", "bas");
 			break;
 		}
 	}
 
 	//Code pour mettre en place le polariseur
-	
 
 	//Récupération de la référence 0,0 en X, Y
 	if (!serialcomm->findXYRef())
 	{
 		Log("Erreur lors de la recherche de la référence XY");
+		return;
 	}
 	else
 	{
@@ -604,21 +744,12 @@ void Fenetre::start()
 				enableButton();
 				return;
 			}
-			else
-			{
-				photo_mutex.lock();
-				taking_photo = true;
-				photo_mutex.unlock();
-			}
 		}
-		else
-		{
-			photo_mutex.lock();
-			taking_photo = true;
-			photo_mutex.unlock();
-			QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhotoNoSpectrum);
-			//takeGigaPixelPhotoNoSpectrum();
-		}
+		photo_mutex.lock();
+		taking_photo = true;
+		photo_mutex.unlock();
+		focuswindow->stopImgRefresh(true); //Avoid threading problem with sync in focuswindow
+		QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhoto);
 	}
 	return;
 }
@@ -628,8 +759,8 @@ void Fenetre::disableButton()
 	//photoButton->setEnabled(false);
 	m_zoneSelection->hide();
 	buttonEnable_mutex.lock();
-	avButton->setEnabled(false);
-	arButton->setEnabled(false);
+	miseAuPointManuelleStartBtn->setEnabled(false);
+	miseAuPointManuelleStopBtn->setEnabled(false);
 	goButton->setEnabled(false);
 	spectreActif->setEnabled(false);
 	image_h->setEnabled(false);
@@ -652,16 +783,17 @@ void Fenetre::enableButton()
 {
 	//photoButton->setEnabled(true);
 	buttonEnable_mutex.lock();
-	avButton->setEnabled(true);
-	arButton->setEnabled(true);
+	miseAuPointManuelleStartBtn->setEnabled(true);
+	miseAuPointManuelleStopBtn->setEnabled(true);
 	goButton->setEnabled(true);
 	spectreActif->setEnabled(true);
 	image_h->setEnabled(true);
 	image_v->setEnabled(true);
 	miseAuPoint->setEnabled(true);
-	sensorIntTime->setEnabled(true);
+	sensorSettings->setEnabled(true);
 	cameraSpecs->setEnabled(true);
 	polarizationGroupBox->setEnabled(true);
+	focuswindow->stopImgRefresh(false);
 	buttonEnable_mutex.unlock();
 }
 
@@ -711,4 +843,58 @@ void Fenetre::setIntTimeValue(int value)
 void Fenetre::setCaptureBtn(bool ready)
 {
 	zoneSelect->setEnabled(ready);
+}
+
+void Fenetre::getSpecData()
+{
+	QString hautData;
+	QString basData;
+	hautData = capteurHaut->getData();
+	basData = capteurBas->getData();
+	hautData.chop(3);
+	basData.chop(3);
+	hautData = hautData.simplified();
+	hautData.replace(" ", "");
+	basData = hautData.simplified();
+	basData.replace(" ", "");
+	saveSpecData(hautData, "haut");
+	saveSpecData(basData, "bas");
+}
+
+void Fenetre::saveSpecData(QString t_data, QString t_sensor)
+{
+	QString filename = dataDir + "capteur_" + t_sensor + "_data.txt";
+	QFile file(filename);
+	if (file.open(QIODevice::ReadWrite | QIODevice::Append))
+	{
+		QTextStream stream(&file);
+		stream << t_data << endl;
+	}
+}
+
+void Fenetre::resetStartingCoordsAndBounds()
+{
+	startCoordPasH = 0;
+	startCoordPasV = 0;
+	startCoordCransH = 0;
+	startCoordCransV = 0;
+	image_h->setMaximum(absMaxPhotoH);
+	image_v->setMaximum(absMaxPhotoV);
+	//TODO : recalculer max pasH max pasV max cranH et max cranV
+}
+
+void Fenetre::setStartingCoordAndBounds(QPoint botLeft, QPoint topRight)
+{
+	//TODO : convertir les coordonnées du QRect en pas et crans compréhensible par l'Arduino
+	//Modifier les starts coords
+
+	startCoordPasH = 0; //Adapter les valeurs
+	startCoordPasV = 0;
+	startCoordCransH = 0;
+	startCoordCransV = 0;
+	//Modifier les limites pour la zone sélectionnée
+	maxPhotoH = floor(0);
+	maxPhotoV = floor(0);
+	image_h->setMaximum(maxPhotoH);
+	image_v->setMaximum(maxPhotoV);
 }
