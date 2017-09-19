@@ -11,7 +11,7 @@
 #include <QString>
 #include <QTextStream>
 
-#include <iostream> // TODO: remove after tests
+#include <iostream>
 #include <string>
 #include <Windows.h>
 
@@ -116,64 +116,6 @@ SerialCommunication::~SerialCommunication()
 	delete m_serialPort;
 }
 
-/*
-// Ecriture - low-level
-void SerialCommunication::write(std::string c){
-
-
-
-    Log("calling SerialCommunication::write");
-
-    // TODO: ouvrir le port ?
-    //if (!m_serialPort->open(QIODevice::ReadWrite)) {
-    //    m_standardOutput << QObject::tr("Failed to open port %1, error: %2").arg(m_serialPortName).arg(m_serialPort->errorString()) << endl;
-    //    return;
-    //}
-
-	// QByteArray qba = QString::fromStdString(stdString).toAscii();
-	//m_writeData = QString::fromStdString(c);
-	QByteArray writeData(c.c_str(), c.length());
-	
-	//for tests
-	std::string toDebugString(writeData.constData(), writeData.length());
-	Log(toDebugString);
-
-    qint64 bytesWritten = m_serialPort->write(writeData); // ecriture proprement dite
-
-    // verification : message correctement transmis ?
-
-    // verifier les problemes possibles
-    if (bytesWritten == -1) {
-		//Log(("Failed to write the data to port %1, error: %2").arg(m_serialPortName).arg(m_serialPort->errorString());
-		Log("Failed to write the data");
-		return;
-	}
-    else if (bytesWritten != m_writeData.size()) {
-        //standardOutput << QObject::tr("Failed to write all the data to port %1, error: %2").arg(m_serialPortName).arg(m_serialPort->errorString()) << endl;
-		Log("Failed to write all the data ");
-		return;
-	}
-    else if (!m_serialPort->waitForBytesWritten(5000)) {
-        //standardOutput << QObject::tr("Operation timed out or an error occurred for port %1, error: %2").arg(serialPortName).arg(serialPort->errorString()) << endl;
-		Log("Operation timed out or an error occurred");
-		return;
-	}
-
-    // si on arrive ici, c'est que tout s'est bien passe
-    m_standardOutput << QObject::tr("Data successfully sent to port %1").arg(m_serialPortName) << endl;
-
-    // TODO: fermer le port ???
-    //m_serialPort->close();
-    // choix a faire :
-    // a chaque fois, ouvrir le port/ecrire/fermer, ou bien
-    // ouvrir une fois pour toutes, ecrire les differents messages, fermer le port a la fin seulement
-    // (question des performances ? i.e. du temps)
-
-}
-*/
-
-// ci-dessous version fonctionnelle de secours (pas tres propre; "statique" ; tout code a la volee)
-
 void SerialCommunication::write(QByteArray c)
 {
 	if (!m_connected)
@@ -223,58 +165,27 @@ void SerialCommunication::write(QByteArray c)
 
 // Ecriture - higher-level functions
 
-
-//Pas implémenté dans l'Arduino pour le moment
-//void SerialCommunication::emergencyStop()
-//{
-//	Log("calling SerialCommunication::emergencyStop()");
-//	write("s");
-//	if (m_serialPort->waitForReadyRead(5000))
-//	{
-//		handleReadyRead();
-//	}
-//	else
-//	{
-//		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
-//	}
-//}
-
-/*void SerialCommunication::moveCameraTo(int x, int y){
-
-	string debugMesg = ("calling SerialCommunication::goTo with args" + (std::to_string(x)) + (std::to_string(y)));
-	Log(debugMesg);
-
-    //TODO: fabriquer la bonne chaine de caracteres (pas sure de ce code-ci)
-    const char* string_x = QByteArray::number(x); // WARNING "integer of different size"
-    const char* string_y = QByteArray::number(y);
-
-    write("b");
-    write(string_x);
-    write(string_y);
-
-    // TODO: verifier protocole de communication avec elec
-
-}
-
-void SerialCommunication::startCycle() {
-    Log("calling SerialCommunication::startCycle()");
-    write("a");
-}
-
-void SerialCommunication::moveCameraToNextPosition() {
-    Log("calling SerialCommunication::moveCameraToNextPosition()");
-    write("o"); // "OK"
-}*/
-
-//Debut des fonctions utilisées par les VS 2016/2017.
-//On est partis pour coder sur l'arduino des déplacements élémentaires, et gérer les cycles dans le programme C++.
-//3 fonctions pour la fise au point : Mettre en marche le moteur dans un sens lorsqu'on appuie sur un bouton.
-//Arrêter les moteurs dès qu'on relâche le bouton.
-
-void SerialCommunication::miseAuPointAuto()
+bool SerialCommunication::miseAuPointAuto(int nbDePasAFaire)
 {
 	Log("calling SerialCommunication::miseAuPointAuto()");
 	write("e");
+	if (dataAvailable())
+	{
+		if (!check('e'))
+		{
+			Log("Réponse invalide pour miseAuPointAuto");
+			return false;;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	else
+	{
+		Log("Erreur, timeout pour mise au point auto");
+		return false;
+	}
 }
 
 void SerialCommunication::miseAuPointManuelleStart()
@@ -296,7 +207,7 @@ bool SerialCommunication::findXYRef()
 	Log("calling SerialCommunication::findXYRef()");
 	write("h"); //Ask Arduino to find XY Ref
 	//Wait for his answer
-	if (dataAvailable())
+	if (dataAvailable(50000))
 	{
 		if (!check('h'))
 		{
@@ -391,14 +302,14 @@ bool SerialCommunication::bas()
 	}
 }
 
-bool SerialCommunication::dataAvailable()
+bool SerialCommunication::dataAvailable(int timeout_ms)
 {
 	if (!m_connected)
 	{
 		Log("Error, serial port not connected, aborting read and check");
 		return false;
 	}
-	if (m_serialPort->waitForReadyRead(5000))
+	if (m_serialPort->waitForReadyRead(timeout_ms))
 	{
 		m_readData = m_serialPort->readAll();
 		m_serialPort->flush();
@@ -554,4 +465,231 @@ void SerialCommunication::setMaxPasH(int t_value)
 void SerialCommunication::setMmaxPasV(int t_value)
 {
 	maxPasV = t_value;
+}
+
+bool SerialCommunication::gotoXY(int absPasH, int absCransH, int absPasV, int absCransV)
+{
+	Log("SerialCommunication::gotoXY");
+	write("k");
+	if (dataAvailable())
+	{
+		if (!check('k'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	//Si l'Arduino répond k
+	write(QByteArray(1, absPasH));
+	if (dataAvailable())
+	{
+		if (!check('k'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	int weakByteMask = 0x000000FF;
+	char strongByte = absCransH >> 8;
+	char weakByte = absCransH & weakByteMask;
+	//Il faut envoyer les deux bytes
+	//On envoie le premier
+	write(QByteArray(1, strongByte));
+	if (dataAvailable())
+	{
+		if (!check('k'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	write(QByteArray(1, weakByte));
+	if (dataAvailable())
+	{
+		if (!check('k'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	//Si l'Arduino répond k
+	write(QByteArray(1, absPasV));
+	if (dataAvailable())
+	{
+		if (!check('k'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	strongByte = absCransV >> 8;
+	weakByte = absCransV & weakByteMask;
+	//Il faut envoyer les deux bytes
+	//On envoie le premier
+	write(QByteArray(1, strongByte));
+	if (dataAvailable())
+	{
+		if (!check('k'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	write(QByteArray(1, weakByte));
+	if (dataAvailable())
+	{
+		if (!check('k'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	//On attend la réponse pour les déplacements
+	//OK hori
+	if (dataAvailable(50000))
+	{
+		if (!check('z'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	//OK verti
+	if (dataAvailable(50000))
+	{
+		if (!check('z'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+
+	//on attend la confirmation finale
+	if (dataAvailable())
+	{
+		if (!check('k'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	Log("Goto OK");
+	return true;
+}
+
+bool SerialCommunication::enableSpecPos(bool enable)
+{
+	if (enable)
+	{
+		write("l");
+		if (dataAvailable())
+		{
+			if (check('l'))
+			{
+				return true;
+			}
+			else
+			{
+				Log("Invalid answer");
+				return false;
+			}
+		}
+		else
+		{
+			Log("Request Timed Out");
+			return false;
+		}
+	}
+	else
+	{
+		write("m");
+		if (dataAvailable())
+		{
+			if (check('m'))
+			{
+				return true;
+			}
+			else
+			{
+				Log("Invalid answer");
+				return false;
+			}
+		}
+		else
+		{
+			Log("Request Timed Out");
+			return false;
+		}
+	}
+}
+
+bool SerialCommunication::enablePolarization(bool enable)
+{
+	if (enable)
+	{
+		write("n");
+		if (dataAvailable())
+		{
+			if (check('n'))
+			{
+				return true;
+			}
+			else
+			{
+				Log("Invalid answer");
+				return false;
+			}
+		}
+		else
+		{
+			Log("Request Timed Out");
+			return false;
+		}
+	}
+	else
+	{
+		write("o");
+		if (dataAvailable())
+		{
+			if (check('o'))
+			{
+				return true;
+			}
+			else
+			{
+				Log("Invalid answer");
+				return false;
+			}
+		}
+		else
+		{
+			Log("Request Timed Out");
+			return false;
+		}
+	}
+}
+
+bool SerialCommunication::selectPolarization(int polarization)
+{
+	int polaMask = 0x000000FF;
+	char polaByte = polarization & polaMask;
+	write("p");
+	write(QByteArray(1, polaByte));
+	if (dataAvailable(50000))
+	{
+		if (check('p'))
+		{
+			return true;
+		}
+		else
+		{
+			Log("Invalid answer");
+			return false;
+		}
+	}
+	else
+	{
+		Log("Request Timed Out");
+		return false;
+	}
 }

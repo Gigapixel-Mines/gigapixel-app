@@ -25,12 +25,12 @@ void FocusWindow::Log(std::string strMsg)
 // Slot
 void FocusWindow::OnImageReceived(QImage* image)
 {
-	Log("OnImageReceived called");
+	//Log("OnImageReceived called");
 	label->setPixmap(QPixmap::fromImage(*image).scaled(label->size(), Qt::KeepAspectRatio));
 	//img_mutex.lock();
 	m_img = image;
 	//img_mutex.unlock();
-	Log("Image actualisee !");
+	//Log("Image actualisee !");
 }
 
 bool FocusWindow::SaveImage()
@@ -124,16 +124,17 @@ void FocusWindow::stopImgRefresh(bool stop)
 // Default Constructor
 FocusWindow::FocusWindow()
 {
-	setFixedSize(533, 400);
+	setFixedSize(640, 480);
 	setWindowTitle("Apercu du capteur");
-	label = new QLabel;
+	label = new QLabel(this);
 	m_img = new QImage;
 	sync = new AsynchronousGrab();
 	Log("Sync object created");
 	QObject::connect(sync, SIGNAL(ImageReceivedSignal(QImage*)), this, SLOT(OnImageReceived(QImage*)));
 
-	label->setFixedHeight(400);
-	label->setFixedWidth(533);
+	label->setFixedHeight(640);
+	label->setFixedWidth(480);
+	label->setVisible(true);
 
 	this->show();
 	// Prepare for saving

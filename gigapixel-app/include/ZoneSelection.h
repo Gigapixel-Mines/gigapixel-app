@@ -5,6 +5,10 @@
 #include <QMenu>
 #include <QPixmap>
 
+//Pixels dans les coordonnées de la webcam qui marquent la référence (0, 0) pour la caméra
+#define PX_H_REF_WCAM 0
+#define PX_V_REF_WCAM 0
+
 class ZoneSelection : public QLabel
 {
 	Q_OBJECT

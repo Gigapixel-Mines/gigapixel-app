@@ -10,7 +10,7 @@
 #include <QTextStream>
 
 #include <cstdlib>
-#include <iostream> // TODO: remove after tests
+#include <iostream>
 #include <string>
 #include <Windows.h>
 

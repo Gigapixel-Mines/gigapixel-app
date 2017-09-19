@@ -24,6 +24,21 @@
 #define LONGUEUR_VERTICALE_CM 13.0 //en réalité 17 cm mais course limitée à 13 cm
 #define DISTANCE_HORIZONTALE_PAR_CRAN_CM 0.0000785
 #define DISTANCE_VERTICALE_PAR_CRAN_CM 0.0000495
+//Calibration distance/pixels pour la webcam
+#define PX_H_WCAM_TO_CM 0
+#define PX_V_WCAM_TO_CM 0
+//Distance entre le capteur spectral haut selon l'horizontale au coin en bas à gauche du CCD
+#define OFFSET_CAPTEUR_HAUT_HORI_CM 0 //Valeur à calibrer, peut être négatif si à gauche
+//Distance entre le capteur spectral haut selon la verticale au coin en bas à gauche du CCD
+#define OFFSET_CAPTEUR_HAUT_VERTI_CM 0
+//Distance entre le capteur spectral bas selon l'horizontale au coin en bas à gauche du CCD
+#define OFFSET_CAPTEUR_BAS_HORI_CM 0 //Valeur à calibrer
+//Distance entre le capteur spectral bas selon la verticale au coin en bas à gauche du CCD
+#define OFFSET_CAPTEUR_BAS_VERTI_CM 0
+#define FOCALE_M 0.3
+#define DISTANCE_OBJCCD_MIN_M 0 //A calibrer, sert de réf (butée loin du CCD) = 0
+#define DISTANCE_OBJCCD_MAX_M 0 //A calibrer
+#define DISTANCE_PAS_MISE_AU_POINT_M 0 //A calibrer
 
 class Fenetre : public QWidget
 {
@@ -96,6 +111,12 @@ private:
 	double sizeHpx;
 	double sizeVpx;
 
+	double decalageHorizontal;
+	double decalageVertical;
+
+	int mmCountH;
+	int mmCountV;
+
 	void Fenetre::closeEvent(QCloseEvent* event) override;
 	void setCameraSpecs();
 	void takeGigaPixelPhoto();
@@ -109,12 +130,17 @@ private:
 
 	int startCoordPasH;
 	int startCoordPasV;
-	int startCoordCransH;
-	int startCoordCransV;
+	//int startCoordCransH;
+	//int startCoordCransV;
+
+	int currResPicH;
+	int currResPicV;
 
 	QMutex stop_mutex;
 	QMutex photo_mutex;
 	QMutex buttonEnable_mutex;
+	QMutex mutex_mmH;
+	QMutex mutex_mmV;
 
 	QString dataDir;
 
@@ -146,6 +172,7 @@ private slots:
 	void setIntTimeValue(int);
 	void setSensorSettings();
 	void refreshSensorsList();
+	void miseAuPointSemiAuto();
 	void miseAuPointManuelleStart();
 	void miseAuPointManuelleStop();
 

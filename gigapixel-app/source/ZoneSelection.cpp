@@ -75,7 +75,14 @@ void ZoneSelection::setZone()
 	//Send the coordinates to fenetre for mapping
 	QPoint tempBotLeft = selectionRect.bottomLeft();
 	QPoint tempTopRight = selectionRect.topRight();
-	tempBotLeft.setY(-tempBotLeft.y() + this->height());//TODO
+	//Correct with reference
+	tempBotLeft.setX(tempBotLeft.x() - PX_H_REF_WCAM);
+	tempBotLeft.setY(tempBotLeft.y() - PX_V_REF_WCAM);
+	tempTopRight.setX(tempTopRight.x() - PX_H_REF_WCAM);
+	tempTopRight.setY(tempTopRight.y() - PX_V_REF_WCAM);
+
+	//Changer l'axe vertical pour adapter l'orientation
+	tempBotLeft.setY(-tempBotLeft.y() + this->height());
 	tempTopRight.setY(-tempTopRight.y() + this->height());
 	emit sendCoordsToWindow(tempBotLeft, tempTopRight);
 }

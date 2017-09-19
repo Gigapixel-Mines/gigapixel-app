@@ -44,7 +44,7 @@ public slots:
 
     //void emergencyStop(); pas implémenté
     // "s"
-    void miseAuPointAuto();
+    bool miseAuPointAuto(int);
     void miseAuPointManuelleStart();
     void miseAuPointManuelleStop();
 
@@ -65,11 +65,15 @@ public:
 	bool gauche();
 	bool haut();
 	bool bas();
-	bool dataAvailable();
+	bool dataAvailable(int timeout_ms = 5000);
 	bool check(const char t_char);
 	char getChar();
 	void setMaxPasH(int);
 	void setMmaxPasV(int);
+	bool gotoXY(int relPasH, int relCransH, int relPasV, int relCransV);
+	bool enableSpecPos(bool);
+	bool enablePolarization(bool);
+	bool selectPolarization(int);
 
 signals:
     // Suite a la lecture
