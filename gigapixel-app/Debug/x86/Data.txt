@@ -1,6 +1,713 @@
 Démarrage du programme
 SerialCommunication constructor called
 calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+XY Ref OK
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+DataAvailable try #0
+DataAvailable try #0
+DataAvailable try #0
+Goto OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo2.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo3.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo4.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo5.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo6.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo7.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo8.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo9.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo10.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceVertical()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+XY Ref OK
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+DataAvailable try #0
+DataAvailable try #0
+DataAvailable try #0
+Goto OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo2.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo3.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo4.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+Serial Port timed out
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+XY Ref OK
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+DataAvailable try #0
+DataAvailable try #0
+DataAvailable try #0
+Goto OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo2.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo3.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo4.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo5.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo6.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+DataAvailable try #1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo7.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+XY Ref OK
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+DataAvailable try #0
+DataAvailable try #0
+DataAvailable try #0
+Goto OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo2.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo3.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo4.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo5.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo6.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo7.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo8.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo9.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo10.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceVertical()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo11.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo12.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo13.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo14.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+DataAvailable try #0
+DataAvailable try #1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
 Failed to OPEN serial port
 Starting Vimba
 Sync object created
@@ -20,9 +727,509 @@ Serial port is not connected, aborting write
 Error, serial port not connected, aborting read and check
 Envoie du nombres de crans par pas vertical et horizontal effectué
 Fenêtre principale lancée
+Failure in receiving image
+Fin de la session
+
+Stopping Acquisition
 Démarrage du programme
 SerialCommunication constructor called
 calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo2.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo3.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo4.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo5.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo6.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo7.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo8.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo9.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo10.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceVertical()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo11.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo12.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo13.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo14.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo15.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo16.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo17.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo18.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo19.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo20.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::avanceVertical()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo21.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo22.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo23.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo24.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo25.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo26.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo27.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo28.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo29.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo30.png
+1944
+2592
+Sauvegarde reussie
+Fin de la prise de photo
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo1.png
+1944
+2592
+Sauvegarde reussie
+Fin de la prise de photo
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo1.png
+1944
+2592
+Sauvegarde reussie
+Fin de la prise de photo
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/photo1.png
+1944
+2592
+Sauvegarde reussie
+Fin de la prise de photo
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
 Failed to OPEN serial port
 Starting Vimba
 Sync object created
@@ -42,25 +1249,1743 @@ Serial port is not connected, aborting write
 Error, serial port not connected, aborting read and check
 Envoie du nombres de crans par pas vertical et horizontal effectué
 Fenêtre principale lancée
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+XY Ref OK
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Request Timed Out
+Unable to disable specPos for goto
 Démarrage du programme
 SerialCommunication constructor called
 calling SerialCommunication::connectSerialPort()
-Failed to OPEN serial port
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+Fin de la prise de photo
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Stopping Acquisition
+Starting Acquisition
+Failure in receiving image
+Résolution de l'image 0x0
+calling SerialCommunication::write
+Data successfully sent to port %1
+Stopping Acquisition
+Starting Acquisition
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Fin de la session
+
+Stopping Acquisition
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+Failure in receiving image
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde echouee
+Erreur lors de l'enregistrement de la photo
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Stopping Acquisition
+Starting Acquisition
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Serial Port timed out
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Stopping Acquisition
+Starting Acquisition
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde echouee
+Erreur lors de l'enregistrement de la photo
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Stopping Acquisition
+Starting Acquisition
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Serial Port timed out
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Stopping Acquisition
+Starting Acquisition
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Serial Port timed out
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Stopping Acquisition
+Starting Acquisition
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo2.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Arrêt
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Stopping Acquisition
+Starting Acquisition
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::reculeHorizontal()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::droite()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::droite()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Error while waiting for data
+Error while waiting for data
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::droite()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::droite()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::droite()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Error while waiting for data
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Error while waiting for data
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Error while waiting for data
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Error while waiting for data
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Error while waiting for data
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Error while waiting for data
+Serial Port timed out
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Stopping Acquisition
+Starting Acquisition
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
 Starting Vimba
 Sync object created
 Calling SerialCommunication::envoieCranParPas()
-Serial port is not connected, aborting write
-Error, serial port not connected, aborting read and check
-Serial port is not connected, aborting write
-Error, serial port not connected, aborting read and check
-Serial port is not connected, aborting write
-Error, serial port not connected, aborting read and check
-Serial port is not connected, aborting write
-Error, serial port not connected, aborting read and check
-Serial port is not connected, aborting write
-Error, serial port not connected, aborting read and check
-Serial port is not connected, aborting write
-Error, serial port not connected, aborting read and check
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
 Envoie du nombres de crans par pas vertical et horizontal effectué
 Fenêtre principale lancée
 Démarrage du programme
@@ -69,18 +2994,777 @@ calling SerialCommunication::connectSerialPort()
 Failed to OPEN serial port
 Starting Vimba
 Sync object created
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
 Calling SerialCommunication::envoieCranParPas()
-Serial port is not connected, aborting write
-Error, serial port not connected, aborting read and check
-Serial port is not connected, aborting write
-Error, serial port not connected, aborting read and check
-Serial port is not connected, aborting write
-Error, serial port not connected, aborting read and check
-Serial port is not connected, aborting write
-Error, serial port not connected, aborting read and check
-Serial port is not connected, aborting write
-Error, serial port not connected, aborting read and check
-Serial port is not connected, aborting write
-Error, serial port not connected, aborting read and check
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
 Envoie du nombres de crans par pas vertical et horizontal effectué
 Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Erreur lors de la s?lection de la banque 2
+Erreur lors de l'envoi des paramètres au capteur bas
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Erreur lors de la s?lection de la banque 2
+Erreur lors de l'envoi des paramètres au capteur bas
+Résolution de l'image 0x0
+calling SerialCommunication::write
+Data successfully sent to port %1
+Stopping Acquisition
+Starting Acquisition
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::droite()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Serial Port timed out
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Stopping Acquisition
+Starting Acquisition
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::droite()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Error while waiting for data
+Serial Port timed out
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Stopping Acquisition
+Starting Acquisition
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::droite()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Erreur lors de la s?lection de la banque 2
+Erreur lors de l'envoi des paramètres au capteur bas
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::droite()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+CapteurSpectral constructor called
+calling CapteurSpectral::connectSerialPort()
+Connexion port serie etablie
+Serial port opened
+Essai 1 pour communiquer avec le capteur
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Capteur initialis?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Banque 2 s?lectionn?e
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Gain envoy?
+calling CapteurSpectral::write
+Data successfully sent to port %1
+IntTime envoy?
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1
+XY Ref OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Disabling specPos for goto
+SerialCommunication::gotoXY
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Goto OK
+calling SerialCommunication::write
+Data successfully sent to port %1
+Set spectrum coords settings OK
+call on FocusWindow::saveImage()
+Saving image
+C:/Users/Olivier/Pictures/Test/sans_polariseur/photo1.png
+1944
+2592
+Sauvegarde reussie
+calling SerialCommunication::droite()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Error while waiting for data
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Error while waiting for data
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Error while waiting for data
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Error while waiting for data
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Error while waiting for data
+calling CapteurSpectral::write
+Data successfully sent to port %1
+calling CapteurSpectral::write
+Data successfully sent to port %1
+Error while waiting for data
+Serial Port timed out
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Stopping Acquisition
+Starting Acquisition
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+Résolution de l'image 0x0
+calling SerialCommunication::findXYRef()
+calling SerialCommunication::write
+Data successfully sent to port %1

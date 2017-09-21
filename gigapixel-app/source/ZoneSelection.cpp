@@ -82,9 +82,9 @@ void ZoneSelection::setZone()
 	tempTopRight.setY(tempTopRight.y() - PX_V_REF_WCAM);
 
 	//Changer l'axe vertical pour adapter l'orientation
-	tempBotLeft.setY(-tempBotLeft.y() + this->height());
-	tempTopRight.setY(-tempTopRight.y() + this->height());
-	emit sendCoordsToWindow(tempBotLeft, tempTopRight);
+	//tempBotLeft.setY(-tempBotLeft.y() + this->height());
+	//tempTopRight.setY(-tempTopRight.y() + this->height());
+	emit sendCoordsToWindow(tempTopRight, tempBotLeft); 
 }
 
 void ZoneSelection::resetZone()

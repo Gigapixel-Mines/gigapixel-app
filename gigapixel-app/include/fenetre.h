@@ -7,6 +7,8 @@
 #include "ZoneSelection.h"
 #include "wcam.h"
 
+#include <vector>
+
 #include <QCamera>
 #include <QCameraViewfinder>
 #include <QCameraImageCapture>
@@ -90,6 +92,9 @@ private:
 	CapteurSpectral* capteurHaut;
 	CapteurSpectral* capteurBas;
 
+	std::vector<QString> capteurBasData;
+	std::vector<QString> capteurHautData;
+
 	int nbPhotoH;
 	int nbPhotoV;
 	int nbrPhoto;
@@ -120,7 +125,6 @@ private:
 	void Fenetre::closeEvent(QCloseEvent* event) override;
 	void setCameraSpecs();
 	void takeGigaPixelPhoto();
-	void updateProgressBar();
 
 	bool m_saveSpectrumInfo;
 
@@ -156,6 +160,7 @@ public:
 public slots:
 	void setStartingCoordAndBounds(QPoint, QPoint);
 	void resetStartingCoordsAndBounds();
+	void updateProgressBar();
 
 private slots:
 	void disableButton();
@@ -175,6 +180,7 @@ private slots:
 	void miseAuPointSemiAuto();
 	void miseAuPointManuelleStart();
 	void miseAuPointManuelleStop();
+	void writeSpecData();
 
 signals:
 	void LigneFinished();

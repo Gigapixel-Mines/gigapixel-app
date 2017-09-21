@@ -40,7 +40,7 @@ public:
 	virtual ~CapteurSpectral();
 	void Log(std::string strMsg);
 	bool is_connected();
-	bool dataAvailable();
+	bool dataAvailable(int timeout_ms = 5000);
 	bool contains(QString compareString);
 	bool setUp(int intTime, int gain);
 	void write(QByteArray);

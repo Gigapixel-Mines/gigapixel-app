@@ -177,14 +177,42 @@ bool CapteurSpectral::is_connected()
 	return m_connected;
 }
 
-bool CapteurSpectral::dataAvailable()
+//bool CapteurSpectral::dataAvailable()
+//{
+//	if (!m_connected)
+//	{
+//		Log("Error, serial port not connected, aborting read and check");
+//		return false;
+//	}
+//	if (m_serialPort->waitForReadyRead(5000))
+//	{
+//		m_readData = m_serialPort->readAll();
+//		m_serialPort->flush();
+//		string_readData.clear();
+//		string_readData.append(m_readData.constData());
+//		return true;
+//	}
+//	else
+//	{
+//		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+//		return false;
+//	}
+//}
+
+bool CapteurSpectral::dataAvailable(int timeout_ms)
 {
 	if (!m_connected)
 	{
 		Log("Error, serial port not connected, aborting read and check");
 		return false;
 	}
-	if (m_serialPort->waitForReadyRead(5000))
+	QElapsedTimer timeoutWatchdog;
+	timeoutWatchdog.start();
+	while (m_serialPort->bytesAvailable() <= 0 && timeoutWatchdog.elapsed() < timeout_ms)
+	{
+		m_serialPort->waitForReadyRead(1);
+	}
+	if (m_serialPort->bytesAvailable() > 0)
 	{
 		m_readData = m_serialPort->readAll();
 		m_serialPort->flush();
@@ -194,9 +222,11 @@ bool CapteurSpectral::dataAvailable()
 	}
 	else
 	{
-		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+		Log("Error while waiting for data");
 		return false;
 	}
+	m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+	return false;
 }
 
 QString CapteurSpectral::getData()

@@ -3,6 +3,7 @@
 #ifndef SERIALCOMMUNICATION_H
 #define SERIALCOMMUNICATION_H
 
+#include <QMutex>
 #include <QtSerialPort>
 #include <QWidget>
 
@@ -19,6 +20,7 @@ private:
     QTextStream m_standardOutput;
     qint64 m_bytesWritten;
 	QString string_readData;
+	//QMutex readData_mutex;
     //QTimer          m_timer; // utile ???
 
     // Se connecter a un port (appele dans constructeur)
@@ -29,6 +31,7 @@ private:
     void write(QByteArray);
 	//void handleReadyRead();
 	bool m_connected;
+	//bool data_received;
 
 	int cransPasH;
 	int cransPasV;
@@ -39,6 +42,9 @@ private:
 	int coordCransV;
 	int maxPasH;
 	int maxPasV;
+//
+//private slots:
+//	void handleReadyRead();
 
 public slots:
 
@@ -47,6 +53,7 @@ public slots:
     bool miseAuPointAuto(int);
     void miseAuPointManuelleStart();
     void miseAuPointManuelleStop();
+	void printError(QSerialPort::SerialPortError);
 
     // Lecture
     //void handleReadyRead();
@@ -69,7 +76,7 @@ public:
 	bool check(const char t_char);
 	char getChar();
 	void setMaxPasH(int);
-	void setMmaxPasV(int);
+	void setMaxPasV(int);
 	bool gotoXY(int relPasH, int relCransH, int relPasV, int relCransV);
 	bool enableSpecPos(bool);
 	bool enablePolarization(bool);

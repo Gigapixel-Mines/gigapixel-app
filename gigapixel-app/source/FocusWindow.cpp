@@ -117,14 +117,22 @@ void FocusWindow::stopImgRefresh(bool stop)
 	}
 	else
 	{
+		if (sync->m_bIsStreaming)
+		{
+			sync->OnBnClickedButtonStartstop(); // stop camera
+		}
 		QObject::connect(sync, SIGNAL(ImageReceivedSignal(QImage*)), this, SLOT(OnImageReceived(QImage*)));
+		if (!sync->m_bIsStreaming)
+		{
+			sync->OnBnClickedButtonStartstop(); // start camera
+		}
 	}
 }
 
 // Default Constructor
 FocusWindow::FocusWindow()
 {
-	setFixedSize(640, 480);
+	setFixedSize(533, 400); //Bonne taille
 	setWindowTitle("Apercu du capteur");
 	label = new QLabel(this);
 	m_img = new QImage;
@@ -132,8 +140,8 @@ FocusWindow::FocusWindow()
 	Log("Sync object created");
 	QObject::connect(sync, SIGNAL(ImageReceivedSignal(QImage*)), this, SLOT(OnImageReceived(QImage*)));
 
-	label->setFixedHeight(640);
-	label->setFixedWidth(480);
+	label->setFixedHeight(533);
+	label->setFixedWidth(400);
 	label->setVisible(true);
 
 	this->show();

@@ -6,10 +6,12 @@
 
 #include <QCoreApplication>
 #include <QFile>
+#include <QMessageBox>
 #include <QObject>
 #include <QStringList>
 #include <QString>
 #include <QTextStream>
+#include <QElapsedTimer>
 
 #include <iostream>
 #include <string>
@@ -81,6 +83,8 @@ SerialCommunication::SerialCommunication()
 	, coordPasV(0)
 	, coordCransH(0)
 	, coordCransV(0)
+	//, readData_mutex()
+	//, data_received(false)
 {
 	Log("SerialCommunication constructor called");
 
@@ -91,6 +95,10 @@ SerialCommunication::SerialCommunication()
 	if (!m_serialPort->open(QIODevice::ReadWrite))
 	{
 		Log("Failed to OPEN serial port");
+		QMessageBox* error = new QMessageBox();
+		error->setWindowTitle("Erreur");
+		error->setText("Erreur lors de la connexion à l'Arduino");
+		error->exec();
 		m_connected = false;
 	}
 	else
@@ -99,7 +107,8 @@ SerialCommunication::SerialCommunication()
 		m_serialPort->setDataTerminalReady(true);
 		m_connected = true;
 	}
-
+	QObject::connect(m_serialPort, SIGNAL(errorOccured(QSerialPort::SerialPortError)), this, SLOT(printError(QSerialPort::SerialPortError)));
+	//QObject::connect(m_serialPort, &QSerialPort::readyRead, this, &SerialCommunication::handleReadyRead);
 	// pour la lecture
 	//QObject::connect(m_serialPort, &QSerialPort::readyRead, this, &SerialCommunication::handleReadyRead);
 
@@ -207,7 +216,7 @@ bool SerialCommunication::findXYRef()
 	Log("calling SerialCommunication::findXYRef()");
 	write("h"); //Ask Arduino to find XY Ref
 	//Wait for his answer
-	if (dataAvailable(50000))
+	if (dataAvailable(120000))
 	{
 		if (!check('h'))
 		{
@@ -234,7 +243,7 @@ bool SerialCommunication::gauche()
 {
 	if (coordPasH - 1 >= 0)
 	{
-		Log("calling SerialCommunication::avanceHorizontal()");
+		Log("calling SerialCommunication::gauche()");
 		write("c");
 		--coordPasH;
 		return true;
@@ -248,12 +257,9 @@ bool SerialCommunication::gauche()
 
 bool SerialCommunication::droite()
 {
-	if ((coordPasH + 1 <= maxPasH && 
-		coordCransH == 0) ||
-		(coordPasH + 1 < maxPasH &&
-		coordCransH > 0))
+	if (coordCransH + 1 < maxPasH)
 	{
-		Log("calling SerialCommunication::reculeHorizontal()");
+		Log("calling SerialCommunication::droite()");
 		write("d");
 		++coordPasH;
 		return true;
@@ -268,10 +274,7 @@ bool SerialCommunication::droite()
 
 bool SerialCommunication::haut()
 {
-	if ((coordPasV + 1 <= maxPasV &&
-		coordCransV == 0) ||
-		(coordPasV + 1 < maxPasV &&
-			coordCransV > 0))
+	if (coordPasV + 1 < maxPasV)
 	{
 		//Ajouter vérification de déplacement
 		Log("calling SerialCommunication::avanceVertical()");
@@ -302,6 +305,50 @@ bool SerialCommunication::bas()
 	}
 }
 
+//bool SerialCommunication::dataAvailable(int timeout_ms)
+//{
+//	Sleep(250);
+//	if (!m_connected)
+//	{
+//		Log("Error, serial port not connected, aborting read and check");
+//		return false;
+//	}
+//	int retry = 0;
+//	do
+//	{
+//		Log("DataAvailable try #" + std::to_string(retry));
+//		if (m_serialPort->bytesAvailable() == 0)
+//		{
+//			if (m_serialPort->waitForReadyRead(timeout_ms))
+//			{
+//				m_readData = m_serialPort->readAll();
+//				//m_serialPort->clear(QSerialPort::Input);
+//				m_serialPort->flush();
+//				string_readData.clear();
+//				string_readData.append(m_readData.constData());
+//				return true;
+//			}
+//			//else
+//			//{
+//			//	m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+//			//	return false;
+//			//}
+//		}
+//		else if (m_serialPort->bytesAvailable() > 0)
+//		{
+//			m_readData = m_serialPort->readAll();
+//			m_serialPort->flush();
+//			m_serialPort->clear(QSerialPort::Input);
+//			string_readData.clear();
+//			string_readData.append(m_readData.constData());
+//			return true;
+//		}
+//		++retry;
+//	} while (retry <= 1);
+//	m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+//	return false;
+//}
+
 bool SerialCommunication::dataAvailable(int timeout_ms)
 {
 	if (!m_connected)
@@ -309,7 +356,13 @@ bool SerialCommunication::dataAvailable(int timeout_ms)
 		Log("Error, serial port not connected, aborting read and check");
 		return false;
 	}
-	if (m_serialPort->waitForReadyRead(timeout_ms))
+	QElapsedTimer timeoutWatchdog;
+	timeoutWatchdog.start();
+	while (m_serialPort->bytesAvailable() <= 0 && timeoutWatchdog.elapsed() < timeout_ms)
+	{
+		m_serialPort->waitForReadyRead(1);
+	}
+	if (m_serialPort->bytesAvailable() > 0)
 	{
 		m_readData = m_serialPort->readAll();
 		m_serialPort->flush();
@@ -319,10 +372,47 @@ bool SerialCommunication::dataAvailable(int timeout_ms)
 	}
 	else
 	{
-		m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+		Log("Error while waiting for data");
 		return false;
 	}
+	m_standardOutput << "Error or timeout while waiting for serial port answer" << endl;
+	return false;
 }
+
+//bool SerialCommunication::dataAvailable(int timeout_ms)
+//{
+//	if (!m_connected)
+//	{
+//		Log("Error, serial port not connected, aborting read and check");
+//		return false;
+//	}
+//	bool waiting(true);
+//	QElapsedTimer timeoutWatchdog;
+//	timeoutWatchdog.start();
+//	do
+//	{
+//		readData_mutex.lock();
+//		if (data_received)
+//		{
+//			data_received = false;
+//			waiting = false;
+//			string_readData.clear();
+//			string_readData.append(m_readData.constData());
+//			readData_mutex.unlock();
+//			return true;
+//		}
+//		readData_mutex.unlock();
+//	} while (waiting && timeoutWatchdog.elapsed() < timeout_ms);
+//	if (waiting)
+//	{
+//		Log("Serial port timedOut");
+//		return false;
+//	}
+//	else //Cas impossible
+//	{
+//		return false;
+//	}
+//}
 
 void SerialCommunication::envoieCranParPas()
 {
@@ -462,7 +552,7 @@ void SerialCommunication::setMaxPasH(int t_value)
 	maxPasH = t_value;
 }
 
-void SerialCommunication::setMmaxPasV(int t_value)
+void SerialCommunication::setMaxPasV(int t_value)
 {
 	maxPasV = t_value;
 }
@@ -693,3 +783,18 @@ bool SerialCommunication::selectPolarization(int polarization)
 		return false;
 	}
 }
+
+void SerialCommunication::printError(QSerialPort::SerialPortError error)
+{
+	Log("Serial Port Error");
+	qDebug() << error;
+}
+
+//void SerialCommunication::handleReadyRead()
+//{
+//	readData_mutex.lock();
+//	data_received = true;
+//	m_readData = m_serialPort->readAll();
+//	m_serialPort->flush();
+//	readData_mutex.unlock();
+//}

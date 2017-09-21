@@ -50,7 +50,7 @@ void Fenetre::setCameraSpecs()
 	m_zoneSelection->resetZone();
 
 	serialcomm->setMaxPasH(absMaxPhotoH);
-	serialcomm->setMaxPasH(absMaxPhotoV);
+	serialcomm->setMaxPasV(absMaxPhotoV);
 	image_v->setMaximum(absMaxPhotoV);
 	image_h->setMaximum(absMaxPhotoH);
 	serialcomm->setCransH(nbCranPasH);
@@ -252,6 +252,23 @@ void Fenetre::takeGigaPixelPhoto()
 	do_stop = false;
 	stop_mutex.unlock();
 
+	//TEST DEBUG
+	//Setting specPos as intended
+	if (serialcomm->enableSpecPos(m_saveSpectrumInfo))
+	{
+		Log("Set spectrum coords settings OK");
+		if (m_saveSpectrumInfo)
+		{
+			saveSpecData("X(px),Y(px),V,B,G,Y,O,R", "haut");
+			saveSpecData("X(px),Y(px),V,B,G,Y,O,R", "bas");
+		}
+	}
+	else
+	{
+		Log("Set spectrum coords settings FAILED");
+		return;
+	}
+
 	//Sleep(5000); //for threading synchronization test
 
 	bool versLaDroite = true; //On commence à 0 et on ira vers la droite au début
@@ -277,42 +294,51 @@ void Fenetre::takeGigaPixelPhoto()
 					serialcomm->enableSpecPos(false);
 					QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
 					//Enlever le polariseur
+					writeSpecData();
 					return;
 				}
 				if (versLaDroite)
 				{
-					moving = true;
-					if (!serialcomm->droite())
+					if (j < nbPhotoH)
 					{
-						Log("Erreur lors du déplacement vers la droite");
-						photo_mutex.lock();
-						taking_photo = false;
-						photo_mutex.unlock();
-						serialcomm->enableSpecPos(false);
-						QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-						//Enlever le polariseur
-						return;
+						moving = true;
+						if (!serialcomm->droite())
+						{
+							Log("Erreur lors du déplacement vers la droite");
+							photo_mutex.lock();
+							taking_photo = false;
+							photo_mutex.unlock();
+							serialcomm->enableSpecPos(false);
+							QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
+							//Enlever le polariseur
+							writeSpecData();
+							return;
+						}
 					}
 				}
 				else
 				{
-					moving = true;
-					if (!serialcomm->gauche())
+					if (j < nbPhotoH)
 					{
-						Log("Erreur lors du déplacement vers la gauche");
-						photo_mutex.lock();
-						taking_photo = false;
-						photo_mutex.unlock();
-						serialcomm->enableSpecPos(false);
-						QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-						//Enlever le polariseur
-						return;
+						moving = true;
+						if (!serialcomm->gauche())
+						{
+							Log("Erreur lors du déplacement vers la gauche");
+							photo_mutex.lock();
+							taking_photo = false;
+							photo_mutex.unlock();
+							serialcomm->enableSpecPos(false);
+							QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
+							//Enlever le polariseur
+							writeSpecData();
+							return;
+						}
 					}
 				}
 				//check what comes
-				do
+				while (moving)
 				{
-					if (serialcomm->dataAvailable())
+					if (serialcomm->dataAvailable(20000))
 					{
 						switch (serialcomm->getChar())
 						{
@@ -331,7 +357,8 @@ void Fenetre::takeGigaPixelPhoto()
 									--mmCountH;
 									mutex_mmH.unlock();
 								}
-								QMetaObject::invokeMethod(this, "getSpecData");
+								//QMetaObject::invokeMethod(this, "getSpecData");
+								getSpecData();
 							}
 							break;
 						case 'z':
@@ -345,8 +372,37 @@ void Fenetre::takeGigaPixelPhoto()
 							serialcomm->enableSpecPos(false);
 							QMetaObject::invokeMethod(this, "enableButton");
 							//Enlever le polariseur
+							writeSpecData();
 							return;
 							break;
+						}
+						//Check if we receive an x with inertia
+						if(m_saveSpectrumInfo)
+						{
+							if (serialcomm->dataAvailable(100))
+							{
+								switch (serialcomm->getChar())
+								{
+								case 'x': //Signal to get 
+									if (m_saveSpectrumInfo)
+									{
+										if (versLaDroite)
+										{
+											mutex_mmH.lock();
+											++mmCountH;
+											mutex_mmH.unlock();
+										}
+										else
+										{
+											mutex_mmH.lock();
+											--mmCountH;
+											mutex_mmH.unlock();
+										}
+										//QMetaObject::invokeMethod(this, "getSpecData");
+										getSpecData();
+									}
+								}
+							}
 						}
 					}
 					else
@@ -358,10 +414,11 @@ void Fenetre::takeGigaPixelPhoto()
 						serialcomm->enableSpecPos(false);
 						QMetaObject::invokeMethod(this, "enableButton");
 						//Enlever le polariseur
+						writeSpecData();
 						return;
 						break;
 					}
-				} while (moving);
+				}
 			}
 			else
 			{
@@ -373,64 +430,100 @@ void Fenetre::takeGigaPixelPhoto()
 				serialcomm->enableSpecPos(false);
 				QMetaObject::invokeMethod(this, "enableButton");
 				//Enlever le polariseur
+				writeSpecData();
 				return;
 			}
 		}
-		moving = true;
-		if (!serialcomm->haut())
+		if (i < nbPhotoV)
 		{
-			Log("Erreur lors du déplacement vers le haut");
-			photo_mutex.lock();
-			taking_photo = false;
-			photo_mutex.unlock();
-			serialcomm->enableSpecPos(false);
-			QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-			//Enlever le polariseur
-			return;
-		}
-		do
-		{
-			if (serialcomm->dataAvailable())
+			moving = true;
+			if (!serialcomm->haut())
 			{
-				switch (serialcomm->getChar())
+				Log("Erreur lors du déplacement vers le haut");
+				photo_mutex.lock();
+				taking_photo = false;
+				photo_mutex.unlock();
+				serialcomm->enableSpecPos(false);
+				QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
+				//Enlever le polariseur
+				writeSpecData();
+				return;
+			}
+			while (moving)
+			{
+				if (serialcomm->dataAvailable(20000))
 				{
-				case 'x': //Signal to get 
+					switch (serialcomm->getChar())
+					{
+					case 'x': //Signal to get 
+						if (m_saveSpectrumInfo)
+						{
+							mutex_mmV.lock();
+							++mmCountV;
+							mutex_mmV.unlock();
+							//QMetaObject::invokeMethod(this, "getSpecData");
+							getSpecData();
+						}
+						break;
+					case 'z':
+						moving = false;
+						break;
+					default:
+						Log("Invalid answer");
+						photo_mutex.lock();
+						taking_photo = false;
+						photo_mutex.unlock();
+						serialcomm->enableSpecPos(false);
+						QMetaObject::invokeMethod(this, "enableButton");
+						//Enlever le polariseur
+						writeSpecData();
+						return;
+						break;
+					}
+					//If we receive an x with inertia
 					if (m_saveSpectrumInfo)
 					{
-						mutex_mmV.lock();
-						++mmCountV;
-						mutex_mmV.unlock();
-						QMetaObject::invokeMethod(this, "getSpecData");
+						if (serialcomm->dataAvailable(100))
+						{
+							switch (serialcomm->getChar())
+							{
+							case 'x': //Signal to get 
+								if (m_saveSpectrumInfo)
+								{
+									if (versLaDroite)
+									{
+										mutex_mmH.lock();
+										++mmCountH;
+										mutex_mmH.unlock();
+									}
+									else
+									{
+										mutex_mmH.lock();
+										--mmCountH;
+										mutex_mmH.unlock();
+									}
+									//QMetaObject::invokeMethod(this, "getSpecData");
+									getSpecData();
+								}
+							}
+						}
 					}
-					break;
-				case 'z':
-					moving = false;
-					break;
-				default:
-					Log("Invalid answer");
+				}
+				else
+				{
+					Log("Serial Port timed out");
 					photo_mutex.lock();
 					taking_photo = false;
 					photo_mutex.unlock();
 					serialcomm->enableSpecPos(false);
 					QMetaObject::invokeMethod(this, "enableButton");
 					//Enlever le polariseur
+					writeSpecData();
 					return;
 					break;
 				}
 			}
-			else
-			{
-				Log("Serial Port timed out");
-				photo_mutex.lock();
-				taking_photo = false;
-				photo_mutex.unlock();
-				serialcomm->enableSpecPos(false);
-				QMetaObject::invokeMethod(this, "enableButton");
-				//Enlever le polariseur
-				return;
-				break;
-			}
-		} while (moving);
+		}
 		versLaDroite = !versLaDroite; //On change de direction après avoir fait une ligne
 	}
 	Log("Fin de la prise de photo");
@@ -438,6 +531,11 @@ void Fenetre::takeGigaPixelPhoto()
 	taking_photo = false;
 	photo_mutex.unlock();
 	serialcomm->enableSpecPos(false);
+	//Flush spec data
+	if (m_saveSpectrumInfo)
+	{
+		writeSpecData();
+	}
 	QMetaObject::invokeMethod(this, "enableButton");
 	//Enlever le polariseur
 	return;
@@ -462,6 +560,8 @@ Fenetre::Fenetre()
 	, currResPicV(0)
 	, mutex_mmH()
 	, mutex_mmV()
+	, capteurHautData()
+	, capteurBasData()
 {
 	Log("Démarrage du programme");
 	// Fenetre utilisateur
@@ -772,6 +872,8 @@ void Fenetre::start()
 	}
 	photo_mutex.unlock();
 
+	bar->setValue(0);
+
 	currResPicH = floor(decalageHorizontal) * nbPhotoH;
 	currResPicV = floor(decalageVertical) * nbPhotoV;
 	Log("Résolution de l'image " + std::to_string(currResPicH) + "x" + std::to_string(currResPicV));
@@ -787,18 +889,16 @@ void Fenetre::start()
 	//QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhotoNoSpectrum);
 
 	//DEBUG TEST
-	//int polarization(0);
-	//for (int i = 0; i < 5; ++i)
-	//{
-	//	if (polarizationChoice[i]->isChecked())
-	//	{
-	//		polarization = i;
-	//		dataDir = focuswindow->setPolarization(polarization);
-	//		saveSpecData("X(px),Y(px),V,B,G,Y,O,R", "haut");
-	//		saveSpecData("X(px),Y(px),V,B,G,Y,O,R", "bas");
-	//		break;
-	//	}
-	//}
+	int polarization(0);
+	for (int i = 0; i < 5; ++i)
+	{
+		if (polarizationChoice[i]->isChecked())
+		{
+			polarization = i;
+			dataDir = focuswindow->setPolarization(polarization);
+			break;
+		}
+	}
 
 	//if (polarization == 0)
 	//{
@@ -838,44 +938,39 @@ void Fenetre::start()
 		//des données de positions spectrales
 	}
 
-	//Récupération de la référence 0,0 en X, Y
-	if (!serialcomm->findXYRef())
-	{
-		Log("Erreur lors de la recherche de la référence XY");
-		return;
-	}
-	else
-	{
-		//TEST DEBUG
-		//if (serialcomm->enableSpecPos(false))
-		//{
-		//	Log("Disabling specPos for goto");
-		//}
-		//else
-		//{
-		//	Log("Unable to disable specPos for goto");
-		//	return;
-		//}
+	photo_mutex.lock();
+	taking_photo = true;
+	photo_mutex.unlock();
+	focuswindow->stopImgRefresh(true); //Avoid threading problem with sync in focuswindow
+	QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhoto);
 
-		serialcomm->gotoXY(startCoordPasH, 0, startCoordPasV, 0); //On oublie les crans
-		//TEST DEBUG
-		//Setting specPos as intended
-		//if (serialcomm->enableSpecPos(m_saveSpectrumInfo))
-		//{
-		//	Log("Set spectrum coords settings OK");
-		//}
-		//else
-		//{
-		//	Log("Set spectrum coords settings FAILED");
-		//	return;
-		//}
+	////Récupération de la référence 0,0 en X, Y
+	//if (!serialcomm->findXYRef())
+	//{
+	//	Log("Erreur lors de la recherche de la référence XY");
+	//	return;
+	//}
+	//else
+	//{
+	//	//TEST DEBUG
+	//	if (serialcomm->enableSpecPos(false))
+	//	{
+	//		Log("Disabling specPos for goto");
+	//	}
+	//	else
+	//	{
+	//		Log("Unable to disable specPos for goto");
+	//		return;
+	//	}
 
-		photo_mutex.lock();
-		taking_photo = true;
-		photo_mutex.unlock();
-		focuswindow->stopImgRefresh(true); //Avoid threading problem with sync in focuswindow
-		QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhoto);
-	}
+	//	serialcomm->gotoXY(startCoordPasH, 0, startCoordPasV, 0); //On oublie les crans
+
+	//	photo_mutex.lock();
+	//	taking_photo = true;
+	//	photo_mutex.unlock();
+	//	focuswindow->stopImgRefresh(true); //Avoid threading problem with sync in focuswindow
+	//	QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhoto);
+	//}
 	return;
 }
 
@@ -908,6 +1003,7 @@ void Fenetre::enableButton()
 {
 	//photoButton->setEnabled(true);
 	buttonEnable_mutex.lock();
+	serialcomm->enableSpecPos(false);
 	miseAuPointManuelleStartBtn->setEnabled(true);
 	miseAuPointManuelleStopBtn->setEnabled(true);
 	goButton->setEnabled(true);
@@ -974,6 +1070,8 @@ void Fenetre::getSpecData()
 {
 	QString hautData;
 	QString basData;
+	capteurHaut->write("ATDATA\n");
+	capteurBas->write("ATDATA\n");
 	hautData = capteurHaut->getData();
 	basData = capteurBas->getData();
 	hautData.chop(3);
@@ -1009,13 +1107,22 @@ void Fenetre::getSpecData()
 
 void Fenetre::saveSpecData(QString t_data, QString t_sensor)
 {
-	QString filename = dataDir + "capteur_" + t_sensor + "_data.txt";
-	QFile file(filename);
-	if (file.open(QIODevice::ReadWrite | QIODevice::Append))
+	if (t_sensor.contains("haut"))
 	{
-		QTextStream stream(&file);
-		stream << t_data << endl;
+		capteurHautData.push_back(t_data);
 	}
+	else if (t_sensor.contains("bas"))
+	{
+		capteurBasData.push_back(t_data);
+	}
+	//QString filename = dataDir + "capteur_" + t_sensor + "_data.txt";
+	//QFile file(filename);
+	//if (file.open(QIODevice::ReadWrite | QIODevice::Append))
+	//{
+	//	QTextStream stream(&file);
+	//	stream << t_data << endl;
+	//}
+	
 }
 
 void Fenetre::resetStartingCoordsAndBounds()
@@ -1040,9 +1147,30 @@ void Fenetre::setStartingCoordAndBounds(QPoint botLeft, QPoint topRight)
 	int stopYcm = PX_V_WCAM_TO_CM * (topRight.y());
 	startCoordPasH = floor(startXcm / (sizeHpx / 10000));
 	startCoordPasV = floor(startYcm / (sizeVpx / 10000));
+	startCoordPasH = -startCoordPasH + absMaxPhotoH; //Inverser l'axe X
+	startCoordPasV = -startCoordPasV + absMaxPhotoV;
+	if (startCoordPasH < 0)
+	{
+		startCoordPasH = 0;
+	}
+	if (startCoordPasV < 0)
+	{
+		startCoordPasV = 0;
+	}
 	//Adapter le nombre de photos à faire en fonction de top right
-	int stopCoordPasH = floor(stopXcm / (sizeHpx / 10000));
-	int stopCoordPasV = floor(stopYcm / (sizeVpx / 10000));
+	int stopCoordPasH = ceil(stopXcm / (sizeHpx / 10000));
+	int stopCoordPasV = ceil(stopYcm / (sizeVpx / 10000));
+	stopCoordPasH = -stopCoordPasH + absMaxPhotoH; //Inverser l'axe X
+	stopCoordPasV = -stopCoordPasV + absMaxPhotoV;
+	if (startCoordPasH > absMaxPhotoH)
+	{
+		startCoordPasH = absMaxPhotoH;
+	}
+	if (startCoordPasV > absMaxPhotoV)
+	{
+		startCoordPasV = absMaxPhotoV;
+	}
+
 
 	//Modifier les limites pour la zone sélectionnée
 	maxPhotoH = floor(absMaxPhotoH - startCoordPasH);
@@ -1051,4 +1179,31 @@ void Fenetre::setStartingCoordAndBounds(QPoint botLeft, QPoint topRight)
 	image_v->setMaximum(maxPhotoV);
 	image_h->setValue(stopCoordPasH);
 	image_v->setValue(stopCoordPasV);
+}
+
+void Fenetre::writeSpecData()
+{
+	QString filename = dataDir + "capteur_haut_data.txt";
+	QFile file(filename);
+	if (file.open(QIODevice::ReadWrite | QIODevice::Append))
+	{
+		QTextStream stream(&file);
+		for (std::vector<QString>::iterator it = capteurHautData.begin(); it != capteurHautData.end(); ++it)
+		{
+			/* std::cout << *it; ... */
+			stream << *it << endl;
+		}
+	}
+	file.close();
+	filename = dataDir + "capteur_bas_data.txt";
+	if (file.open(QIODevice::ReadWrite | QIODevice::Append))
+	{
+		QTextStream stream(&file);
+		for (std::vector<QString>::iterator it = capteurBasData.begin(); it != capteurBasData.end(); ++it)
+		{
+			/* std::cout << *it; ... */
+			stream << *it << endl;
+		}
+	}
+	file.close();
 }
