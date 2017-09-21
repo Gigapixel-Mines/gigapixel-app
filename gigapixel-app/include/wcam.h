@@ -25,20 +25,20 @@ private:
 	int * a;
 
 private slots:
-	void processCapturedImage(int requestId, const QImage& img);
-	void imageSaved(int id, const QString &fileName);
-	void readyForCapture(bool);
+	//void processCapturedImage(int requestId, const QImage& img);
+	//void imageSaved(int id, const QString &fileName);
+	//void readyForCapture(bool);
 
 public:
 	WCam();
-	QImage getZonePic();
+	//QImage getZonePic();
 
 signals:
-	void canCapture(bool);
-	void selZonePicReady();
+	//void canCapture(bool);
+	//void selZonePicReady();
 
 public slots:
-	void getImage();
+	//void getImage();
 
 };
 

@@ -79,10 +79,6 @@ SerialCommunication::SerialCommunication()
 	, m_bytesWritten(0)
 	, m_connected(false)
 	, string_readData()
-	, coordPasH(0)
-	, coordPasV(0)
-	, coordCransH(0)
-	, coordCransV(0)
 	//, readData_mutex()
 	//, data_received(false)
 {
@@ -224,10 +220,6 @@ bool SerialCommunication::findXYRef()
 			return false;
 		}
 	}
-	coordPasH = 0;
-	coordPasV = 0;
-	coordCransH = 0;
-	coordCransV = 0;
 	Log("XY Ref OK");
 	return true;
 }
@@ -241,68 +233,30 @@ bool SerialCommunication::is_connected()
 
 bool SerialCommunication::gauche()
 {
-	if (coordPasH - 1 >= 0)
-	{
-		Log("calling SerialCommunication::gauche()");
-		write("c");
-		--coordPasH;
-		return true;
-	}
-	else
-	{
-		Log("Dépassement des limites, déplacement annulé");
-		return false;
-	}
+	Log("calling SerialCommunication::gauche()");
+	write("c");
+	return true;
 }
 
 bool SerialCommunication::droite()
 {
-	if (coordCransH + 1 < maxPasH)
-	{
-		Log("calling SerialCommunication::droite()");
-		write("d");
-		++coordPasH;
-		return true;
-	}
-	else
-	{
-		Log("Dépassement des limites, déplacement annulé");
-		return false;
-	}
-
+	Log("calling SerialCommunication::droite()");
+	write("d");
+	return true;
 }
 
 bool SerialCommunication::haut()
 {
-	if (coordPasV + 1 < maxPasV)
-	{
-		//Ajouter vérification de déplacement
-		Log("calling SerialCommunication::avanceVertical()");
-		write("b");
-		++coordPasV;
-		return true;
-	}
-	else
-	{
-		Log("Dépassement des limites, déplacement annulé");
-		return false;
-	}
+	Log("calling SerialCommunication::avanceVertical()");
+	write("b");
+	return true;
 }
 
 bool SerialCommunication::bas()
 {
-	if (coordPasH - 1 >= 0)
-	{
-		Log("calling SerialCommunication::reculeVertical()");
-		write("a");
-		--coordPasV;
-		return true;
-	}
-	else
-	{
-		Log("Dépassement des limites, déplacement annulé");
-		return false;
-	}
+	Log("calling SerialCommunication::reculeVertical()");
+	write("a");
+	return true;
 }
 
 //bool SerialCommunication::dataAvailable(int timeout_ms)
@@ -547,16 +501,6 @@ char SerialCommunication::getChar()
 	}
 }
 
-void SerialCommunication::setMaxPasH(int t_value)
-{
-	maxPasH = t_value;
-}
-
-void SerialCommunication::setMaxPasV(int t_value)
-{
-	maxPasV = t_value;
-}
-
 bool SerialCommunication::gotoXY(int absPasH, int absCransH, int absPasV, int absCransV)
 {
 	Log("SerialCommunication::gotoXY");
@@ -667,51 +611,51 @@ bool SerialCommunication::gotoXY(int absPasH, int absCransH, int absPasV, int ab
 	return true;
 }
 
-bool SerialCommunication::enableSpecPos(bool enable)
-{
-	if (enable)
-	{
-		write("l");
-		if (dataAvailable())
-		{
-			if (check('l'))
-			{
-				return true;
-			}
-			else
-			{
-				Log("Invalid answer");
-				return false;
-			}
-		}
-		else
-		{
-			Log("Request Timed Out");
-			return false;
-		}
-	}
-	else
-	{
-		write("m");
-		if (dataAvailable())
-		{
-			if (check('m'))
-			{
-				return true;
-			}
-			else
-			{
-				Log("Invalid answer");
-				return false;
-			}
-		}
-		else
-		{
-			Log("Request Timed Out");
-			return false;
-		}
-	}
-}
+//bool SerialCommunication::enableSpecPos(bool enable)
+//{
+//	if (enable)
+//	{
+//		write("l");
+//		if (dataAvailable())
+//		{
+//			if (check('l'))
+//			{
+//				return true;
+//			}
+//			else
+//			{
+//				Log("Invalid answer");
+//				return false;
+//			}
+//		}
+//		else
+//		{
+//			Log("Request Timed Out");
+//			return false;
+//		}
+//	}
+//	else
+//	{
+//		write("m");
+//		if (dataAvailable())
+//		{
+//			if (check('m'))
+//			{
+//				return true;
+//			}
+//			else
+//			{
+//				Log("Invalid answer");
+//				return false;
+//			}
+//		}
+//		else
+//		{
+//			Log("Request Timed Out");
+//			return false;
+//		}
+//	}
+//}
 
 bool SerialCommunication::enablePolarization(bool enable)
 {

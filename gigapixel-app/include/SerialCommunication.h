@@ -36,10 +36,6 @@ private:
 	int cransPasH;
 	int cransPasV;
 
-	int coordPasH;
-	int coordPasV;
-	int coordCransH;
-	int coordCransV;
 	int maxPasH;
 	int maxPasV;
 //
@@ -75,10 +71,8 @@ public:
 	bool dataAvailable(int timeout_ms = 5000);
 	bool check(const char t_char);
 	char getChar();
-	void setMaxPasH(int);
-	void setMaxPasV(int);
 	bool gotoXY(int relPasH, int relCransH, int relPasV, int relCransV);
-	bool enableSpecPos(bool);
+	//bool enableSpecPos(bool);
 	bool enablePolarization(bool);
 	bool selectPolarization(int);
 

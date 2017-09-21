@@ -7,8 +7,6 @@
 #include "ZoneSelection.h"
 #include "wcam.h"
 
-#include <vector>
-
 #include <QCamera>
 #include <QCameraViewfinder>
 #include <QCameraImageCapture>
@@ -53,19 +51,25 @@ private:
 	QPushButton* goButton;
 	QPushButton* stopButton;
 	QPushButton* photoButton;
+	QPushButton* doGoto;
 	QProgressBar* bar;
 	QTabWidget* onglets;
 	FocusWindow* focuswindow;
 	QSpinBox* image_v;
 	QSpinBox* image_h;
+	QSpinBox* targetH;
+	QSpinBox* targetV;
 	QDoubleSpinBox* focusDistance;
 	QDoubleSpinBox* sensorIntTime;
 	QSlider* intTimeSlider;
 	QLabel* label_v;
 	QLabel* label_h;
 	QLabel* label_spectre;
+	QLabel* label_ref;
 	QLabel* label_focus;
 	QCheckBox* spectreActif;
+	QCheckBox* redoRef;
+	QCheckBox* startHere;
 	QGroupBox* createFirstExclusiveGroup();
 	QGroupBox* createSecondExclusiveGroup();
 	QWidget* miseAuPoint;
@@ -76,6 +80,7 @@ private:
 	QGroupBox* polarizationGroupBox;
 	QRadioButton* polarizationChoice[5];
 	QPushButton* setSensorSettingsBtn;
+	QPushButton* doRef;
 	QComboBox* gain;
 	QComboBox* upSensorList;
 	QComboBox* downSensorList;
@@ -87,13 +92,10 @@ private:
 	QDoubleSpinBox* pxVSize;
 	QPushButton* camSpecsValidateBtn;
 
-	ZoneSelection* m_zoneSelection;
+	//ZoneSelection* m_zoneSelection;
 
 	CapteurSpectral* capteurHaut;
 	CapteurSpectral* capteurBas;
-
-	std::vector<QString> capteurBasData;
-	std::vector<QString> capteurHautData;
 
 	int nbPhotoH;
 	int nbPhotoV;
@@ -101,6 +103,9 @@ private:
 
 	int nbCranPasH;
 	int nbCranPasV;
+
+	int nbCranMMH;
+	int nbCranMMV;
 
 	int absMaxPhotoH;
 	int absMaxPhotoV;
@@ -124,6 +129,7 @@ private:
 
 	void Fenetre::closeEvent(QCloseEvent* event) override;
 	void setCameraSpecs();
+	void takeSpectralInfo();
 	void takeGigaPixelPhoto();
 
 	bool m_saveSpectrumInfo;
@@ -131,6 +137,7 @@ private:
 	bool do_stop;
 	bool taking_photo;
 	bool sensorSet;
+	bool refOK;
 
 	int startCoordPasH;
 	int startCoordPasV;
@@ -155,11 +162,11 @@ public:
 	~Fenetre();
 	void Log(std::string strMsg);
 	SerialCommunication* serialcomm;
-	void getSpecData();
+	void getSpecData(bool precise = false);
 	void saveSpecData(QString t_data, QString t_sensor);
 public slots:
-	void setStartingCoordAndBounds(QPoint, QPoint);
-	void resetStartingCoordsAndBounds();
+	//void setStartingCoordAndBounds(QPoint, QPoint);
+	//void resetStartingCoordsAndBounds();
 	void updateProgressBar();
 
 private slots:
@@ -171,23 +178,22 @@ private slots:
 	void start();
 	void stop();
 	void setCamSpecsBtnPress();
-	void openZoneSelect();
-	void setCaptureBtn(bool);
-	void setZonePic();
+	//void openZoneSelect();
+	//void setCaptureBtn(bool);
+	//void setZonePic();
 	void setIntTimeValue(int);
 	void setSensorSettings();
 	void refreshSensorsList();
 	void miseAuPointSemiAuto();
 	void miseAuPointManuelleStart();
 	void miseAuPointManuelleStop();
-	void writeSpecData();
+	void doXYRef();
+	void doGotoXY();
+	void updateMaxPhotos(int stateChange);
+	void updateStartCoords();
 
 signals:
-	void LigneFinished();
-	void PasGauche();
-	void PasDroite();
-	void FinCycle();
-	void getSelZone();
+	//void getSelZone();
 };
 
 #endif // FENETRE_H

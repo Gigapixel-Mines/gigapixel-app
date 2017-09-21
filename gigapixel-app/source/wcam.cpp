@@ -47,36 +47,36 @@ WCam::WCam()
 	}
 }
 
-void WCam::readyForCapture(bool ready)
-{
-	emit canCapture(ready);
-}
+//void WCam::readyForCapture(bool ready)
+//{
+//	emit canCapture(ready);
+//}
 
-QImage WCam::getZonePic()
-{
-	return selZonePic;
-}
+//QImage WCam::getZonePic()
+//{
+//	return selZonePic;
+//}
 
-void WCam::imageSaved(int id, const QString& fileName)
-{
-	//qDebug() << fileName;
-	//selZonePic = QImage(fileName);
-	emit selZonePicReady();
-}
+//void WCam::imageSaved(int id, const QString& fileName)
+//{
+//	//qDebug() << fileName;
+//	//selZonePic = QImage(fileName);
+//	emit selZonePicReady();
+//}
 
-void WCam::getImage()
-{
-	//qDebug() << imageCapture->isReadyForCapture();
-	//qDebug() << QDir::currentPath();
-	imageCapture->capture(QDir::currentPath() + QString("/selzone.jpg"));
-}
+//void WCam::getImage()
+//{
+//	//qDebug() << imageCapture->isReadyForCapture();
+//	//qDebug() << QDir::currentPath();
+//	imageCapture->capture(QDir::currentPath() + QString("/selzone.jpg"));
+//}
 
-void WCam::processCapturedImage(int requestId, const QImage& img)
-{
-	Q_UNUSED(requestId);
-	selZonePic = img;
-	if (!selZonePic.isNull())
-	{
-		//emit selZonePicReady();
-	}
-}
+//void WCam::processCapturedImage(int requestId, const QImage& img)
+//{
+//	Q_UNUSED(requestId);
+//	selZonePic = img;
+//	if (!selZonePic.isNull())
+//	{
+//		//emit selZonePicReady();
+//	}
+//}
