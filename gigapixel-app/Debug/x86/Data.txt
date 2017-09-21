@@ -4178,3 +4178,27 @@ Error, serial port not connected, aborting read and check
 Envoie du nombres de crans par pas vertical et horizontal effectué
 Fenêtre principale lancée
 No serial port found
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Failed to OPEN serial port
+Starting Vimba
+Sync object created
+Calling SerialCommunication::envoieCranParPas()
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Serial port is not connected, aborting write
+Error, serial port not connected, aborting read and check
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+No serial port found
+Fin de la session
+

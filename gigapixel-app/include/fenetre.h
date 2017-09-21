@@ -25,8 +25,8 @@
 #define DISTANCE_HORIZONTALE_PAR_CRAN_CM 0.0000785
 #define DISTANCE_VERTICALE_PAR_CRAN_CM 0.0000495
 //Calibration distance/pixels pour la webcam
-#define PX_H_WCAM_TO_CM 0
-#define PX_V_WCAM_TO_CM 0
+//#define PX_H_WCAM_TO_CM 0
+//#define PX_V_WCAM_TO_CM 0
 //Distance entre le capteur spectral haut selon l'horizontale au coin en bas à gauche du CCD
 #define OFFSET_CAPTEUR_HAUT_HORI_CM 0 //Valeur à calibrer, peut être négatif si à gauche
 //Distance entre le capteur spectral haut selon la verticale au coin en bas à gauche du CCD

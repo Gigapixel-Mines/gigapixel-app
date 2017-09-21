@@ -67,199 +67,6 @@ void Fenetre::setCameraSpecs()
 	miseAuPoint->setEnabled(true);
 }
 
-void Fenetre::takeSpectralInfo()
-{
-	stop_mutex.lock();
-	do_stop = false;
-	stop_mutex.unlock();
-
-	//TEST DEBUG
-	saveSpecData("X(px),Y(px),V,B,G,Y,O,R", "haut_precis");
-	saveSpecData("X(px),Y(px),V,B,G,Y,O,R", "bas_precis");
-
-	//Sleep(5000); //for threading synchronization test
-
-	bool versLaDroite = true; //On commence à 0 et on ira vers la droite au début
-
-	int nbMMV = floor(nbPhotoH * nbCranPasH / nbCranMMH);
-	int nbMMH = floor(nbPhotoV * nbCranPasV / nbCranMMV);
-
-	mmCountH = 0;
-	mmCountV = 0;
-
-	for (int i = 1; i <= nbMMV; ++i)
-	{
-		for (int j = 1; j <= nbMMH; ++j) //on fait la ligne en premier
-		{
-			stop_mutex.lock(); //stop() peut accéder à do_stop aussi, on évite des soucis
-			if (do_stop == false)
-			{
-				stop_mutex.unlock();
-				//Les threads ne peuvent pas modifier la GUI, 
-				//on envoie une demande pour avancer la barre de progrès
-				QMetaObject::invokeMethod(this, "updateProgressBar");
-				getSpecData(true);
-				if (versLaDroite)
-				{
-					if (j < nbMMH)
-					{
-						if (!serialcomm->droite())
-						{
-							Log("Erreur lors du déplacement vers la droite");
-							photo_mutex.lock();
-							taking_photo = false;
-							photo_mutex.unlock();
-							//serialcomm->enableSpecPos(false);
-							//remettre le bon nombre de crans par pas
-							serialcomm->setCransH(nbCranPasH);
-							serialcomm->setCransV(nbCranPasV);
-							serialcomm->envoieCranParPas();
-							QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-							//Enlever le polariseur
-							return;
-						}
-						else
-						{
-							++mmCountH;
-						}
-					}
-				}
-				else
-				{
-					if (j < nbMMH)
-					{
-						if (!serialcomm->gauche())
-						{
-							Log("Erreur lors du déplacement vers la gauche");
-							photo_mutex.lock();
-							taking_photo = false;
-							photo_mutex.unlock();
-							//serialcomm->enableSpecPos(false);
-							serialcomm->setCransH(nbCranPasH);
-							serialcomm->setCransV(nbCranPasV);
-							serialcomm->envoieCranParPas();
-							QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-							//Enlever le polariseur
-							return;
-						}
-						else
-						{
-							--mmCountH;
-						}
-					}
-				}
-				if (!serialcomm->dataAvailable())
-				{
-					Log("Serial timedout");
-					photo_mutex.lock();
-					taking_photo = false;
-					photo_mutex.unlock();
-					//serialcomm->enableSpecPos(false);
-					serialcomm->setCransH(nbCranPasH);
-					serialcomm->setCransV(nbCranPasV);
-					serialcomm->envoieCranParPas();
-					QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-					//Enlever le polariseur
-					return;
-				}
-				else
-				{
-					if (!serialcomm->check('z'))
-					{
-						Log("Réponse invalide");
-						photo_mutex.lock();
-						taking_photo = false;
-						photo_mutex.unlock();
-						//serialcomm->enableSpecPos(false);
-						serialcomm->setCransH(nbCranPasH);
-						serialcomm->setCransV(nbCranPasV);
-						serialcomm->envoieCranParPas();
-						QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-						//Enlever le polariseur
-						return;
-					}
-				}
-			}
-			else
-			{
-				stop_mutex.unlock();
-				Log("Arrêt");
-				photo_mutex.lock();
-				taking_photo = false;
-				photo_mutex.unlock();
-				//serialcomm->enableSpecPos(false);
-				serialcomm->setCransH(nbCranPasH);
-				serialcomm->setCransV(nbCranPasV);
-				serialcomm->envoieCranParPas();
-				QMetaObject::invokeMethod(this, "enableButton");
-				//Enlever le polariseur
-				return;
-			}
-		}
-		if (i < nbMMV)
-		{
-			if (!serialcomm->haut())
-			{
-				Log("Erreur lors du déplacement vers le haut");
-				photo_mutex.lock();
-				taking_photo = false;
-				photo_mutex.unlock();
-				//serialcomm->enableSpecPos(false);
-				serialcomm->setCransH(nbCranPasH);
-				serialcomm->setCransV(nbCranPasV);
-				serialcomm->envoieCranParPas();
-				QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-				//Enlever le polariseur
-				return;
-			}
-			else
-			{
-				++mmCountV;
-			}
-			if (!serialcomm->dataAvailable())
-			{
-				Log("Serial timedout");
-				photo_mutex.lock();
-				taking_photo = false;
-				photo_mutex.unlock();
-				//serialcomm->enableSpecPos(false);
-				serialcomm->setCransH(nbCranPasH);
-				serialcomm->setCransV(nbCranPasV);
-				serialcomm->envoieCranParPas();
-				QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-				//Enlever le polariseur
-				return;
-			}
-			else
-			{
-				if (!serialcomm->check('z'))
-				{
-					Log("Réponse invalide");
-					photo_mutex.lock();
-					taking_photo = false;
-					photo_mutex.unlock();
-					//serialcomm->enableSpecPos(false);
-					serialcomm->setCransH(nbCranPasH);
-					serialcomm->setCransV(nbCranPasV);
-					serialcomm->envoieCranParPas();
-					QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-					//Enlever le polariseur
-					return;
-				}
-			}
-		}
-		versLaDroite = !versLaDroite; //On change de direction après avoir fait une ligne
-	}
-	Log("Fin de la prise de photo");
-	photo_mutex.lock();
-	taking_photo = false;
-	photo_mutex.unlock();
-	//serialcomm->enableSpecPos(false);
-	QMetaObject::invokeMethod(this, "enableButton");
-	//Enlever le polariseur
-	return;
-}
-
 void Fenetre::setSensorSettings()
 {
 	if (upSensorList->currentIndex() == downSensorList->currentIndex()) //false for testing with one sensor
@@ -512,6 +319,199 @@ void Fenetre::refreshSensorsList()
 		}
 		return;
 	}
+}
+
+void Fenetre::takeSpectralInfo()
+{
+	stop_mutex.lock();
+	do_stop = false;
+	stop_mutex.unlock();
+
+	//TEST DEBUG
+	saveSpecData("X(px),Y(px),V,B,G,Y,O,R", "haut_precis");
+	saveSpecData("X(px),Y(px),V,B,G,Y,O,R", "bas_precis");
+
+	//Sleep(5000); //for threading synchronization test
+
+	bool versLaDroite = true; //On commence à 0 et on ira vers la droite au début
+
+	int nbMMH = floor(nbPhotoH * nbCranPasH / nbCranMMH);
+	int nbMMV = floor(nbPhotoV * nbCranPasV / nbCranMMV);
+
+	mmCountH = 0;
+	mmCountV = 0;
+
+	for (int i = 1; i <= nbMMV; ++i)
+	{
+		for (int j = 1; j <= nbMMH; ++j) //on fait la ligne en premier
+		{
+			stop_mutex.lock(); //stop() peut accéder à do_stop aussi, on évite des soucis
+			if (do_stop == false)
+			{
+				stop_mutex.unlock();
+				//Les threads ne peuvent pas modifier la GUI, 
+				//on envoie une demande pour avancer la barre de progrès
+				QMetaObject::invokeMethod(this, "updateProgressBar");
+				getSpecData(true);
+				if (versLaDroite)
+				{
+					if (j < nbMMH)
+					{
+						if (!serialcomm->droite())
+						{
+							Log("Erreur lors du déplacement vers la droite");
+							photo_mutex.lock();
+							taking_photo = false;
+							photo_mutex.unlock();
+							//serialcomm->enableSpecPos(false);
+							//remettre le bon nombre de crans par pas
+							serialcomm->setCransH(nbCranPasH);
+							serialcomm->setCransV(nbCranPasV);
+							serialcomm->envoieCranParPas();
+							QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
+																			 //Enlever le polariseur
+							return;
+						}
+						else
+						{
+							++mmCountH;
+						}
+					}
+				}
+				else
+				{
+					if (j < nbMMH)
+					{
+						if (!serialcomm->gauche())
+						{
+							Log("Erreur lors du déplacement vers la gauche");
+							photo_mutex.lock();
+							taking_photo = false;
+							photo_mutex.unlock();
+							//serialcomm->enableSpecPos(false);
+							serialcomm->setCransH(nbCranPasH);
+							serialcomm->setCransV(nbCranPasV);
+							serialcomm->envoieCranParPas();
+							QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
+																			 //Enlever le polariseur
+							return;
+						}
+						else
+						{
+							--mmCountH;
+						}
+					}
+				}
+				if (!serialcomm->dataAvailable())
+				{
+					Log("Serial timedout");
+					photo_mutex.lock();
+					taking_photo = false;
+					photo_mutex.unlock();
+					//serialcomm->enableSpecPos(false);
+					serialcomm->setCransH(nbCranPasH);
+					serialcomm->setCransV(nbCranPasV);
+					serialcomm->envoieCranParPas();
+					QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
+																	 //Enlever le polariseur
+					return;
+				}
+				else
+				{
+					if (!serialcomm->check('z'))
+					{
+						Log("Réponse invalide");
+						photo_mutex.lock();
+						taking_photo = false;
+						photo_mutex.unlock();
+						//serialcomm->enableSpecPos(false);
+						serialcomm->setCransH(nbCranPasH);
+						serialcomm->setCransV(nbCranPasV);
+						serialcomm->envoieCranParPas();
+						QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
+																		 //Enlever le polariseur
+						return;
+					}
+				}
+			}
+			else
+			{
+				stop_mutex.unlock();
+				Log("Arrêt");
+				photo_mutex.lock();
+				taking_photo = false;
+				photo_mutex.unlock();
+				//serialcomm->enableSpecPos(false);
+				serialcomm->setCransH(nbCranPasH);
+				serialcomm->setCransV(nbCranPasV);
+				serialcomm->envoieCranParPas();
+				QMetaObject::invokeMethod(this, "enableButton");
+				//Enlever le polariseur
+				return;
+			}
+		}
+		if (i < nbMMV)
+		{
+			if (!serialcomm->haut())
+			{
+				Log("Erreur lors du déplacement vers le haut");
+				photo_mutex.lock();
+				taking_photo = false;
+				photo_mutex.unlock();
+				//serialcomm->enableSpecPos(false);
+				serialcomm->setCransH(nbCranPasH);
+				serialcomm->setCransV(nbCranPasV);
+				serialcomm->envoieCranParPas();
+				QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
+																 //Enlever le polariseur
+				return;
+			}
+			else
+			{
+				++mmCountV;
+			}
+			if (!serialcomm->dataAvailable())
+			{
+				Log("Serial timedout");
+				photo_mutex.lock();
+				taking_photo = false;
+				photo_mutex.unlock();
+				//serialcomm->enableSpecPos(false);
+				serialcomm->setCransH(nbCranPasH);
+				serialcomm->setCransV(nbCranPasV);
+				serialcomm->envoieCranParPas();
+				QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
+																 //Enlever le polariseur
+				return;
+			}
+			else
+			{
+				if (!serialcomm->check('z'))
+				{
+					Log("Réponse invalide");
+					photo_mutex.lock();
+					taking_photo = false;
+					photo_mutex.unlock();
+					//serialcomm->enableSpecPos(false);
+					serialcomm->setCransH(nbCranPasH);
+					serialcomm->setCransV(nbCranPasV);
+					serialcomm->envoieCranParPas();
+					QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
+																	 //Enlever le polariseur
+					return;
+				}
+			}
+		}
+		versLaDroite = !versLaDroite; //On change de direction après avoir fait une ligne
+	}
+	Log("Fin de la prise de photo");
+	photo_mutex.lock();
+	taking_photo = false;
+	photo_mutex.unlock();
+	//serialcomm->enableSpecPos(false);
+	QMetaObject::invokeMethod(this, "enableButton");
+	//Enlever le polariseur
+	return;
 }
 
 void Fenetre::takeGigaPixelPhoto()
@@ -1285,15 +1285,15 @@ void Fenetre::getSpecData(bool precise)
 	QString basCoords;
 	hautCoords = QString::number(XCoordHautPx) + "," + QString::number(YCoordHautPx) + ",";
 	basCoords = QString::number(XCoordBasPx) + "," + QString::number(YCoordBasPx) + ",";
-	if (!precise)
-	{
-		saveSpecData(hautCoords + hautData, "haut");
-		saveSpecData(basCoords + basData, "bas");
-	}
-	else
+	if (precise)
 	{
 		saveSpecData(hautCoords + hautData, "haut_precis");
 		saveSpecData(basCoords + basData, "bas_precis");
+	}
+	else
+	{
+		saveSpecData(hautCoords + hautData, "haut");
+		saveSpecData(basCoords + basData, "bas");
 	}
 }
 
