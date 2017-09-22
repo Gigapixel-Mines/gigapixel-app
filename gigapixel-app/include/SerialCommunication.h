@@ -75,6 +75,7 @@ public:
 	//bool enableSpecPos(bool);
 	bool enablePolarization(bool);
 	bool selectPolarization(int);
+	bool relativeCransXY(int directionH, int cransH, int directionV, int cransV);
 
 signals:
     // Suite a la lecture

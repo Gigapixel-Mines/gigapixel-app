@@ -38,10 +38,10 @@ void Fenetre::setCameraSpecs()
 	double tailleCapteurH = resHpx * sizeHpx;
 	double tailleCapteurV = resVpx * sizeVpx;
 	double recouvre_5_pourcent = floor(0.05 * totalPixels);
-	decalageHorizontal = recouvre_5_pourcent / resVpx; //en pixel
-	decalageVertical = recouvre_5_pourcent / resHpx;
-	decalageHorizontal = decalageHorizontal * sizeHpx; //en cm
-	decalageVertical = decalageVertical * sizeVpx; //en cm
+	decalageHorizontalPx = recouvre_5_pourcent / resVpx; //en pixel
+	decalageVerticalPx = recouvre_5_pourcent / resHpx;
+	decalageHorizontal = decalageHorizontalPx * sizeHpx; //en cm
+	decalageVertical = decalageVerticalPx * sizeVpx; //en cm
 	nbCranPasH = static_cast<int>((tailleCapteurH - decalageHorizontal) / DISTANCE_HORIZONTALE_PAR_CRAN_CM);
 	nbCranPasV = static_cast<int>((tailleCapteurV - decalageVertical) / DISTANCE_VERTICALE_PAR_CRAN_CM);
 	absMaxPhotoH = floor(LONGUEUR_HORIZONTALE_CM / (tailleCapteurH - decalageHorizontal));
@@ -166,14 +166,19 @@ void Fenetre::miseAuPointManuelleStart()
 			ok->exec();
 			return;
 		}
-		else if (serialcomm->check('x'))
+		else
 		{
-			QMessageBox* info = new QMessageBox();
-			info->setWindowTitle("Réglage manuel");
-			info->setText("Veuillez mettre le potentiomètre sur 0 avant de lancer la mise au point manuelle");
-			info->exec();
+			Log("Réponse invalide");
 			return;
 		}
+		//else if (serialcomm->check('x'))
+		//{
+		//	QMessageBox* info = new QMessageBox();
+		//	info->setWindowTitle("Réglage manuel");
+		//	info->setText("Veuillez mettre le potentiomètre sur 0 avant de lancer la mise au point manuelle");
+		//	info->exec();
+		//	return;
+		//}
 	}
 	else
 	{
@@ -199,13 +204,18 @@ void Fenetre::miseAuPointManuelleStop()
 			zoneSelect->setEnabled(true);
 			return;
 		}
-		else if (serialcomm->check('x'))
+		else
 		{
-			QMessageBox* info = new QMessageBox();
-			info->setWindowTitle("Réglage manuel");
-			info->setText("Veuillez mettre le potentiomètre sur 0 avant d'arrêter la mise au point manuelle");
-			info->exec();
+			Log("Réponse invalide");
+			return;
 		}
+		//else if (serialcomm->check('x'))
+		//{
+		//	QMessageBox* info = new QMessageBox();
+		//	info->setWindowTitle("Réglage manuel");
+		//	info->setText("Veuillez mettre le potentiomètre sur 0 avant d'arrêter la mise au point manuelle");
+		//	info->exec();
+		//}
 	}
 	else
 	{
@@ -327,7 +337,9 @@ void Fenetre::takeSpectralInfo()
 	do_stop = false;
 	stop_mutex.unlock();
 
-	//TEST DEBUG
+	deletePreviousFile("haut_precis");
+	deletePreviousFile("bas_precis");
+
 	saveSpecData("X(px),Y(px),V,B,G,Y,O,R", "haut_precis");
 	saveSpecData("X(px),Y(px),V,B,G,Y,O,R", "bas_precis");
 
@@ -357,19 +369,17 @@ void Fenetre::takeSpectralInfo()
 				{
 					if (j < nbMMH)
 					{
-						if (!serialcomm->droite())
+						if (!serialcomm->relativeCransXY(1, nbCranMMH, 0, 0))
 						{
 							Log("Erreur lors du déplacement vers la droite");
 							photo_mutex.lock();
 							taking_photo = false;
 							photo_mutex.unlock();
-							//serialcomm->enableSpecPos(false);
-							//remettre le bon nombre de crans par pas
 							serialcomm->setCransH(nbCranPasH);
 							serialcomm->setCransV(nbCranPasV);
 							serialcomm->envoieCranParPas();
 							QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-																			 //Enlever le polariseur
+							//Enlever le polariseur
 							return;
 						}
 						else
@@ -382,7 +392,7 @@ void Fenetre::takeSpectralInfo()
 				{
 					if (j < nbMMH)
 					{
-						if (!serialcomm->gauche())
+						if (!serialcomm->relativeCransXY(0, nbCranMMH, 0, 0))
 						{
 							Log("Erreur lors du déplacement vers la gauche");
 							photo_mutex.lock();
@@ -400,37 +410,6 @@ void Fenetre::takeSpectralInfo()
 						{
 							--mmCountH;
 						}
-					}
-				}
-				if (!serialcomm->dataAvailable())
-				{
-					Log("Serial timedout");
-					photo_mutex.lock();
-					taking_photo = false;
-					photo_mutex.unlock();
-					//serialcomm->enableSpecPos(false);
-					serialcomm->setCransH(nbCranPasH);
-					serialcomm->setCransV(nbCranPasV);
-					serialcomm->envoieCranParPas();
-					QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-																	 //Enlever le polariseur
-					return;
-				}
-				else
-				{
-					if (!serialcomm->check('z'))
-					{
-						Log("Réponse invalide");
-						photo_mutex.lock();
-						taking_photo = false;
-						photo_mutex.unlock();
-						//serialcomm->enableSpecPos(false);
-						serialcomm->setCransH(nbCranPasH);
-						serialcomm->setCransV(nbCranPasV);
-						serialcomm->envoieCranParPas();
-						QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-																		 //Enlever le polariseur
-						return;
 					}
 				}
 			}
@@ -452,7 +431,7 @@ void Fenetre::takeSpectralInfo()
 		}
 		if (i < nbMMV)
 		{
-			if (!serialcomm->haut())
+			if (!serialcomm->relativeCransXY(0, 0, 1, nbCranMMV))
 			{
 				Log("Erreur lors du déplacement vers le haut");
 				photo_mutex.lock();
@@ -469,37 +448,6 @@ void Fenetre::takeSpectralInfo()
 			else
 			{
 				++mmCountV;
-			}
-			if (!serialcomm->dataAvailable())
-			{
-				Log("Serial timedout");
-				photo_mutex.lock();
-				taking_photo = false;
-				photo_mutex.unlock();
-				//serialcomm->enableSpecPos(false);
-				serialcomm->setCransH(nbCranPasH);
-				serialcomm->setCransV(nbCranPasV);
-				serialcomm->envoieCranParPas();
-				QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-																 //Enlever le polariseur
-				return;
-			}
-			else
-			{
-				if (!serialcomm->check('z'))
-				{
-					Log("Réponse invalide");
-					photo_mutex.lock();
-					taking_photo = false;
-					photo_mutex.unlock();
-					//serialcomm->enableSpecPos(false);
-					serialcomm->setCransH(nbCranPasH);
-					serialcomm->setCransV(nbCranPasV);
-					serialcomm->envoieCranParPas();
-					QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-																	 //Enlever le polariseur
-					return;
-				}
 			}
 		}
 		versLaDroite = !versLaDroite; //On change de direction après avoir fait une ligne
@@ -523,15 +471,10 @@ void Fenetre::takeGigaPixelPhoto()
 	//TEST DEBUG
 	if (sensorSet)
 	{
+		deletePreviousFile("haut");
+		deletePreviousFile("bas");
 		saveSpecData("X(px),Y(px),V,B,G,Y,O,R", "haut");
 		saveSpecData("X(px),Y(px),V,B,G,Y,O,R", "bas");
-	}
-	else
-	{
-		QMessageBox* info = new QMessageBox();
-		info->setWindowTitle("Information");
-		info->setText("Les capteurs spectraux ne sont pas réglés, les informations spectrales ne seront pas enregistrées");
-		info->exec();
 	}
 
 	//Sleep(5000); //for threading synchronization test
@@ -579,6 +522,31 @@ void Fenetre::takeGigaPixelPhoto()
 							//Enlever le polariseur
 							return;
 						}
+						if (!serialcomm->dataAvailable(20000))
+						{
+							Log("Serial timedout");
+							photo_mutex.lock();
+							taking_photo = false;
+							photo_mutex.unlock();
+							//serialcomm->enableSpecPos(false);
+							QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
+																			 //Enlever le polariseur
+							return;
+						}
+						else
+						{
+							if (!serialcomm->check('z'))
+							{
+								Log("Réponse invalide");
+								photo_mutex.lock();
+								taking_photo = false;
+								photo_mutex.unlock();
+								//serialcomm->enableSpecPos(false);
+								QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
+																				 //Enlever le polariseur
+								return;
+							}
+						}
 					}
 				}
 				else
@@ -596,31 +564,31 @@ void Fenetre::takeGigaPixelPhoto()
 							//Enlever le polariseur
 							return;
 						}
-					}
-				}
-				if (!serialcomm->dataAvailable())
-				{
-					Log("Serial timedout");
-					photo_mutex.lock();
-					taking_photo = false;
-					photo_mutex.unlock();
-					//serialcomm->enableSpecPos(false);
-					QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-					//Enlever le polariseur
-					return;
-				}
-				else
-				{
-					if (!serialcomm->check('z'))
-					{
-						Log("Réponse invalide");
-						photo_mutex.lock();
-						taking_photo = false;
-						photo_mutex.unlock();
-						//serialcomm->enableSpecPos(false);
-						QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-						//Enlever le polariseur
-						return;
+						if (!serialcomm->dataAvailable(20000))
+						{
+							Log("Serial timedout");
+							photo_mutex.lock();
+							taking_photo = false;
+							photo_mutex.unlock();
+							//serialcomm->enableSpecPos(false);
+							QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
+																			 //Enlever le polariseur
+							return;
+						}
+						else
+						{
+							if (!serialcomm->check('z'))
+							{
+								Log("Réponse invalide");
+								photo_mutex.lock();
+								taking_photo = false;
+								photo_mutex.unlock();
+								//serialcomm->enableSpecPos(false);
+								QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
+																				 //Enlever le polariseur
+								return;
+							}
+						}
 					}
 				}
 			}
@@ -650,7 +618,7 @@ void Fenetre::takeGigaPixelPhoto()
 				//Enlever le polariseur
 				return;
 			}
-			if (!serialcomm->dataAvailable())
+			if (!serialcomm->dataAvailable(20000))
 			{
 				Log("Serial timedout");
 				photo_mutex.lock();
@@ -691,6 +659,11 @@ void Fenetre::takeGigaPixelPhoto()
 void Fenetre::updateProgressBar()
 {
 	bar->setValue(bar->value() + 1);
+}
+
+void Fenetre::deletePreviousFile(QString sensorType)
+{
+	QFile::remove(dataDir + "capteur_" + sensorType + "_data.txt");
 }
 
 Fenetre::Fenetre()
@@ -821,19 +794,19 @@ Fenetre::Fenetre()
 	//Page Mise au point
 	QGroupBox* autoFocusGroup = new QGroupBox(tr("Mise au point semi-auto"));
 	QGridLayout* vgridAutoFocus = new QGridLayout();
-	focusDistance = new QDoubleSpinBox();
-	focusDistance->setMinimum(0.0);
-	focusDistance->setValue(1.2);
-	focusDistance->setSingleStep(0.1);
-	focusDistance->setFixedSize(60, 20);
-	label_focus = new QLabel("Distance de mise au point en m : ");
-	autoFocus = new QPushButton("Mise au point");
-	vgridAutoFocus->addWidget(label_focus, 0, 0);
-	vgridAutoFocus->addWidget(focusDistance, 0, 1);
-	vgridAutoFocus->addWidget(autoFocus, 1, 1);
-	autoFocusGroup->setLayout(vgridAutoFocus);
+	//focusDistance = new QDoubleSpinBox();
+	//focusDistance->setMinimum(0.0);
+	//focusDistance->setValue(1.2);
+	//focusDistance->setSingleStep(0.1);
+	//focusDistance->setFixedSize(60, 20);
+	//label_focus = new QLabel("Distance de mise au point en m : ");
+	//autoFocus = new QPushButton("Mise au point");
+	//vgridAutoFocus->addWidget(label_focus, 0, 0);
+	//vgridAutoFocus->addWidget(focusDistance, 0, 1);
+	//vgridAutoFocus->addWidget(autoFocus, 1, 1);
+	//autoFocusGroup->setLayout(vgridAutoFocus);
 
-	QObject::connect(autoFocus, SIGNAL(clicked()), this, SLOT(miseAuPointSemiAuto()));
+	//QObject::connect(autoFocus, SIGNAL(clicked()), this, SLOT(miseAuPointSemiAuto()));
 
 	QGroupBox* manFocusGroup = new QGroupBox(tr("Mise au point manuelle"));
 	QGridLayout* vgridManFocus = new QGridLayout();
@@ -849,7 +822,7 @@ Fenetre::Fenetre()
 	//QObject::connect(zoneSelect, SIGNAL(clicked()), this, SLOT(openZoneSelect())); //Test
 
 	QGridLayout* vgridFocus = new QGridLayout();
-	vgridFocus->addWidget(autoFocusGroup, 0, 0);
+	//vgridFocus->addWidget(autoFocusGroup, 0, 0);
 	vgridFocus->addWidget(manFocusGroup, 1, 0);
 	miseAuPoint->setLayout(vgridFocus);
 
@@ -1001,39 +974,6 @@ QGroupBox* Fenetre::createSecondExclusiveGroup()
 	return groupBox;
 }
 
-//void Fenetre::compteur()
-//{
-//	Log("Compteur");
-//	alpha = alpha + 1;
-//	bar->setValue(bar->value() + 1);
-//	if (gamma == 1)
-//	{
-//		emit FinCycle();
-//		return;
-//	}
-//	if (alpha % pas_h == 0)
-//	{
-//		beta = beta + 1;
-//		if (beta < pas_v)
-//		{
-//			emit LigneFinished();
-//			return;
-//		}
-//		if (beta >= pas_v)
-//		{
-//			emit FinCycle();
-//			return;
-//		}
-//	}
-//	if (beta % 2 == 0)
-//	{
-//		emit PasDroite();
-//		return;
-//	}
-//	emit PasGauche();
-//	return;
-//}
-
 void Fenetre::start()
 {
 	photo_mutex.lock();
@@ -1047,8 +987,8 @@ void Fenetre::start()
 
 	bar->setValue(0);
 
-	currResPicH = floor(decalageHorizontal) * nbPhotoH;
-	currResPicV = floor(decalageVertical) * nbPhotoV;
+	currResPicH = static_cast<int>((resHpx - decalageHorizontalPx) * nbPhotoH);
+	currResPicV = static_cast<int>((resVpx - decalageVerticalPx) * nbPhotoV);
 	Log("Résolution de l'image " + std::to_string(currResPicH) + "x" + std::to_string(currResPicV));
 
 	mmCountH = 0;
@@ -1095,7 +1035,6 @@ void Fenetre::start()
 	//	}
 	//}
 
-	focuswindow->stopImgRefresh(true); //Avoid threading problem with sync in focuswindow
 	//QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhoto);
 
 	//Récupération de la référence 0,0 en X, Y
@@ -1142,17 +1081,24 @@ void Fenetre::start()
 		//Nb de crans par mm
 		nbCranMMH = 1 / (10 * DISTANCE_HORIZONTALE_PAR_CRAN_CM);
 		nbCranMMV = 1 / (10 * DISTANCE_VERTICALE_PAR_CRAN_CM);
-		serialcomm->setCransH(nbCranMMH);
-		serialcomm->setCransV(nbCranMMV);
+		int nbMMH = floor(nbPhotoH * nbCranPasH / nbCranMMH);
+		int nbMMV = floor(nbPhotoV * nbCranPasV / nbCranMMV);
+		bar->setMaximum(nbMMH * nbMMV);
 		QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeSpectralInfo);
-		//Envoyer un message pour dire que l'on veut la remontée
-		//des données de positions spectrales
 	}
 	else
 	{
+		if (!sensorSet)
+		{
+			QMessageBox* info = new QMessageBox();
+			info->setWindowTitle("Information");
+			info->setText("Les capteurs spectraux ne sont pas réglés, les informations spectrales ne seront pas enregistrées");
+			info->exec();
+		}
 		photo_mutex.lock();
 		taking_photo = true;
 		photo_mutex.unlock();
+		bar->setMaximum(nbrPhoto);
 		focuswindow->stopImgRefresh(true); //Avoid threading problem with sync in focuswindow
 		QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhoto);
 	}
@@ -1172,6 +1118,7 @@ void Fenetre::disableButton()
 	goButton->setEnabled(false);
 	spectreActif->setEnabled(false);
 	redoRef->setEnabled(false);
+	startHere->setEnabled(false);
 	image_h->setEnabled(false);
 	image_v->setEnabled(false);
 	//alpha = 0;
@@ -1179,7 +1126,6 @@ void Fenetre::disableButton()
 	bar->setValue(0);
 	nbrPhoto = nbPhotoH * nbPhotoV;
 	bar->setMinimum(0);
-	bar->setMaximum(nbrPhoto);
 	miseAuPoint->setEnabled(false);
 	sensorSettings->setEnabled(false);
 	cameraSpecs->setEnabled(false);
@@ -1208,6 +1154,8 @@ void Fenetre::enableButton()
 	cameraSpecs->setEnabled(true);
 	polarizationGroupBox->setEnabled(true);
 	doRef->setEnabled(true);
+	redoRef->setEnabled(true);
+	startHere->setEnabled(true);
 	focuswindow->stopImgRefresh(false);
 	buttonEnable_mutex.unlock();
 }
@@ -1265,7 +1213,7 @@ void Fenetre::getSpecData(bool precise)
 	QString hautData;
 	QString basData;
 	//Wait the integration time before asking for data
-	Sleep(ceil(intTimeSlider->value() * 2.8));
+	Sleep(ceil(intTimeSlider->value() * 2.8 * 2)); //Attendre deux fois le temps d'intégration
 	capteurHaut->write("ATDATA\n");
 	capteurBas->write("ATDATA\n");
 	hautData = capteurHaut->getData();
@@ -1276,23 +1224,23 @@ void Fenetre::getSpecData(bool precise)
 	hautData.replace(" ", "");
 	basData = hautData.simplified();
 	basData.replace(" ", "");
-	int tmpCountmmH;
-	int tmpCountmmV;
+	float tmpCountmmH;
+	float tmpCountmmV;
 	mutex_mmH.lock();
-	tmpCountmmH = mmCountH;
+	tmpCountmmH = static_cast<float>(mmCountH);
 	mutex_mmH.unlock();
 	mutex_mmV.lock();
-	tmpCountmmV = mmCountV;
+	tmpCountmmV = static_cast<float>(mmCountV);
 	mutex_mmV.unlock();
-	int XCoordHautPx = floor(((tmpCountmmH / 10) + OFFSET_CAPTEUR_HAUT_HORI_CM) / (sizeHpx / 10000));
-	int XCoordBasPx = floor(((tmpCountmmH / 10) + OFFSET_CAPTEUR_BAS_HORI_CM) / (sizeHpx / 10000));
+	int XCoordHautPx = static_cast<int>(((tmpCountmmH / 10) + OFFSET_CAPTEUR_HAUT_HORI_CM) / (sizeHpx));
+	int XCoordBasPx = static_cast<int>(((tmpCountmmH / 10) + OFFSET_CAPTEUR_BAS_HORI_CM) / (sizeHpx));
 	//Inverser les coords X par rapport à la résolution de l'image
 	//(axe inversée par rapport à l'image finale)
 	XCoordHautPx = -XCoordHautPx + currResPicH;
 	XCoordBasPx = -XCoordBasPx + currResPicH;
 	//Pas d'inversion pour Y, l'axe progresse dans la même direction
-	int YCoordHautPx = floor(((tmpCountmmV / 10) + OFFSET_CAPTEUR_HAUT_VERTI_CM) / (sizeVpx / 10000));
-	int YCoordBasPx = floor(((tmpCountmmV / 10) + OFFSET_CAPTEUR_BAS_VERTI_CM) / (sizeVpx / 10000));
+	int YCoordHautPx = static_cast<int>(((tmpCountmmV / 10) + OFFSET_CAPTEUR_HAUT_VERTI_CM) / (sizeVpx));
+	int YCoordBasPx = static_cast<int>(((tmpCountmmV / 10) + OFFSET_CAPTEUR_BAS_VERTI_CM) / (sizeVpx));
 	QString hautCoords;
 	QString basCoords;
 	hautCoords = QString::number(XCoordHautPx) + "," + QString::number(YCoordHautPx) + ",";

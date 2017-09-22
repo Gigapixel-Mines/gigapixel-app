@@ -580,7 +580,7 @@ bool SerialCommunication::gotoXY(int absPasH, int absCransH, int absPasV, int ab
 	}
 	//On attend la réponse pour les déplacements
 	//OK hori
-	if (dataAvailable(50000))
+	if (dataAvailable(120000))
 	{
 		if (!check('z'))
 		{
@@ -589,7 +589,7 @@ bool SerialCommunication::gotoXY(int absPasH, int absCransH, int absPasV, int ab
 		}
 	}
 	//OK verti
-	if (dataAvailable(50000))
+	if (dataAvailable(120000))
 	{
 		if (!check('z'))
 		{
@@ -608,6 +608,116 @@ bool SerialCommunication::gotoXY(int absPasH, int absCransH, int absPasV, int ab
 		}
 	}
 	Log("Goto OK");
+	return true;
+}
+
+bool SerialCommunication::relativeCransXY(int directionH, int cransH, int directionV, int cransV)
+{
+	Log("SerialCommunication::relaiveCransXY");
+	write("s");
+	if (dataAvailable())
+	{
+		if (!check('s'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	//Si l'Arduino répond k
+	write(QByteArray(1, directionH));
+	if (dataAvailable())
+	{
+		if (!check('s'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	int weakByteMask = 0x000000FF;
+	char strongByte = cransH >> 8;
+	char weakByte = cransH & weakByteMask;
+	//Il faut envoyer les deux bytes
+	//On envoie le premier
+	write(QByteArray(1, strongByte));
+	if (dataAvailable())
+	{
+		if (!check('s'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	write(QByteArray(1, weakByte));
+	if (dataAvailable())
+	{
+		if (!check('s'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	//Si l'Arduino répond k
+	write(QByteArray(1, directionV));
+	if (dataAvailable())
+	{
+		if (!check('s'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	strongByte = cransV >> 8;
+	weakByte = cransV & weakByteMask;
+	//Il faut envoyer les deux bytes
+	//On envoie le premier
+	write(QByteArray(1, strongByte));
+	if (dataAvailable())
+	{
+		if (!check('s'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	write(QByteArray(1, weakByte));
+	if (dataAvailable())
+	{
+		if (!check('s'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	//On attend la réponse pour les déplacements
+	//OK hori
+	if (dataAvailable(120000))
+	{
+		if (!check('z'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	//OK verti
+	if (dataAvailable(120000))
+	{
+		if (!check('z'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+
+	//on attend la confirmation finale
+	if (dataAvailable())
+	{
+		if (!check('s'))
+		{
+			Log("Réponse invalide");
+			return false;
+		}
+	}
+	Log("Relative XY OK");
 	return true;
 }
 
@@ -662,7 +772,7 @@ bool SerialCommunication::enablePolarization(bool enable)
 	if (enable)
 	{
 		write("n");
-		if (dataAvailable())
+		if (dataAvailable(20000))
 		{
 			if (check('n'))
 			{
@@ -683,7 +793,7 @@ bool SerialCommunication::enablePolarization(bool enable)
 	else
 	{
 		write("o");
-		if (dataAvailable())
+		if (dataAvailable(20000))
 		{
 			if (check('o'))
 			{

@@ -28,13 +28,13 @@
 //#define PX_H_WCAM_TO_CM 0
 //#define PX_V_WCAM_TO_CM 0
 //Distance entre le capteur spectral haut selon l'horizontale au coin en bas à gauche du CCD
-#define OFFSET_CAPTEUR_HAUT_HORI_CM 0 //Valeur à calibrer, peut être négatif si à gauche
+#define OFFSET_CAPTEUR_HAUT_HORI_CM -2.4 //Valeur à calibrer, peut être négatif si à gauche
 //Distance entre le capteur spectral haut selon la verticale au coin en bas à gauche du CCD
-#define OFFSET_CAPTEUR_HAUT_VERTI_CM 0
+#define OFFSET_CAPTEUR_HAUT_VERTI_CM 1.3
 //Distance entre le capteur spectral bas selon l'horizontale au coin en bas à gauche du CCD
-#define OFFSET_CAPTEUR_BAS_HORI_CM 0 //Valeur à calibrer
+#define OFFSET_CAPTEUR_BAS_HORI_CM -2.4 //Valeur à calibrer
 //Distance entre le capteur spectral bas selon la verticale au coin en bas à gauche du CCD
-#define OFFSET_CAPTEUR_BAS_VERTI_CM 0
+#define OFFSET_CAPTEUR_BAS_VERTI_CM -0.2
 #define FOCALE_M 0.3
 #define DISTANCE_OBJCCD_MIN_M 0 //A calibrer, sert de réf (butée loin du CCD) = 0
 #define DISTANCE_OBJCCD_MAX_M 0 //A calibrer
@@ -121,6 +121,8 @@ private:
 	double sizeHpx;
 	double sizeVpx;
 
+	double decalageHorizontalPx;
+	double decalageVerticalPx;
 	double decalageHorizontal;
 	double decalageVertical;
 
@@ -147,6 +149,8 @@ private:
 	int currResPicH;
 	int currResPicV;
 
+	void deletePreviousFile(QString sensorType);
+	
 	QMutex stop_mutex;
 	QMutex photo_mutex;
 	QMutex buttonEnable_mutex;

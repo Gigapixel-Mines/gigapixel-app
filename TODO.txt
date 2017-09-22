@@ -1,0 +1,4 @@
+Sélection zone avec webcam (calibration infernale + conversions coordonnées idem)
+Mise au point semi auto (pas de compte tour sur le moteur de focale = impossible de savoir où on est = pas fait)
+Difficile : récupération des infos des capteurs spectraux en continu pendant déplacement du chariot
+Le reste devrait fonctionner

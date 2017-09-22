@@ -100,7 +100,7 @@ QString FocusWindow::setPolarization(int t_polarization)
 	}
 	else
 	{
-		QDir(dirpath + polarizationDir).removeRecursively();
+		//QDir(dirpath + polarizationDir).removeRecursively();
 		while (!QDir(dirpath + polarizationDir).exists())
 		{
 			QDir().mkdir(dirpath + polarizationDir);
