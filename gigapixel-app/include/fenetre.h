@@ -76,7 +76,7 @@ private:
 	QWidget* run;
 	QWidget* cameraSpecs;
 	QWidget* sensorSettings;
-	QPushButton* zoneSelect;
+	//QPushButton* zoneSelect;
 	QGroupBox* polarizationGroupBox;
 	QRadioButton* polarizationChoice[5];
 	QPushButton* setSensorSettingsBtn;

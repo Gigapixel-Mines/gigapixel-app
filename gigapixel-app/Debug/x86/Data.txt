@@ -12412,3 +12412,114 @@ Starting Acquisition
 Fin de la session
 
 Stopping Acquisition
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+calling SerialCommunication::miseAuPointManuelleStart()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+calling SerialCommunication::miseAuPointManuelleStart()
+calling SerialCommunication::write
+Data successfully sent to port %1
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+calling SerialCommunication::miseAuPointManuelleStart()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::miseAuPointManuelleStop
+calling SerialCommunication::write
+Data successfully sent to port %1
+Fin de la session
+
+Stopping Acquisition
+Démarrage du programme
+SerialCommunication constructor called
+calling SerialCommunication::connectSerialPort()
+Connection port serie etablie
+Serial port opened
+Starting Vimba
+Sync object created
+Starting Acquisition
+Calling SerialCommunication::envoieCranParPas()
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+calling SerialCommunication::write
+Data successfully sent to port %1
+Envoie du nombres de crans par pas vertical et horizontal effectué
+Fenêtre principale lancée
+Failure in receiving image
+calling SerialCommunication::miseAuPointManuelleStart()
+calling SerialCommunication::write
+Data successfully sent to port %1

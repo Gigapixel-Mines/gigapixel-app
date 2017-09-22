@@ -116,7 +116,7 @@ void Fenetre::miseAuPointSemiAuto()
 	focusDistance->setEnabled(false);
 	miseAuPointManuelleStartBtn->setEnabled(false);
 	miseAuPointManuelleStopBtn->setEnabled(false);
-	zoneSelect->setEnabled(false);
+	//zoneSelect->setEnabled(false);
 
 	double distanceMiseAuPoint = focusDistance->value();
 	double distanceCCDObjectif = 1 / (1 / FOCALE_M + 1 / distanceMiseAuPoint);
@@ -140,14 +140,14 @@ void Fenetre::miseAuPointSemiAuto()
 	focusDistance->setEnabled(true);
 	miseAuPointManuelleStartBtn->setEnabled(true);
 	miseAuPointManuelleStopBtn->setEnabled(true);
-	zoneSelect->setEnabled(true);
+	//zoneSelect->setEnabled(true);
 	return;
 }
 
 void Fenetre::miseAuPointManuelleStart()
 {
 	serialcomm->miseAuPointManuelleStart();
-	if (serialcomm->dataAvailable())
+	if (serialcomm->dataAvailable(5000))
 	{
 		if (serialcomm->check('f'))
 		{
@@ -156,10 +156,10 @@ void Fenetre::miseAuPointManuelleStart()
 			sensorSettings->setEnabled(false);
 			cameraSpecs->setEnabled(false);
 			run->setEnabled(false);
-			focusDistance->setEnabled(false);
-			autoFocus->setEnabled(false);
+			//focusDistance->setEnabled(false);
+			//autoFocus->setEnabled(false);
 			miseAuPointManuelleStartBtn->setEnabled(false);
-			zoneSelect->setEnabled(false);
+			//zoneSelect->setEnabled(false);
 			QMessageBox* ok = new QMessageBox();
 			ok->setWindowTitle("Réglage manuel");
 			ok->setText("Vous pouvez utiliser le potentiomètre pour faire la mise au point");
@@ -198,10 +198,10 @@ void Fenetre::miseAuPointManuelleStop()
 			sensorSettings->setEnabled(true);
 			cameraSpecs->setEnabled(true);
 			run->setEnabled(true);
-			focusDistance->setEnabled(true);
-			autoFocus->setEnabled(true);
+			//focusDistance->setEnabled(true);
+			//autoFocus->setEnabled(true);
 			miseAuPointManuelleStartBtn->setEnabled(true);
-			zoneSelect->setEnabled(true);
+			//zoneSelect->setEnabled(true);
 			return;
 		}
 		else
