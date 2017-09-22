@@ -521,8 +521,18 @@ void Fenetre::takeGigaPixelPhoto()
 	stop_mutex.unlock();
 
 	//TEST DEBUG
-	saveSpecData("X(px),Y(px),V,B,G,Y,O,R", "haut");
-	saveSpecData("X(px),Y(px),V,B,G,Y,O,R", "bas");
+	if (sensorSet)
+	{
+		saveSpecData("X(px),Y(px),V,B,G,Y,O,R", "haut");
+		saveSpecData("X(px),Y(px),V,B,G,Y,O,R", "bas");
+	}
+	else
+	{
+		QMessageBox* info = new QMessageBox();
+		info->setWindowTitle("Information");
+		info->setText("Les capteurs spectraux ne sont pas réglés, les informations spectrales ne seront pas enregistrées");
+		info->exec();
+	}
 
 	//Sleep(5000); //for threading synchronization test
 
@@ -550,7 +560,10 @@ void Fenetre::takeGigaPixelPhoto()
 					//Enlever le polariseur
 					return;
 				}
-				getSpecData();
+				if (sensorSet)
+				{
+					getSpecData();
+				}
 				if (versLaDroite)
 				{
 					if (j < nbPhotoH)
@@ -1081,16 +1094,6 @@ void Fenetre::start()
 	//		return;
 	//	}
 	//}
-	
-	if (!sensorSet)
-	{
-		QMessageBox* error = new QMessageBox();
-		error->setWindowTitle("Erreur");
-		error->setText("Les capteurs spectraux ne sont pas paramétrés");
-		error->exec();
-		enableButton();
-		return;
-	}
 
 	focuswindow->stopImgRefresh(true); //Avoid threading problem with sync in focuswindow
 	//QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhoto);
@@ -1124,6 +1127,15 @@ void Fenetre::start()
 	m_saveSpectrumInfo = spectreActif->isChecked();
 	if (m_saveSpectrumInfo)
 	{
+		if (!sensorSet)
+		{
+			QMessageBox* error = new QMessageBox();
+			error->setWindowTitle("Erreur");
+			error->setText("Les capteurs spectraux ne sont pas paramétrés");
+			error->exec();
+			enableButton();
+			return;
+		}
 		photo_mutex.lock();
 		taking_photo = true;
 		photo_mutex.unlock();
@@ -1252,8 +1264,8 @@ void Fenetre::getSpecData(bool precise)
 {
 	QString hautData;
 	QString basData;
-	//Wait the integration time be fore asking for data
-	//wait for inttime or not ?
+	//Wait the integration time before asking for data
+	Sleep(ceil(intTimeSlider->value() * 2.8));
 	capteurHaut->write("ATDATA\n");
 	capteurBas->write("ATDATA\n");
 	hautData = capteurHaut->getData();
