@@ -380,6 +380,7 @@ void Fenetre::takeSpectralInfo()
 							serialcomm->envoieCranParPas();
 							QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
 							//Enlever le polariseur
+							serialcomm->enablePolarization(false);
 							return;
 						}
 						else
@@ -403,7 +404,8 @@ void Fenetre::takeSpectralInfo()
 							serialcomm->setCransV(nbCranPasV);
 							serialcomm->envoieCranParPas();
 							QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-																			 //Enlever le polariseur
+							//Enlever le polariseur
+							serialcomm->enablePolarization(false);
 							return;
 						}
 						else
@@ -426,6 +428,7 @@ void Fenetre::takeSpectralInfo()
 				serialcomm->envoieCranParPas();
 				QMetaObject::invokeMethod(this, "enableButton");
 				//Enlever le polariseur
+				serialcomm->enablePolarization(false);
 				return;
 			}
 		}
@@ -442,7 +445,8 @@ void Fenetre::takeSpectralInfo()
 				serialcomm->setCransV(nbCranPasV);
 				serialcomm->envoieCranParPas();
 				QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-																 //Enlever le polariseur
+				//Enlever le polariseur
+				serialcomm->enablePolarization(false);
 				return;
 			}
 			else
@@ -459,6 +463,7 @@ void Fenetre::takeSpectralInfo()
 	//serialcomm->enableSpecPos(false);
 	QMetaObject::invokeMethod(this, "enableButton");
 	//Enlever le polariseur
+	serialcomm->enablePolarization(false);
 	return;
 }
 
@@ -501,6 +506,7 @@ void Fenetre::takeGigaPixelPhoto()
 					//serialcomm->enableSpecPos(false);
 					QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
 					//Enlever le polariseur
+					serialcomm->enablePolarization(false);
 					return;
 				}
 				if (sensorSet)
@@ -520,6 +526,7 @@ void Fenetre::takeGigaPixelPhoto()
 							//serialcomm->enableSpecPos(false);
 							QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
 							//Enlever le polariseur
+							serialcomm->enablePolarization(false);
 							return;
 						}
 						if (!serialcomm->dataAvailable(20000))
@@ -530,7 +537,8 @@ void Fenetre::takeGigaPixelPhoto()
 							photo_mutex.unlock();
 							//serialcomm->enableSpecPos(false);
 							QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-																			 //Enlever le polariseur
+							//Enlever le polariseur
+							serialcomm->enablePolarization(false);
 							return;
 						}
 						else
@@ -543,7 +551,8 @@ void Fenetre::takeGigaPixelPhoto()
 								photo_mutex.unlock();
 								//serialcomm->enableSpecPos(false);
 								QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-																				 //Enlever le polariseur
+								//Enlever le polariseur
+								serialcomm->enablePolarization(false);
 								return;
 							}
 						}
@@ -562,6 +571,7 @@ void Fenetre::takeGigaPixelPhoto()
 							//serialcomm->enableSpecPos(false);
 							QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
 							//Enlever le polariseur
+							serialcomm->enablePolarization(false);
 							return;
 						}
 						if (!serialcomm->dataAvailable(20000))
@@ -572,7 +582,8 @@ void Fenetre::takeGigaPixelPhoto()
 							photo_mutex.unlock();
 							//serialcomm->enableSpecPos(false);
 							QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-																			 //Enlever le polariseur
+							//Enlever le polariseur
+							serialcomm->enablePolarization(false);
 							return;
 						}
 						else
@@ -585,7 +596,8 @@ void Fenetre::takeGigaPixelPhoto()
 								photo_mutex.unlock();
 								//serialcomm->enableSpecPos(false);
 								QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-																				 //Enlever le polariseur
+								//Enlever le polariseur
+								serialcomm->enablePolarization(false);
 								return;
 							}
 						}
@@ -602,6 +614,7 @@ void Fenetre::takeGigaPixelPhoto()
 				//serialcomm->enableSpecPos(false);
 				QMetaObject::invokeMethod(this, "enableButton");
 				//Enlever le polariseur
+				serialcomm->enablePolarization(false);
 				return;
 			}
 		}
@@ -616,6 +629,7 @@ void Fenetre::takeGigaPixelPhoto()
 				//serialcomm->enableSpecPos(false);
 				QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
 				//Enlever le polariseur
+				serialcomm->enablePolarization(false);
 				return;
 			}
 			if (!serialcomm->dataAvailable(20000))
@@ -626,7 +640,8 @@ void Fenetre::takeGigaPixelPhoto()
 				photo_mutex.unlock();
 				//serialcomm->enableSpecPos(false);
 				QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-																 //Enlever le polariseur
+				//Enlever le polariseur
+				serialcomm->enablePolarization(false);
 				return;
 			}
 			else
@@ -639,7 +654,8 @@ void Fenetre::takeGigaPixelPhoto()
 					photo_mutex.unlock();
 					//serialcomm->enableSpecPos(false);
 					QMetaObject::invokeMethod(this, "enableButton"); //Pareil que pour la barre
-																	 //Enlever le polariseur
+					//Enlever le polariseur
+					serialcomm->enablePolarization(false);
 					return;
 				}
 			}
@@ -653,6 +669,7 @@ void Fenetre::takeGigaPixelPhoto()
 	//serialcomm->enableSpecPos(false);
 	QMetaObject::invokeMethod(this, "enableButton");
 	//Enlever le polariseur
+	serialcomm->enablePolarization(false);
 	return;
 }
 
@@ -854,9 +871,9 @@ Fenetre::Fenetre()
 	QGridLayout* tmpVgrid = new QGridLayout;
 	polarizationChoice[0] = new QRadioButton("Sans polariseur");
 	polarizationChoice[1] = new QRadioButton("Polariseur à 0° (vertical)");
-	polarizationChoice[2] = new QRadioButton("Polariseur à 45° (sens horaire)");
+	polarizationChoice[2] = new QRadioButton("Polariseur à 45° (sens anti-horaire)");
 	polarizationChoice[3] = new QRadioButton("Polariseur à 90° (horizontal)");
-	polarizationChoice[4] = new QRadioButton("Polariseur à 135° (sens horaire)");
+	polarizationChoice[4] = new QRadioButton("Polariseur à 135° (sens antoi-horaire)");
 	polarizationChoice[0]->setChecked(true);
 	//for (int i = 0; i < 5; ++i)
 	//{
@@ -1001,40 +1018,6 @@ void Fenetre::start()
 	//takeGigaPixelPhotoNoSpectrum();
 	//QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhotoNoSpectrum);
 
-	//DEBUG TEST
-	int polarization(0);
-	for (int i = 0; i < 5; ++i)
-	{
-		if (polarizationChoice[i]->isChecked())
-		{
-			polarization = i;
-			dataDir = focuswindow->setPolarization(polarization);
-			break;
-		}
-	}
-
-	//if (polarization == 0)
-	//{
-	//	if (!serialcomm->enablePolarization(false))
-	//	{
-	//		Log("Error while removing polarizer");
-	//		return;
-	//	}
-	//}
-	//else
-	//{
-	//	if (!serialcomm->enablePolarization(true))
-	//	{
-	//		Log("Error while enabling polarization");
-	//		return;
-	//	}
-	//	if (!serialcomm->selectPolarization(polarization))
-	//	{
-	//		Log("Error while choosing polarization");
-	//		return;
-	//	}
-	//}
-
 	//QFuture<void> thread1 = QtConcurrent::run(this, &Fenetre::takeGigaPixelPhoto);
 
 	//Récupération de la référence 0,0 en X, Y
@@ -1062,6 +1045,40 @@ void Fenetre::start()
 	}
 	//Goto start
 	serialcomm->gotoXY(startCoordPasH, 0, startCoordPasV, 0); //On oublie les crans
+
+	//Set polarization
+	int polarization(0);
+	for (int i = 0; i < 5; ++i)
+	{
+		if (polarizationChoice[i]->isChecked())
+		{
+			polarization = i;
+			dataDir = focuswindow->setPolarization(polarization);
+			break;
+		}
+	}
+
+	if (polarization == 0)
+	{
+		if (!serialcomm->enablePolarization(false))
+		{
+			Log("Error while removing polarizer");
+			return;
+		}
+	}
+	else
+	{
+		if (!serialcomm->enablePolarization(true))
+		{
+			Log("Error while enabling polarization");
+			return;
+		}
+		if (!serialcomm->selectPolarization(polarization))
+		{
+			Log("Error while choosing polarization");
+			return;
+		}
+	}
 
 	m_saveSpectrumInfo = spectreActif->isChecked();
 	if (m_saveSpectrumInfo)
